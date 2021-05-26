@@ -1,4 +1,7 @@
 import React,  { Component } from 'react';
+import axios from 'axios';
+import cookie from 'js-cookie';
+
 export default class Login extends Component {
 
     constructor(props) {
@@ -6,8 +9,21 @@ export default class Login extends Component {
         this.state = { email: '', password: '', errors: {}}
     }
 
+    apiCall = () => {
+        const data = {email:this.state.email, password: this.state.password};
+        axios.post('http://localhost:8000/api/auth/login', data)
+        .then(res => console.log(res))
+        .catch(e => this.setState({errors: e.response.data}));
+    }
+
+    componentDidMount() {
+    }
+
     handleForm = (e) => {
         e.preventDefault();
+        this.apiCall(this.props.typeCall);
+
+        //this.props.history.push('/test');
     }
 
     handleInput = (e) => {
@@ -18,6 +34,7 @@ export default class Login extends Component {
         
     }
     render() {
+        const error = this.state.errors;
         return(
             <section className="login">
             <article>
@@ -26,6 +43,8 @@ export default class Login extends Component {
             </article>
 
             <form className="login__form" onSubmit={this.handleForm}>
+               <p>{error.errors}</p>
+
                 <article>
                     <label htmlFor="email">Uw e-mail</label>
                     <input type="text" id="email" name="email" placeholder="email" onChange={this.handleInput}></input>
