@@ -1,14 +1,17 @@
 import React from "react";
-
+import Login from './components/Login';
+/* nodig voor routes*/
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends React.Component{
     
     render(){
         return(
-            <section>
-                <h1>Hallo</h1>
-                <p>Dit is een test</p>
-            </section>
+            <Router>
+                <Route>
+                    <Route path="/admin" component={Login} />
+                </Route>
+            </Router>
             
         );
     }
