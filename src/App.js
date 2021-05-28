@@ -5,6 +5,8 @@ import Login from './components/login/Login';
 import Test from "./components/test-login/test-login";
 /* nodig voor routes*/
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import GuestRoute from './components/GuestRoute';
+import AuthRoute from './components/AuthRoute';
 
 
 class App extends React.Component{
@@ -13,10 +15,10 @@ class App extends React.Component{
         return(
             <Router>
                 <Route>
-                    <Route path="/admin" component={Login} />
+                    <GuestRoute path="/admin" component={Login} />
                 </Route>
                 <Route>
-                    <Route path="/test" component={Test} />
+                    <AuthRoute path="/test" component={Test} />
                 </Route>
             </Router>
             

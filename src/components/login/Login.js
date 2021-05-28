@@ -1,8 +1,9 @@
 import React,  { Component } from 'react';
 import axios from 'axios';
 import cookie from 'js-cookie';
+import { connect } from 'react-redux';
 
-export default class Login extends Component {
+class Login extends Component {
 
     constructor(props) {
         super(props)
@@ -10,10 +11,14 @@ export default class Login extends Component {
     }
 
     apiCall = () => {
+        const DEFAULT_URL = 'http://localhost:8000/api/'
         const data = {email:this.state.email, password: this.state.password};
-        axios.post('http://localhost:8000/api/auth/login', data)
-        .then(res => console.log(res))
-        .catch(e => this.setState({errors: e.response.data}));
+        axios.post(DEFAULT_URL + 'auth/login', data)
+        .then(res => { 
+        cookie.set('token', res.data.access_token); //cookie zetten
+        this.props.setLogin(res.data.user); //redux toepassen
+        this.props.history.push('/test'); //stuur gebruiker naar dashboard
+        }).catch(e => this.setState({errors: e.response.data}));
     }
 
     componentDidMount() {
@@ -22,6 +27,7 @@ export default class Login extends Component {
     handleForm = (e) => {
         e.preventDefault();
         this.apiCall(this.props.typeCall);
+        //dispatch actie naar redux
 
         //this.props.history.push('/test');
     }
@@ -59,3 +65,10 @@ export default class Login extends Component {
         );
     }
 };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setLogin: (user) => dispatch({type:"SET_LOGIN", payload:user})
+    };
+}
+export default connect(null, mapDispatchToProps)(Login)
