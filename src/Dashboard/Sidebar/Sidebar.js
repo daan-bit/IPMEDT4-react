@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+import { createOnderzoek } from '/home/daan/ipmedt4/ipmedt4/src/actions.js';
+
 import "./Sidebar.css";
 
 class Sidebar extends Component {
+
+    change = (event) =>{
+        this.props.createOnderzoek(event.target.value);
+    }
+
+    submit(){
+        fetch('http://127.0.0.1:8000/api/store',{
+            method: 'post',
+            body: JSON.stringify(
+                this.props.onderzoek
+            ),
+            headers:{
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json',
+            }
+        }).then(function(response){
+            response.json().then(function(resp){
+                console.log(resp)
+            })
+        })
+    }
 
     render(){
         return(
@@ -14,7 +37,8 @@ class Sidebar extends Component {
                 </nav>
 
                 <div className="sidebar__buttonContainer">
-                    <button className="buttonContainer__button">Onderzoek maken</button>
+                    <input type="text" onChange={this.change}/>
+                    <button onClick={()=>{this.submit()}} className="buttonContainer__button">Onderzoek maken</button>
                 </div>
             </article>
         )
@@ -22,4 +46,11 @@ class Sidebar extends Component {
     
 }
 
-export default Sidebar;
+const mapStateToProps = state =>{
+    return { onderzoek: state.onderzoek };
+}
+
+export default connect(
+    mapStateToProps, 
+    {createOnderzoek: createOnderzoek}
+) (Sidebar);
