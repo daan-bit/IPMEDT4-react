@@ -1,0 +1,60 @@
+/*
+
+login component by Alex
+styleguide toegepast
+*/
+.login-form {
+    background-color: #1E2736;
+}
+.login-form__title {
+    font-size: 5.6rem;
+    color: #FFF;
+}
+
+.login-form__input {
+    height: 3rem;
+}
+
+.login-form__paragraph {
+    font-size: 1.8rem;
+    font-weight: 400;;
+    color: #FFF;
+}
+
+.login-form__button {
+    height: 6rem;
+    width: 15rem;
+
+}
+
+.login-form {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0,1fr));
+    grid-template-rows: repeat(12, minmax(0,1fr));
+}
+
+.login-form__form {
+    display: grid;
+    grid-column: 7 / 12;
+}
+
+.login-form__explain {
+    grid-column: 7 / span 12;
+    grid-row: 1;
+
+}
+
+.login-form__paragraph__error {
+    color: red;
+    font-size: 1.8rem;
+    font-weight: 400;
+
+}
+
+label {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #FFF;
+}
+
+
