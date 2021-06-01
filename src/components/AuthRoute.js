@@ -3,12 +3,10 @@
 
 import {Route, Redirect} from 'react-router-dom';
 import React from 'react';
-import cookie from 'js-cookie';
 import { connect } from 'react-redux';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
     console.log({...rest }) //zie voor console redux te werk gaan
-    const token = cookie.get('token');
   return (
     <Route
       {...rest}
@@ -18,7 +16,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/admin",
+              pathname: "/beheer",
               state: { from: props.location }
             }}
           />

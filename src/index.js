@@ -30,7 +30,6 @@ if(token) { //bevat token
             token = null;
             }
         }
-        console.log('decoded');
     });
     }
 
@@ -51,7 +50,12 @@ if(token) {
     });
    
 } else {
-    render()
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById("root")
+    );
 }
 
 //4. App component in DOM schieten

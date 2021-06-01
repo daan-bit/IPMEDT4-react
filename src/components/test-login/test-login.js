@@ -1,9 +1,14 @@
 import React,  { Component } from 'react';
-export default class Test extends Component {
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Navbar from './navbar';
+class Test extends Component {
 
     render() {
         return(
-           <div>Dit is je naam!</div>
+           <Navbar />
         );
     }
 };
+
+export default Test

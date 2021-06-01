@@ -3,24 +3,17 @@
 
 import {Route, Redirect} from 'react-router-dom';
 import React from 'react';
-import cookie from 'js-cookie';
 import { connect } from 'react-redux';
 const GuestRoute = ({ component: Component, ...rest }) => {
-  const token = cookie.get('token');
   return (
-    <Route
-      {...rest}
-      render={props =>
+    <Route 
+      {...rest}    
+        render={props =>
         !rest.loggedIn ? ( //redux loggedIn gezet op false
           <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/test",
-              state: { from: props.location }
-            }}
-          />
-        )
+        ) :  (
+          <Redirect to={{pathname: "/dashboard", state: { from: props.location } } } />
+        ) 
       }
     />
   );

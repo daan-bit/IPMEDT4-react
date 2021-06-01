@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import axios from 'axios';
 import cookie from 'js-cookie';
 import { connect } from 'react-redux';
+import './Login.css';
 
 class Login extends Component {
 
@@ -17,7 +18,7 @@ class Login extends Component {
         .then(res => { 
         cookie.set('token', res.data.access_token); //cookie zetten
         this.props.setLogin(res.data.user); //redux toepassen
-        this.props.history.push('/test'); //stuur gebruiker naar dashboard
+        this.props.history.push('/dashboard'); //stuur gebruiker naar dashboard
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
@@ -41,27 +42,32 @@ class Login extends Component {
     }
     render() {
         const error = this.state.errors;
+
+
         return(
-            <section className="login">
-            <article>
-                <h2>Inloggen</h2>
-                <p>Op deze pagina kunt u inloggen</p>
+            <article className="login-form">
+                <section className="login-form__explain">
+                <h2 className="login-form__title">Tevredenheidsonderzoek beheer</h2>
+                <p className="login-form__paragraph">Log in met uw gegevens hieronder</p>
+                </section>
+                <form className="login-form__form" onSubmit={this.handleForm}>
+                    <section className="login-form__section">
+                        <label htmlFor="email">Uw e-mail</label><br />
+                        <input type="text" className="login-form__input" id="email" name="email" placeholder="Uw Email" onChange={this.handleInput}></input>
+                    </section>
+
+
+                    <section className="login-form__section">
+                        <label htmlFor="password">Uw wachtwoord</label><br />
+                        <input type="password"  className="login-form__input"id="password" name="password" placeholder="************" onChange={this.handleInput}></input>
+                    </section>
+
+                    <section className="login-form__section">
+                    <input type="submit" className="login-form__button primary" value="Inloggen" />
+                    <p className="login-form__paragraph__error">{error.errors}</p>
+                    </section>
+                </form>
             </article>
-
-            <form className="login__form" onSubmit={this.handleForm}>
-               <p>{error.errors}</p>
-
-                <article>
-                    <label htmlFor="email">Uw e-mail</label>
-                    <input type="text" id="email" name="email" placeholder="email" onChange={this.handleInput}></input>
-                </article>
-                <article>
-                    <label htmlFor="password">Uw wachtwoord</label>
-                    <input type="password" id="password" name="password" placeholder="password" onChange={this.handleInput}></input>
-                </article>
-                <input type="submit" value="Log in" />
-            </form>
-            </section>
         );
     }
 };
