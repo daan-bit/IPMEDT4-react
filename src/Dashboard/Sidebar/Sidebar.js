@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+import axios from 'axios';
+
 import { createOnderzoek } from '/home/daan/ipmedt4/ipmedt4/src/actions.js';
 
 import "./Sidebar.css";
@@ -12,20 +14,30 @@ class Sidebar extends Component {
     }
 
     submit(){
-        fetch('http://127.0.0.1:8000/api/store',{
-            method: 'post',
-            body: JSON.stringify(
-                this.props.onderzoek
-            ),
-            headers:{
-                'Accept' : 'application/json',
-                'Content-Type' : 'application/json',
-            }
-        }).then(function(response){
-            response.json().then(function(resp){
-                console.log(resp)
-            })
-        })
+        axios.post('http://127.0.0.1:8000/api/store', {
+                naam: this.props.onderzoek,                      
+            }).then(function (response) {           
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+
+
+        // fetch('http://127.0.0.1:8000/api/store',{
+        //     method: 'post',
+        //     body: JSON.stringify(
+        //         this.props.onderzoek
+        //     ),
+        //     headers:{
+        //         'Accept' : 'application/json',
+        //         'Content-Type' : 'application/json',
+        //     }
+        // }).then(function(response){
+        //     response.json().then(function(resp){
+        //         console.log(resp)
+        //     })
+        // })
     }
 
     render(){
