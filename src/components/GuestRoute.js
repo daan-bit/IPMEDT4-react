@@ -12,7 +12,7 @@ const GuestRoute = ({ component: Component, ...rest }) => {
         !rest.loggedIn ? ( //redux loggedIn gezet op false
           <Component {...props} />
         ) :  (
-          <Redirect to={{pathname: "/dashboard", state: { from: props.location } } } />
+          <Redirect to={{pathname: "/admin/dashboard", state: { from: props.location } } } />
         ) 
       }
     />

@@ -25,7 +25,7 @@ class App extends React.Component{
                         <AuthRoute path="/dashboard/:id" exact component={Test} />
                    </Route>
                     <Route>
-                        <GuestRoute path="/beheer" component={Login} />
+                        <GuestRoute path="/admin" exact component={Login} />
                     </Route>
                     <Route>
                         <AuthRoute path="/test" component={Test} />
