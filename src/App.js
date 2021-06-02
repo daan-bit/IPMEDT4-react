@@ -9,12 +9,7 @@ import AuthRoute from './components/AuthRoute';
 
 import './App.css';
 
-import Sidebar from './components/Dashboard/Sidebar/Sidebar';
-import Overzicht from './components/Dashboard/Overzicht/Overzicht';
-
-import {Provider} from "react-redux";
-import {store} from './store';
-import {Link, Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import {Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 
