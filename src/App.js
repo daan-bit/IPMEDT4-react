@@ -16,6 +16,7 @@ import {Provider} from "react-redux";
 import {store} from './store';
 import {Link, Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
+import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
 
 
 class App extends React.Component{
@@ -25,6 +26,9 @@ class App extends React.Component{
             <Router>
                   <Route>
                         <AuthRoute path="/admin/dashboard" exact component={Dashboard} />                    
+                   </Route>
+                   <Route>
+                       <AuthRoute path="/admin/vragen/aanmaken" exact component={vragenAanmaken} />
                    </Route>
                    <Route>
                         <AuthRoute path="/dashboard/:id" exact component={Test} />
