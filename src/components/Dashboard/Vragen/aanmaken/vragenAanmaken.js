@@ -8,7 +8,7 @@ class vragenAanmaken extends Component{
 
     constructor(props) {
     super(props);
-    this.state = { message: '', onderzoek_id: 0, selectOpties: [], label: '', value: '', vraag: '', type_vraag: '', cat_naam: 'Informatica', errors: {}} 
+    this.state = { message: '', onderzoek_id: 0, selectOpties: [], label: '', value: '', vraag: '', type_vraag: 'meerkeuze', cat_naam: 'Informatica', errors: {}} 
     }
 
     componentDidMount() {
@@ -39,7 +39,6 @@ class vragenAanmaken extends Component{
         axios.post('http://127.0.0.1:8000/api/vragen/store',  data)
         .then(res => {
         this.setState({message: res.data.message});
-        console.log(res);
         }).catch(e => this.setState({errors: e.response.data}));
 
     }
@@ -56,19 +55,19 @@ class vragenAanmaken extends Component{
         .then(res => { 
         let i = 0;
         const opties = res.data.map(d => ({
-            "label": d.naam,
-            "value": d.naam
+            "label": d.naam.toLowerCase(),
+            "value": d.naam,
         }))
-        console.log(opties);
         this.setState({selectOpties: opties})
-
-        //this.setState({categorie: res.data.naam});
-        //this.setState({naam: res.data.naam}) //redux toepassen
-        })//.catch(e => this.setState({errors: e.response.data}));
+        }).catch(e => this.setState({errors: e.response.data}));
     }
    
 
     render(){
+        const options = this.state.selectOpties;
+        const errors = this.state.errors;
+        
+        
         return(
             <article className="onderzoek">
                 <InfoOnderzoek />
@@ -79,14 +78,28 @@ class vragenAanmaken extends Component{
                     <label htmlFor="email">Naam vraag:</label><br />
                     <input type="text" className="vraag-form__input" id="vraag" name="vraag" placeholder="Typ hier de titel" onChange={this.handleInput}></input>
                     </section>
-                    <section className="vragen-form__section">
 
-                    <label htmlFor="type_vraag">Type Vraag:</label><br />
-                    <input type="text" className="vraag-form__input" id="type_vraag" name="type_vraag" placeholder="Typ hier de type" onChange={this.handleInput}></input>
-                    </section>
                     <section className="vragen-form__section">
-                    <input type="submit" className="vragen-form__button primary" value="+" />
-                    <p className="vragen-form__paragraph__success">{this.state.message}</p>
+                    <label htmlFor="type_vraag">Type Vraag:</label><br />
+                    <select name="cat_naam" onChange={this.handleInput}>
+                        {options.map((option, index) => (
+                        <option key={index} value={option.value}>{option.value}</option>
+                        ))}
+                    </select>
+                    </section>
+                    
+                    <section>
+                    <label htmlFor="type_vraag">Categorie:</label><br />
+                    <select name="type_vraag" id="type_vraag" onChange={this.handleInput}>
+                        <option value="meerkeuze">Meerkeuze vraag</option>
+                        <option value="openvraag">Open vraag</option>
+                    </select>
+                    </section>
+
+                    <section className="vragen-form__section">
+                    <input type="submit" className="vragen-form__button primary" value="Vraag Toevoegen" />
+                    {errors.length > 0 && <p className="vragen-form__paragraph__error">{errors}</p>}
+                    {this.state.message.length > 0 && <p className="vragen-form__paragraph__success">{this.state.message}</p>}
                     </section>
                 </form>
             </article>
