@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import InfoOnderzoek from '../infoOnderzoek/InfoOnderzoek';
 import axios from 'axios';
 import "./vragenAanmaken.css";
+import cookie from 'js-cookie';
+let token = cookie.get('token');
 
 class vragenAanmaken extends Component{
 
@@ -36,7 +38,8 @@ class vragenAanmaken extends Component{
     
     apiCallVraag = () => {
         const data = {onderzoek_id:this.state.onderzoek_id, cat_naam:this.state.cat_naam, vraag: this.state.vraag, type_vraag:this.state.type_vraag};
-        axios.post('http://127.0.0.1:8000/api/vragen/store',  data)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; //we moeten JWT meegeven - beveiliging POST request
+        axios.post('http://127.0.0.1:8000/api/auth/vragen/store',  data)
         .then(res => {
         this.setState({message: res.data.message});
         }).catch(e => this.setState({errors: e.response.data}));
