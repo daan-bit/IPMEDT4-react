@@ -1,0 +1,18 @@
+.onderzoek__info {
+    display: grid;
+    grid-row: 3 / 4;
+    grid-column: 2 / 12;
+
+}
+
+.onderzoek__info__title {
+    font-size: 4.8rem;
+    color: #FFF;
+    font-weight: 400;
+}
+
+.onderzoek__info__paragraph {
+    font-size: 1.8rem;
+    color: #FFF;
+    font-weight: 400;
+}

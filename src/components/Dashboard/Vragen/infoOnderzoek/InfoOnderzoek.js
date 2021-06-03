@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './infoOnderzoek.css';
 class InfoOnderzoek extends Component{
 
     constructor(props) {
@@ -13,6 +14,7 @@ class InfoOnderzoek extends Component{
         axios.get(DEFAULT_URL + 'onderzoek/1', data)
         .then(res => { 
         this.setState({naam: res.data.naam}) //redux toepassen
+        localStorage.setItem('onderzoek_id', res.data.id);
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
@@ -25,9 +27,10 @@ class InfoOnderzoek extends Component{
     render(){
         const error = this.state.errors;
         return(
-            <article className="onderzoek">
-                <h2>Naam van onderzoek: {this.state.naam}</h2>
-                <p>Hieronder kunt u de vragen toevoegen voor dit onderzoek.</p>
+            <article className="onderzoek__info">
+                <h2 className="onderzoek__info__title">Naam van onderzoek: {this.state.naam}</h2>
+                <p className="onderzoek__info__paragraph"> Hieronder kunt u de vragen toevoegen voor dit onderzoek.</p>
+                
             </article>
         )
     }

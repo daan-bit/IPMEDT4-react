@@ -18,7 +18,7 @@ class Login extends Component {
         .then(res => { 
         cookie.set('token', res.data.access_token); //cookie zetten
         this.props.setLogin(res.data.user); //redux toepassen
-        this.props.history.push('/dashboard'); //stuur gebruiker naar dashboard
+        this.props.history.push('/admin/dashboard'); //stuur gebruiker naar dashboard
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
