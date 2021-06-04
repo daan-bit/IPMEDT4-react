@@ -23,6 +23,11 @@
     width: 32rem;
 }
 
+.login-form__paragraph__error{
+    color:red;
+    font-size: 120%;
+}
+
 .login-form__section{
     width: 100%;
     height: auto;

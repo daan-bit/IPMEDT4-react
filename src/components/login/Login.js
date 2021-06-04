@@ -52,6 +52,7 @@ class Login extends Component {
 
                 <form className="login-form__form" onSubmit={this.handleForm}>
                     <p className="login-form__paragraph__error">{error.errors}</p>
+                    
                     <section className="login-form__section">
                         <input type="text" className="login-form__input" id="email" name="email" placeholder="Gebruikersnaam" onChange={this.handleInput}></input>
                         <input type="password"  className="login-form__input"id="password" name="password" placeholder="Wachtwoord" onChange={this.handleInput}></input>
