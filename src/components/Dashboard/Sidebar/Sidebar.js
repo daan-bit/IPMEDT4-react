@@ -4,13 +4,19 @@ import axios from 'axios';
 
 import "./Sidebar.css";
 
+
 class Sidebar extends Component {
 
     constructor(props){
         super(props)
         this.state = {
             onderzoek: "",
+            onderzoeken: [],
         }
+    }
+
+    componentDidMount() {
+        this.makeApiCall();
     }
 
     change = (event) =>{
@@ -30,27 +36,30 @@ class Sidebar extends Component {
     makeApiCall = () =>{
         const BASE_URL = "http://localhost:8000/api/onderzoeken";
 
-        axios.get(BASE_URL).then(function (response){
-           console.log(response.data);
+        axios.get(BASE_URL)
+        .then(res => {
+            this.setState({onderzoeken: res.data})
         });
     };
 
-
-
     render(){
+        const onderzoeken = (this.state.onderzoeken);
         return(
             <article className="sidebar">
-                <nav className="sidebar__nav">
-                        <a href="#" className="nav__a">Onderzoek 1</a>
-                        <a href="#" className="nav__a">Onderzoek 2</a>
-                </nav>
+                <ul>
+                    {onderzoeken.map((item, i) => (
+                    
+                        <li key={i}>
+                            <a href="#">{item.naam}</a>
+                        </li>
+                    ))}
+                </ul>   
 
                 <div className="sidebar__buttonContainer">
                     <input type="text" onChange={this.change}/>
-                    <button onClick={()=>{this.submit()}} className="buttonContainer__button">Onderzoek maken</button>
+                    <button onClick={()=>{{this.submit()}; this.makeApiCall();}} className="buttonContainer__button">Onderzoek maken</button>
                 </div>
 
-                <button onClick={()=>{this.makeApiCall()}} className="buttonContainer__button">Ophalen</button>
             </article>
         )
     }
