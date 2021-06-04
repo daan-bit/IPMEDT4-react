@@ -7,20 +7,9 @@
 html{
     font-size: 62.5%;
     font-family: 'Poppins', sans-serif;
-
 }
 
 .main{
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0,1fr));
-    grid-template-rows: auto auto;
-}
-
-@media (min-width: 37.5rem){
-    .main{
-        grid-template-columns: repeat(3, minmax(0,1fr));
-        grid-template-rows: repeat(1, minmax(0,1fr));
-    }
 }

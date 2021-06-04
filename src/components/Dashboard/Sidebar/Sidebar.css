@@ -2,6 +2,9 @@
   height: auto;
   width: 100%;
   grid-row: 1 / span 1;
+  grid-column: 1 / span 1;
+  background-color: lightblue;
+  margin-bottom: 3rem;
 }
 
 .sidebar__nav{
@@ -16,7 +19,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
   border: 1px solid black;
   text-decoration: none;
   font-size: 200%;
@@ -43,7 +45,6 @@
   .sidebar{
     grid-column: 3 / span 1;
     grid-row: 1 / span 1;
-    height: 100%;
-    background-color: lightblue;
+    margin-bottom: 0;
   }
 }

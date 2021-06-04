@@ -27,6 +27,16 @@ class Sidebar extends Component {
             });
     }
 
+    makeApiCall = () =>{
+        const BASE_URL = "http://localhost:8000/api/onderzoeken";
+
+        axios.get(BASE_URL).then(function (response){
+           console.log(response.data);
+        });
+    };
+
+
+
     render(){
         return(
             <article className="sidebar">
@@ -39,6 +49,8 @@ class Sidebar extends Component {
                     <input type="text" onChange={this.change}/>
                     <button onClick={()=>{this.submit()}} className="buttonContainer__button">Onderzoek maken</button>
                 </div>
+
+                <button onClick={()=>{this.makeApiCall()}} className="buttonContainer__button">Ophalen</button>
             </article>
         )
     }
@@ -46,3 +58,5 @@ class Sidebar extends Component {
 }
 
 export default Sidebar;
+
+
