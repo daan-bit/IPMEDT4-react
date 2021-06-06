@@ -12,3 +12,34 @@ h2 {
 .onderzoek-vraag__error {
     color: red;
 }
+
+.onderzoek-vragen {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0,1fr));
+    grid-template-rows: repeat(12, minmax(0,1fr));
+    grid-gap: 50px;
+}
+
+
+@media (min-width: 350px) {
+    .onderzoek-vragen {
+        grid-template-columns: repeat(1, minmax(0,1fr));
+        grid-template-rows: repeat(12, minmax(0,1fr));
+
+
+    }
+}
+@media (min-width: 625px) {
+    .onderzoek-vragen {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        grid-template-rows: repeat(12, minmax(0,1fr));
+
+
+    }
+}
+  
+@media (min-width: 1225px) {
+    .onderzoek-vragen {
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+}

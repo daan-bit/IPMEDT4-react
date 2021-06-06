@@ -34,10 +34,11 @@ class vragenBekijken extends Component {
     const vragen = this.state.vragen;
     const vragenGevuld =
       vragen.length > 0 ? (
-        vragen.map((vraag) => {
+        vragen.map((vraag, index) => {
           return (
             <VraagComponent
               key={vraag.id}
+              index={index}
               id={this.props.match.params.id}
               vraag={vraag.vraag}
               cat_naam={vraag.cat_naam}
