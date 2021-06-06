@@ -25,7 +25,7 @@ class App extends React.Component{
                         <AuthRoute path="/admin/dashboard" exact component={Dashboard} />                    
                    </Route>
                    <Route>
-                       <AuthRoute path="/admin/vragen/aanmaken" exact component={vragenAanmaken} />
+                       <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
                    </Route>
                    <Route>
                        <AuthRoute path="/admin/onderzoek/:id/vragen" exact component={vragenBekijken} />

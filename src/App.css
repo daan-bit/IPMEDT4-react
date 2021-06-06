@@ -39,3 +39,7 @@ button:hover{
 .primary:active{
     background-color: #1e6f5c;
 }
+
+.body {
+    display: grid;
+}

@@ -1,0 +1,14 @@
+.vragen-bekijken {
+    background-color: #1E2736;
+    /*grid-template-rows: repeat(12, minmax(0,1fr));
+    grid-template-columns: repeat(12, minmax(0,1fr));
+*/}
+
+h2 {
+    font-size: 3.2rem;
+    color: #fff;
+}
+
+.onderzoek-vraag__error {
+    color: red;
+}

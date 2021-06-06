@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import InfoOnderzoek from '../infoOnderzoek/InfoOnderzoek';
 import axios from 'axios';
+import OnderzoekInfoComponent from '../../Onderzoek/vragen/OnderzoekInfoComponent';
 import "./vragenAanmaken.css";
 import cookie from 'js-cookie';
 let token = cookie.get('token');
@@ -73,7 +73,7 @@ class vragenAanmaken extends Component{
         
         return(
             <article className="onderzoek">
-                <InfoOnderzoek />
+                <OnderzoekInfoComponent cssClass='onderzoek__title' naam="Vraag" type='toevoegen' id={this.props.match.params.id} /> 
             <article className="vragen">
             <form className="vragen-form__form" onSubmit={this.handleForm}>
 

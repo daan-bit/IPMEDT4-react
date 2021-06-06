@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-
-
-
 import './Overzicht.css';
 
 class Overzicht extends Component{
 
     render(){
-        return(
-                        
+        return(         
                 <article className="overzicht">  
                     <section className="overzicht__container">
                         <figure className="overzicht__figure">Gemiddelde</figure>
