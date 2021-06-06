@@ -28,7 +28,8 @@ class Sidebar extends Component {
         this.setState({code: event.target.value});
     }
 
-    submit(){
+    submit = (e) =>{
+        e.preventDefault();
         axios.post('http://127.0.0.1:8000/api/store', {
                 naam: this.state.onderzoek, 
                 code: this.state.code,                     
@@ -37,6 +38,7 @@ class Sidebar extends Component {
             }).catch(function (error) {
                 console.log(error);
             });
+        this.makeApiCall();
     }
 
     makeApiCall = () =>{
@@ -54,7 +56,7 @@ class Sidebar extends Component {
             <article className="sidebar">               
 
                 {/* Nog form van maken, doet het nog niet --> zegt request aborted */}
-                <section className="sidebar__form"> 
+                <form className="sidebar__form" onSubmit={this.submit}>
                     <section className="sidebar__inputSection">
                         <label className="sidebar__label" htmlFor="onderzoek">Naam onderzoek</label>
                         <input className="sidebar__input" type="text" id="onderzoek" required onChange={this.changeOnderzoek}/>
@@ -62,19 +64,19 @@ class Sidebar extends Component {
                    
                     <section className="sidebar__inputSection">
                         <label className="sidebar__label" htmlFor="code">Code</label>
-                        <input className="sidebar__input sidebar__input--code" required type="text" id="code" onChange={this.changeCode}/>
+                        <input className="sidebar__input sidebar__input--code" required type="number" id="code" onChange={this.changeCode}/>
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button primary" onClick={()=>{{this.submit()}; this.makeApiCall();}}>Onderzoek maken</button>
+                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>
                     </section>
-                </section>
+                </form>
 
                 <ul className="sidebar__lijst">
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
-                            <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
+                            <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a> 
                         </li>
                     ))}
                 </ul>   
