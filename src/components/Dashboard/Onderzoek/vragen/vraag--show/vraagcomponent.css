@@ -1,5 +1,6 @@
 .onderzoek-vraag {
     background-color: #273747;
+    margin: 5rem;
 
 }
 
@@ -17,7 +18,32 @@ h3 {
     color: #FFF;
 }
 
-@media (min-width: 62.5rem) {
+@media(min-width: 350px) {
+    .onderzoek-vraag {
+        background-color: #273747;
+        padding: 1rem;
+        margin: 3rem;
+        width: 75%;
+        
+    }
+
+
+    .onderzoek-vraag__container__title {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 625px) {
+    .onderzoek-vraag {
+        margin: 5rem;
+        width: 75%;
+
+
+    }
+
+    .onderzoek-vraag__container__title {
+        font-size: 2.5rem;
+    }
 }
   
 @media (min-width: 1225px) {

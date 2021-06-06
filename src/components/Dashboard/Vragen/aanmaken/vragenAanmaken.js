@@ -72,10 +72,13 @@ class vragenAanmaken extends Component{
         
         return(
             <article className="onderzoek">
-                <OnderzoekInfoComponent cssClass='onderzoek__title' naam="Vraag" type='toevoegen' id={this.props.match.params.id} /> 
-            <article className="vragen">
-            <form className="vragen-form__form" onSubmit={this.handleForm}>
+                <section class="onderzoek__section">
+                    <OnderzoekInfoComponent cssClass='onderzoek__section__title' naam="Vraag" type='toevoegen' id={this.props.match.params.id} />
+                </section> 
 
+
+                <article className="vragen">
+                    <form className="vragen-form__form" onSubmit={this.handleForm}>
                     <section className="vragen-form__section">
                     <label htmlFor="email">Naam vraag:</label><br />
                     <input type="text" className="vraag-form__input" id="vraag" name="vraag" placeholder="Typ hier de titel" onChange={this.handleInput}></input>
@@ -83,23 +86,23 @@ class vragenAanmaken extends Component{
 
                     <section className="vragen-form__section">
                     <label htmlFor="type_vraag">Type Vraag:</label><br />
-                    <select name="cat_naam" onChange={this.handleInput}>
+                    <select name="cat_naam" className="vraag-form__input" onChange={this.handleInput}>
                         {options.map((option, index) => (
                         <option key={index} value={option.value}>{option.value}</option>
                         ))}
                     </select>
                     </section>
                     
-                    <section>
+                    <section className="vragen-form__section">
                     <label htmlFor="type_vraag">Categorie:</label><br />
-                    <select name="type_vraag" id="type_vraag" onChange={this.handleInput}>
+                    <select name="type_vraag" className="vraag-form__input" id="type_vraag" onChange={this.handleInput}>
                         <option value="meerkeuze">Meerkeuze vraag</option>
                         <option value="openvraag">Open vraag</option>
                     </select>
                     </section>
 
                     <section className="vragen-form__section">
-                    <input type="submit" className="vragen-form__button primary" value="Vraag Toevoegen" />
+                    <button type="submit" className="vragen-form__button primary">Vraag Toevoegen</button>
                     {errors.length > 0 && <p className="vragen-form__paragraph__error">{errors}</p>}
                     {this.state.message.length > 0 && <p className="vragen-form__paragraph__success">{this.state.message}</p>}
                     </section>
