@@ -29,8 +29,13 @@ class StartTest extends React.Component{
         
         return(
             <section className="searchbar_section">
-                <form onSubmit={this.makeApiCall}>
-                    <input onChange={this.onSearch} className="searchbar_section__input" type="text" vlaue={this.state.testCode}/>
+                <article className="code">
+                    <h1 className="code__title">Code</h1>
+                    <p className="code__text">Vul hier je code in die je hebt ontvangen via de mail.</p>
+                </article>
+
+                <form className="code__form" onSubmit={this.makeApiCall}>
+                    <input onChange={this.onSearch} className="code__input" type="text" placeholder="CODE" vlaue={this.state.testCode}/>
                     <button type="submit">Start het onderzoek</button>
                 </form>
             </section>
