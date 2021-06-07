@@ -1,0 +1,38 @@
+.overzicht{
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overzicht__container{
+    height: auto;
+    width: 80%;
+    background-color: cyan;
+    border-radius: 10%;
+    display: flex;
+    padding: 5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.container__figure{
+    height: 10rem;
+    width: 15rem;
+    background-color: red;
+    font-size: 200%;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(min-width: 37.5rem){
+    .overzicht{
+        grid-row: 1 / span 1;
+    }
+}
