@@ -7,7 +7,9 @@ class OverzichtGebruiker extends React.Component{
         this.state = {
           onderzoek_id: this.props.match.params.id,
         }; //loading zetten we op true eerst
-      }
+        const onderzoek_code = this.state.onderzoek_id;
+        
+    }
 
 
       render(){
