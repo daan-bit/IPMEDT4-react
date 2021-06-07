@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 
 import axios from 'axios';
-import cookie from 'js-cookie';
-import jwt from 'jsonwebtoken';
 
 import "./Sidebar.css";
+
 
 class Sidebar extends Component {
 
@@ -13,16 +11,27 @@ class Sidebar extends Component {
         super(props)
         this.state = {
             onderzoek: "",
+            code: "",
+            onderzoeken: [],
         }
     }
 
-    change = (event) =>{
+    componentDidMount() {
+        this.makeApiCall();
+    }
+
+    changeOnderzoek = (event) =>{
         this.setState({onderzoek: event.target.value});
+    }
+
+    changeCode = (event) =>{
+        this.setState({code: event.target.value});
     }
 
     submit(){
         axios.post('http://127.0.0.1:8000/api/store', {
-                naam: this.state.onderzoek,                      
+                naam: this.state.onderzoek, 
+                code: this.state.code,                     
             }).then(function (response) {           
                 console.log(response.data);
             }).catch(function (error) {
@@ -30,22 +39,51 @@ class Sidebar extends Component {
             });
     }
 
-    render(){
-        return(
-            <article className="sidebar">
-                <nav className="sidebar__nav">
-                        <a href="#" className="nav__a">Onderzoek 1</a>
-                        <a href="#" className="nav__a">Onderzoek 2</a>
-                </nav>
+    makeApiCall = () =>{
+        const BASE_URL = "http://localhost:8000/api/onderzoeken";
 
-                <div className="sidebar__buttonContainer">
-                    <input type="text" onChange={this.change}/>
-                    <button onClick={()=>{this.submit()}} className="buttonContainer__button">Onderzoek maken</button>
-                </div>
+        axios.get(BASE_URL)
+        .then(res => {
+            this.setState({onderzoeken: res.data})
+        });
+    };
+
+    render(){
+        const onderzoeken = (this.state.onderzoeken);
+        return(
+            <article className="sidebar">               
+
+                {/* Nog form van maken, doet het nog niet --> zegt request aborted */}
+                <section className="sidebar__form"> 
+                    <section className="sidebar__inputSection">
+                        <label className="sidebar__label" htmlFor="onderzoek">Naam onderzoek</label>
+                        <input className="sidebar__input" type="text" id="onderzoek" required onChange={this.changeOnderzoek}/>
+                    </section>
+                   
+                    <section className="sidebar__inputSection">
+                        <label className="sidebar__label" htmlFor="code">Code</label>
+                        <input className="sidebar__input sidebar__input--code" required type="text" id="code" onChange={this.changeCode}/>
+                    </section>
+
+                    <section className="sidebar__buttonContainer">
+                        <button type="submit" className="sidebar__button primary" onClick={()=>{{this.submit()}; this.makeApiCall();}}>Onderzoek maken</button>
+                    </section>
+                </section>
+
+                <ul className="sidebar__lijst">
+                    {onderzoeken.map((item, i) => (
+                    
+                        <li className="sidebar__onderzoekContainer" key={i}>
+                            <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
+                        </li>
+                    ))}
+                </ul>   
+
             </article>
         )
     }
-    
 }
 
 export default Sidebar;
+
+

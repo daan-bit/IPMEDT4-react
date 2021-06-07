@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 
 import Overzicht from './Overzicht/Overzicht';
 import Sidebar from './Sidebar/Sidebar';
+
+import './Dashboard.css';
 
 class Dashboard extends Component{
 

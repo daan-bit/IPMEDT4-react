@@ -9,15 +9,15 @@ import AuthRoute from './components/AuthRoute';
 
 import './App.css';
 
-import Sidebar from './components/Dashboard/Sidebar/Sidebar';
-import Overzicht from './components/Dashboard/Overzicht/Overzicht';
-
-import {Provider} from "react-redux";
-import {store} from './store';
-import {Link, Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import {Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
+<<<<<<< HEAD
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
+=======
+import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
+
+>>>>>>> development
 
 class App extends React.Component{
     
@@ -28,10 +28,13 @@ class App extends React.Component{
                         <AuthRoute path="/admin/dashboard" exact component={Dashboard} />                    
                    </Route>
                    <Route>
+                       <AuthRoute path="/admin/vragen/aanmaken" exact component={vragenAanmaken} />
+                   </Route>
+                   <Route>
                         <AuthRoute path="/dashboard/:id" exact component={Test} />
                    </Route>
                     <Route>
-                        <GuestRoute path="/beheer" component={Login} />
+                        <GuestRoute path="/admin" exact component={Login} />
                     </Route>
                     <Route>
                         <AuthRoute path="/test" component={Test} />
