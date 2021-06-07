@@ -16,7 +16,8 @@ import {Provider} from "react-redux";
 import {store} from './store';
 import {Link, Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-
+import StartTest from "./components/Starttest/StartTest";
+import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
 
 class App extends React.Component{
     
@@ -34,6 +35,13 @@ class App extends React.Component{
                     </Route>
                     <Route>
                         <AuthRoute path="/test" component={Test} />
+                    </Route>
+
+                    <Route>
+                        <GuestRoute path="/start-test" component={StartTest} />
+                    </Route>
+                    <Route>
+                        <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
                    
             </Router>
