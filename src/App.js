@@ -11,13 +11,10 @@ import './App.css';
 
 import {Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
-<<<<<<< HEAD
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
-=======
 import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
 
->>>>>>> development
 
 class App extends React.Component{
     
