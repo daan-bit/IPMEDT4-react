@@ -16,9 +16,9 @@ html{
     --bg-darkblue: #1e2736;
     --text-darkblue: #1e2736;
     --text-blue: #10A1E9;
-    --text-black: #eee;
+    --text-black: #333;
     --text-grey: #5b5e5d;
-    --text-white: #1e6f5c;
+    --text-white: #eee;
     --btn-primary: #10a1e9;
     --btn-primary-hover: #0c80ba;
     --btn-primary-active: #1e6f5c;
@@ -44,7 +44,7 @@ html{
 h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 3.2rem;
+    font-size: 4.5rem;
     text-decoration: none;
     color: var(--text-darkblue);
     margin-bottom: 2rem;
@@ -91,6 +91,7 @@ button {
     border-radius: 0.5rem;
     border: none;
     color: #fff;
+    cursor: pointer;
 }
 
 button:hover {
