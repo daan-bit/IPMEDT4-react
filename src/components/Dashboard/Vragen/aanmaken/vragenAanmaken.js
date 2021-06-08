@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import InfoOnderzoek from '../infoOnderzoek/InfoOnderzoek';
 import axios from 'axios';
+import OnderzoekInfoComponent from '../../Onderzoek/vragen/OnderzoekInfoComponent';
+import AanmakenOverzicht from './aanmaken-overzicht--component/AanmakenOverzicht';
 import "./vragenAanmaken.css";
 import cookie from 'js-cookie';
+import { Router } from 'react-router';
 let token = cookie.get('token');
 
 class vragenAanmaken extends Component{
@@ -10,12 +12,13 @@ class vragenAanmaken extends Component{
 
     constructor(props) {
     super(props);
-    this.state = { message: '', onderzoek_id: 0, selectOpties: [], label: '', value: '', vraag: '', type_vraag: 'meerkeuze', cat_naam: 'Informatica', errors: {}} 
+    this.state = { message: '', onderzoek_id: 0, selectOpties: [], label: '', value: '', vraag: '', type_vraag: 'meerkeuze', cat_naam: 'Informatica', errors: {}, vragenToegevoegd: []
+} 
     }
 
     componentDidMount() {
         this.apiCall();
-        this.setState({onderzoek_id: Number(localStorage.getItem('onderzoek_id'))});
+        this.setState({onderzoek_id: this.props.match.params.id});
     }
 
     handleForm = (e) => {
@@ -41,8 +44,12 @@ class vragenAanmaken extends Component{
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; //we moeten JWT meegeven - beveiliging POST request
         axios.post('http://127.0.0.1:8000/api/auth/vragen/store',  data)
         .then(res => {
+        //let vragenToegevoegd = this.state.vragenToegevoegd;
         this.setState({message: res.data.message});
-        }).catch(e => this.setState({errors: e.response.data}));
+        //this.setState({vragenToegevoegd: this.state.vragenToegevoegd.push(data)});
+        console.log(this.state.vragenToegevoegd);
+        }).catch(e => this.setState({errors: e.response.data})
+            );
 
     }
 
@@ -56,7 +63,6 @@ class vragenAanmaken extends Component{
         const DEFAULT_URL = 'http://localhost:8000/api/'
         axios.get(DEFAULT_URL + 'categorien/all')
         .then(res => { 
-        let i = 0;
         const opties = res.data.map(d => ({
             "label": d.naam.toLowerCase(),
             "value": d.naam,
@@ -69,38 +75,37 @@ class vragenAanmaken extends Component{
     render(){
         const options = this.state.selectOpties;
         const errors = this.state.errors;
-        
-        
         return(
             <article className="onderzoek">
-                <InfoOnderzoek />
-            <article className="vragen">
-            <form className="vragen-form__form" onSubmit={this.handleForm}>
-
+                <section className="onderzoek__section">
+                    <OnderzoekInfoComponent cssClass='onderzoek__section__title' naam="Vraag" type='toevoegen' id={this.props.match.params.id} />
+                </section> 
+                <article className="vragen">
+                    <form className="vragen-form__form" onSubmit={this.handleForm}>
                     <section className="vragen-form__section">
-                    <label htmlFor="email">Naam vraag:</label><br />
+                    <label className="vragen-form__label" htmlFor="email">Naam vraag:</label><br />
                     <input type="text" className="vraag-form__input" id="vraag" name="vraag" placeholder="Typ hier de titel" onChange={this.handleInput}></input>
                     </section>
 
                     <section className="vragen-form__section">
-                    <label htmlFor="type_vraag">Type Vraag:</label><br />
-                    <select name="cat_naam" onChange={this.handleInput}>
+                    <label className="vragen-form__label" htmlFor="type_vraag">Categorie:</label><br />
+                    <select name="cat_naam" className="vraag-form__input" onChange={this.handleInput}>
                         {options.map((option, index) => (
                         <option key={index} value={option.value}>{option.value}</option>
                         ))}
                     </select>
                     </section>
                     
-                    <section>
-                    <label htmlFor="type_vraag">Categorie:</label><br />
-                    <select name="type_vraag" id="type_vraag" onChange={this.handleInput}>
+                    <section className="vragen-form__section">
+                    <label className="vragen-form__label" htmlFor="type_vraag">Type vraag:</label><br />
+                    <select name="type_vraag" className="vraag-form__input" id="type_vraag" onChange={this.handleInput}>
                         <option value="meerkeuze">Meerkeuze vraag</option>
                         <option value="openvraag">Open vraag</option>
                     </select>
                     </section>
 
                     <section className="vragen-form__section">
-                    <input type="submit" className="vragen-form__button primary" value="Vraag Toevoegen" />
+                    <button type="submit" className="vragen-form__button primary">Vraag Toevoegen</button>
                     {errors.length > 0 && <p className="vragen-form__paragraph__error">{errors}</p>}
                     {this.state.message.length > 0 && <p className="vragen-form__paragraph__success">{this.state.message}</p>}
                     </section>

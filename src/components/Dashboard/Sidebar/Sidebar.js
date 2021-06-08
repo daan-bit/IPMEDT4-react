@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 import "./Sidebar.css";
@@ -75,6 +75,8 @@ class Sidebar extends Component {
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
                             <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
+                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
+                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
                         </li>
                     ))}
                 </ul>   

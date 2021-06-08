@@ -98,6 +98,10 @@ button:hover {
     background-color: var(--btn-primary-hover);
 }
 
-button:active {
-    background-color: var(--btn-primary-active);
+.primary:active{
+    background-color: #1e6f5c;
+}
+
+.body {
+    display: grid;
 }

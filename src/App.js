@@ -14,6 +14,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
 import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
+import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijken"
+
 
 
 class App extends React.Component{
@@ -25,7 +27,10 @@ class App extends React.Component{
                         <AuthRoute path="/admin/dashboard" exact component={Dashboard} />                    
                    </Route>
                    <Route>
-                       <AuthRoute path="/admin/vragen/aanmaken" exact component={vragenAanmaken} />
+                       <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
+                   </Route>
+                   <Route>
+                       <AuthRoute path="/admin/onderzoek/:id/vragen" exact component={vragenBekijken} />
                    </Route>
                    <Route>
                         <AuthRoute path="/dashboard/:id" exact component={Test} />
