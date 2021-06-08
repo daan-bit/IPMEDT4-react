@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-
+import "./vragenBekijken.css";
 //functionele component, aangemaakt door Alex
 
 const OnderzoekInfoComponent = props => {

@@ -10,7 +10,7 @@
     grid-row: 3 / span 2;
 }
 
-label {
+.vragen-form__label {
     font-size: 1.8rem;
     font-weight: 400;
     color: #FFF;
@@ -48,6 +48,11 @@ label {
 
 }
 @media (min-width: 625px) {
+    .onderzoek-vraag__error {
+        grid-column: span 2;
+        text-align: center;
+    }
+
     .onderzoek__section__title {
         font-size: 3.2rem;
     }
@@ -58,16 +63,20 @@ label {
         display: grid;
     }
     .onderzoek__section {
-        grid-column: 3 / span 6;
+        grid-column: 2 / span 8;
     }
     .vragen {
         display: grid;
-        grid-column: 3 / span 6;
+        grid-column: 2 / span 8;
     }
 
 }
   
 @media (min-width: 1225px) {
+    .onderzoek-vraag__error {
+        grid-column: span 4;
+        text-align: center;
+    }
     .onderzoek {
         background-color: #1E2736;
         grid-template-rows: repeat(12, minmax(0,1fr));

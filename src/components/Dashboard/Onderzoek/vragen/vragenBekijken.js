@@ -47,11 +47,9 @@ class vragenBekijken extends Component {
           );
         })
       ) : (
-        <section className="onderzoek-vraag__container">
           <h2 className="onderzoek-vraag__error">
             Geen vragen toegevoegd voor dit onderzoek.
           </h2>
-        </section>
       );
     //functionele component onderzoekinfocomponent, dit is nodig om info te verkrijgen over onderzoek door meegegeven id via url
     return (
