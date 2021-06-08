@@ -16,13 +16,14 @@ class StartTest extends React.Component{
         // onderzoek opvragen via Api met de ingevulde code
         const BASE_URL = "http://127.0.0.1:8000/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
+            console.log();
             if (res.data == "") {
                 // Hier moet de foutmelding komen dt er geen onderzoek is gevonden
                 alert('GEEN ONDERZOEK');
               }
             else {
                 // Hier moet de pagina naar de dashboard pagina gaan die het onderzoek bevat.
-                window.location = "/overzicht/" + this.state.testCode;
+                window.location = "/overzicht/" + res.data.id;
             }
         })
     }
