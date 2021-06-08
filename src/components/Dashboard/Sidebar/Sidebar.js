@@ -4,11 +4,17 @@ import axios from 'axios';
 
 import "./Sidebar.css";
 
+import {connect} from "react-redux";
+
+import Modal from '../Modal/Modal';
+import { changeShow, changeVerwijder } from '../../../store/Actions';
+
 
 class Sidebar extends Component {
 
     constructor(props){
         super(props)
+        
         this.state = {
             onderzoek: "",
             code: "",
@@ -17,9 +23,11 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
-        this.makeApiCall();
+        this.ophalenOnderzoeken();
+        this.props.changeShow(false);
     }
 
+    // Onderzoek aanmaken
     changeOnderzoek = (event) =>{
         this.setState({onderzoek: event.target.value});
     }
@@ -38,24 +46,35 @@ class Sidebar extends Component {
             }).catch(function (error) {
                 console.log(error);
             });
-        this.makeApiCall();
+        this.ophalenOnderzoeken();
     }
 
-    makeApiCall = () =>{
+
+    // Lijst van onderzoeken
+    ophalenOnderzoeken = () =>{
         const BASE_URL = "http://localhost:8000/api/onderzoeken";
 
         axios.get(BASE_URL)
         .then(res => {
             this.setState({onderzoeken: res.data})
         });
-    };
 
+    }
+
+    // Verwijderen van onderzoeken
+    verwijderOnderzoek = (naam) => {
+        this.props.changeVerwijder(naam);
+        this.props.changeShow(true);
+    }
+
+    
     render(){
-        const onderzoeken = (this.state.onderzoeken);
+        const onderzoeken = (this.state.onderzoeken); 
+        
         return(
-            <article className="sidebar">               
+            <article className="sidebar">             
 
-                {/* Nog form van maken, doet het nog niet --> zegt request aborted */}
+                {/* Maken van een Onderzoek */}
                 <form className="sidebar__form" onSubmit={this.submit}>
                     <section className="sidebar__inputSection">
                         <label className="sidebar__label" htmlFor="onderzoek">Naam onderzoek</label>
@@ -68,15 +87,23 @@ class Sidebar extends Component {
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>
+                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>                        
                     </section>
                 </form>
 
+                {/* Verwijderen van een onderzoek */}  
+
+                <Modal/>
+              
+                            
+
+                {/* lijst van onderzoeken */}
                 <ul className="sidebar__lijst">
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
                             <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a> 
+                            <button className="sidebar__verwijderButton primary" onClick={() => this.verwijderOnderzoek(item.naam)}>Verwijderen</button>
                         </li>
                     ))}
                 </ul>   
@@ -86,6 +113,13 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+const mapStateToProps = state =>{
+    return { verwijder: state.verwijder, show: state.show};
+}
+
+export default connect(
+    mapStateToProps, 
+    {changeVerwijder: changeVerwijder, changeShow: changeShow}
+) (Sidebar);
 
 
