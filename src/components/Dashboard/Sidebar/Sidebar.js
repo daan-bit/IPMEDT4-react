@@ -7,7 +7,7 @@ import "./Sidebar.css";
 import {connect} from "react-redux";
 
 import Modal from '../Modal/Modal';
-import { changeShow, changeVerwijder } from '../../../store/Actions';
+import { changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
 
 
 class Sidebar extends Component {
@@ -22,9 +22,15 @@ class Sidebar extends Component {
         }
     }
 
+    updaten() {
+        
+      }
+      
+
     componentDidMount() {
         this.ophalenOnderzoeken();
         this.props.changeShow(false);
+        this.props.changeUpdate(false);
     }
 
     // Onderzoek aanmaken
@@ -56,22 +62,24 @@ class Sidebar extends Component {
 
         axios.get(BASE_URL)
         .then(res => {
-            console.log(res.data);
             this.setState({onderzoeken: res.data})
         });
-
+        this.props.changeUpdate(false);
     }
 
     // Verwijderen van onderzoeken
     verwijderOnderzoek = (id) => {
         this.props.changeVerwijder(id);
         this.props.changeShow(true);
+        this.setState({ verwijderOud: id });
     }
 
     
     render(){
+        if (this.props.update == true) {
+            this.ophalenOnderzoeken();
+          }
         const onderzoeken = (this.state.onderzoeken); 
-        
         return(
             <article className="sidebar">             
 
@@ -94,10 +102,8 @@ class Sidebar extends Component {
 
                 {/* Verwijderen van een onderzoek */}  
 
-                <Modal/>
-              
+                <Modal/>             
                             
-
                 {/* lijst van onderzoeken */}
                 <ul className="sidebar__lijst">
                     {onderzoeken.map((item, i) => (
@@ -117,12 +123,12 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state =>{
-    return { verwijder: state.verwijder, show: state.show};
+    return { verwijder: state.verwijder, show: state.show, update: state.update};
 }
 
 export default connect(
     mapStateToProps, 
-    {changeVerwijder: changeVerwijder, changeShow: changeShow}
+    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate}
 ) (Sidebar);
 
 

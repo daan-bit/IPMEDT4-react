@@ -1,7 +1,7 @@
 import './Modal.css';
 import {connect} from "react-redux";
 import { Component } from 'react';
-import { changeShow } from '../../../store/Actions';
+import { changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
 
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ class Modal extends Component{
 
   closeModal(){
     this.props.changeShow(false);
+    this.props.changeUpdate(true);
   }
 
   submit = (e) =>{
@@ -20,7 +21,7 @@ class Modal extends Component{
         }).catch(function (error) {
             console.log(error);
         });
-    this.closeModal();
+    this.closeModal();    
 }
   
   render(){
@@ -48,9 +49,9 @@ class Modal extends Component{
 
 
   const mapStateToProps = state => {
-    return {verwijder: state.verwijder, show: state.show};
+    return {verwijder: state.verwijder, show: state.show, update: state.update};
 };
 
 export default connect(mapStateToProps,
-  {changeShow: changeShow})(Modal);
+  {changeShow: changeShow, changeVerwijder: changeVerwijder, changeUpdate: changeUpdate})(Modal);
 

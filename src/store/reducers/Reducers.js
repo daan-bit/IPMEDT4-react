@@ -1,4 +1,4 @@
-import { CHANGE_VERWIJDER, CHANGE_SHOW} from "../Actions";
+import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE} from "../Actions";
 
 export const verwijder = (state = "", action) => {
     switch(action.type){
@@ -12,6 +12,15 @@ export const verwijder = (state = "", action) => {
 export const show = (state = "", action) => {
     switch(action.type){
         case CHANGE_SHOW:
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
+export const update = (state = "", action) => {
+    switch(action.type){
+        case CHANGE_UPDATE:
             return action.payload;
         default:
             return state;

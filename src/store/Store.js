@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import {verwijder, show, AuthReducer} from "../store/reducers/Reducers";
+import {verwijder, show, AuthReducer, update} from "../store/reducers/Reducers";
 
 const initialStates = {
     auth: {
@@ -13,6 +13,7 @@ export const store = createStore(
     combineReducers({
         verwijder,
         show,
+        update,
         auth:AuthReducer,
         initialStates,
     }),
