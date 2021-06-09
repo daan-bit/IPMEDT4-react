@@ -13,8 +13,8 @@ class Modal extends Component{
 
   submit = (e) =>{
     e.preventDefault();
-    axios.post('http://127.0.0.1:8000/api/destroy', {
-            naam: this.props.verwijder,                     
+    axios.put('http://127.0.0.1:8000/api/update', {
+            id: this.props.verwijder,                     
         }).then(function (response) {           
             console.log(response.data);
         }).catch(function (error) {

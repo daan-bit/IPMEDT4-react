@@ -56,14 +56,15 @@ class Sidebar extends Component {
 
         axios.get(BASE_URL)
         .then(res => {
+            console.log(res.data);
             this.setState({onderzoeken: res.data})
         });
 
     }
 
     // Verwijderen van onderzoeken
-    verwijderOnderzoek = (naam) => {
-        this.props.changeVerwijder(naam);
+    verwijderOnderzoek = (id) => {
+        this.props.changeVerwijder(id);
         this.props.changeShow(true);
     }
 
@@ -105,7 +106,7 @@ class Sidebar extends Component {
                             <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
                             <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
                             <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
-                            <button className="sidebar__verwijderButton primary" onClick={() => this.verwijderOnderzoek(item.naam)}>Verwijderen</button>
+                            <button className="sidebar__verwijderButton primary" onClick={() => this.verwijderOnderzoek(item.id)}>Verwijderen</button>
                         </li>
                     ))}
                 </ul>   
