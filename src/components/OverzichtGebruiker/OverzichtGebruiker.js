@@ -19,9 +19,11 @@ class OverzichtGebruiker extends React.Component{
 
    render(){
       
-        return(
-          <Lijstmetvragen></Lijstmetvragen>        
-        )
+      return(
+        <section id="overzichtGebruiker">
+          <Lijstmetvragen></Lijstmetvragen> 
+        </section>       
+      )
         
     }
 }
