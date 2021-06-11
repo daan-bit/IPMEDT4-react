@@ -10,7 +10,7 @@ class Lijstmetvragen extends React.Component{
         let onderzoek_id = 1;
 
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
-      const BASE_URL = "http://127.0.0.1:8000/api/onderzoeken/";
+      const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoeken/";
         axios.get(BASE_URL + onderzoek_id + "/vragen").then(res =>{
           const temp = res.data;
           console.log(temp);
@@ -27,50 +27,46 @@ class Lijstmetvragen extends React.Component{
      
    render(){
         return(
-          <div className="lijstmetvragen">
+          <article className="lijstmetvragen">
                 <h1 className="lijstmetvragen__title">Overzicht</h1>
                 <p className="lijstmetvragen__subtitle">Heir bevind jouw overzicht op aantal gemaakte vragen</p>
                 <br /> 
                 <form className="lijstmetvragen__form" method="get" action=""> 
-                  <div className="lijstmetvragen__container flex jc-sb fw-w">
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="2" />
-                    <input type="text" name="val[]" value="4" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="1" />
-                    <input type="text" name="val[]" value="10" />
-                    <input type="text" name="val[]" value="1" />
-                  </div>
+                  <section className="lijstmetvragen__container flex jc-sb fw-w">
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                    <button type="submit" >1</button>
+                    <button type="submit" >2</button>
+                    <button type="submit" >3</button>
+                    <button type="submit" >4</button>
+                  </section>
                   <br />  
-                  <div className="lijstmetvragen__btns">
-                    <button className="btn">Start</button>
-                    <button className="btn">Finish</button>
-                  </div>
+                  <section className="lijstmetvragen__btns">
+                    <div className="lijstmetvragen__btns__ruimte">
+                    <button className="btn u-float-left">Start</button>
+                    <button className="btn u-float-right">Finish</button>
+                    </div>
+                  </section>
                 </form>
-            </div>
+            </article>
         //     <div>
         //       hello world
         //       {this.state.vragen.map(vraag => 

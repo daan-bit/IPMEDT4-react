@@ -11,7 +11,7 @@
 
 .lijstmetvragen {
     width: 100%;
-    max-width: 650px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 138px 0;
     text-align: center;
@@ -31,7 +31,7 @@
 .lijstmetvragen  .lijstmetvragen__container { 
     margin: 70px -20px ;
 }
-.lijstmetvragen__container input {
+.lijstmetvragen__container button {
     width: 68px;
     border: none;
     text-align: center;
@@ -40,22 +40,42 @@
     border-bottom: 2px solid white;
 }
 
-.lijstmetvragen  .lijstmetvragen__container input{
+.lijstmetvragen  .lijstmetvragen__container button{
     margin: 26px 20px;
     padding: 8px;
 }
 
 .lijstmetvragen__btns { 
-    text-align: left;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    padding: 2rem;
+    color: white;
+    align-content: center;
+    
+    
+}
+.lijstmetvragen__btns__ruimte {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .btn {
     background-color: #10a1e9;
     padding: 10px 35px;
     border: none;
     border-radius: 4px;
-    margin-right: 35px;
+  
     cursor: pointer;
     color: white;
     font-size: 1.5rem;
 }
 
+.u-float-left{
+    float: left;
+}
+.u-float-right{
+    float: right;
+}
