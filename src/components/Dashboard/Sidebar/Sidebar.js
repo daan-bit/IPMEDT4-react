@@ -22,11 +22,6 @@ class Sidebar extends Component {
         }
     }
 
-    updaten() {
-        
-      }
-      
-
     componentDidMount() {
         this.ophalenOnderzoeken();
         this.props.changeShow(false);
@@ -76,7 +71,7 @@ class Sidebar extends Component {
 
     
     render(){
-        if (this.props.update == true) {
+        if (this.props.update === true) {
             this.ophalenOnderzoeken();
           }
         const onderzoeken = (this.state.onderzoeken); 

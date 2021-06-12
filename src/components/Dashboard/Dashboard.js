@@ -7,6 +7,7 @@ import './Dashboard.css';
 
 import {store} from "../../store/Store";
 import {Provider} from "react-redux";
+import NavBar from '../NavBar/NavBar';
 
 class Dashboard extends Component{
 
@@ -14,6 +15,7 @@ class Dashboard extends Component{
         return(
             <article className="dashboard">
 
+            <NavBar link="/admin/dashboard" linkName="Dashboard" />
             <Provider store={store}>
                 <Overzicht />
                 <Sidebar />

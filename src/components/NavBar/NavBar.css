@@ -1,0 +1,32 @@
+.navBar{
+    border: 0.1rem solid #10A1E9;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background-color: #1E2736;
+}
+
+.navBar__list{
+    width: 100%;
+    height: 100%; 
+}
+
+.navBar__listItem{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 50%;
+    padding: 1rem;
+    border: 0.1rem solid #10A1E9;
+}
+
+.navBar__link{
+    color: white;
+    font-size: 200%;
+}
+
+.active{
+    background-color: #33485d;
+}
+
