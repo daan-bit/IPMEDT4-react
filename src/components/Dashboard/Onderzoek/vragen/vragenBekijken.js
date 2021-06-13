@@ -59,6 +59,7 @@ class vragenBekijken extends Component {
             cssClass="vragen-bekijken__container__title"
             naam="Vragen"
             id={this.props.match.params.id}
+            link={this.props.match.params.id}
           />
         </section>
         <section className="onderzoek-vragen">{vragenGevuld}</section>

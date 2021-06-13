@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import './Overzicht.css';
 import CirkelGrafiek from './grafieken/CirkelGrafiek';
@@ -14,7 +15,6 @@ class InfoOnderzoek extends Component{
         const DEFAULT_URL = 'http://localhost:8000/api/'
         axios.get(DEFAULT_URL + `vraag/${this.state.vraag_id}/antwoorden`)
         .then(res => {
-            console.log(res.data);
             for(let i=0; i< res.data.length; i++) {
                 this.state.antwoorden.push(res.data[i].antwoord);
             }
@@ -43,13 +43,15 @@ class InfoOnderzoek extends Component{
     render(){
         const antwoorden = this.state.antwoorden;
         return(
-    
-            <CirkelGrafiek 
-                zeer_oneens={this.state.zeer_oneens.length} 
-                oneens={this.state.oneens.length} 
-                eens={this.state.eens.length} 
-                zeer_eens={this.state.zeer_eens.length}
-            />
+            <article className="statistieken">
+                <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
+                <CirkelGrafiek 
+                    zeer_oneens={this.state.zeer_oneens.length} 
+                    oneens={this.state.oneens.length} 
+                    eens={this.state.eens.length} 
+                    zeer_eens={this.state.zeer_eens.length}
+                />
+            </article>
         )
     
     }
