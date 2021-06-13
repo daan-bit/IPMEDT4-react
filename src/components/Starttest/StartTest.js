@@ -1,8 +1,10 @@
 import React from "react";
 import "./StartTest.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 class StartTest extends React.Component{
+    
     state = {testCode: ""};
 
     onSearch = (event) => {
@@ -23,7 +25,7 @@ class StartTest extends React.Component{
               }
             else {
                 // Hier moet de pagina naar de dashboard pagina gaan die het onderzoek bevat.
-                window.location = "/overzicht/" + res.data.id;
+                this.props.history.push("/overzicht/" + res.data.id);
             }
         })
     }
