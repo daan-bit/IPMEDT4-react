@@ -41,7 +41,6 @@ class vragenAanmaken extends Component{
     
     apiCallVraag = () => {
         const data = {onderzoek_id:this.state.onderzoek_id, cat_naam:this.state.cat_naam, vraag: this.state.vraag, type_vraag:this.state.type_vraag};
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`; //we moeten JWT meegeven - beveiliging POST request
         axios.post('http://127.0.0.1:8000/api/auth/vragen/store',  data)
         .then(res => {
         //let vragenToegevoegd = this.state.vragenToegevoegd;
