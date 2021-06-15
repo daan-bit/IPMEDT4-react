@@ -10,7 +10,7 @@ class InfoOnderzoek extends Component{
 
     constructor(props) {
         super(props)
-        this.state = {vraag_id: this.props.match.params.id, vragen: [], antwoorden: [], zeer_oneens: [], oneens: [], eens: [], zeer_eens: [], totaal: '', errors: []} 
+        this.state = {vraag_id: this.props.match.params.id, vragen: [], antwoorden: [], zeer_oneens: [], oneens: [], eens: [], zeer_eens: [], totaal: '', errors: [], type_vraag: ''} 
     }
 
     apiCall = () => {
@@ -36,9 +36,17 @@ class InfoOnderzoek extends Component{
         }).catch(e => this.setState({errors: e.response.data}),
         );
     }
-
+    
+    getCategory = () => {
+    const DEFAULT_URL = 'http://localhost:8000/api/'
+        axios.get(DEFAULT_URL + `vraag/${this.state.vraag_id}`)
+        .then(res => {
+            this.setState({type_vraag: res.data.type_vraag});
+        })
+    }
     componentDidMount() {
         this.apiCall();
+        this.getCategory();
     }
 
 
@@ -47,9 +55,10 @@ class InfoOnderzoek extends Component{
         return(
                 <article className="statistieken">
                     <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
-                    {antwoorden.length > 19 && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Tabel begint vanaf 0, niet 1
+                    {(antwoorden.length > 19 && this.state.type_vraag == 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
                     <React.Fragment>
-                        <p className="statistieken__CirkelGrafiek__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
+                        <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
+                        
                         <CirkelGrafiek 
                             zeer_oneens={this.state.zeer_oneens.length} 
                             oneens={this.state.oneens.length} 
@@ -64,6 +73,18 @@ class InfoOnderzoek extends Component{
                         />
                     </React.Fragment>
                     }
+
+                {(antwoorden.length > 19 && this.state.type_vraag == 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
+                    <React.Fragment>
+                        <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
+                        <p className="statistieken__answer">De antwoorden:</p>
+                        <ul className="statistieken__list">
+                            {antwoorden.map((antwoord, index) => (
+                                <li className="statistieken__list__item" key={index}>{index + 1}.{antwoord}</li>
+                            ))}
+                        </ul>
+                    </React.Fragment>
+                }
                     {antwoorden.length < 19 && 
                         <p>Deze vraag is helaas nog niet minimaal 20 keer beantwoord. Deze vraag is {antwoorden.length} keer beantwoord. Probeer eens later!</p>
                     }

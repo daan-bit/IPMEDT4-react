@@ -9,3 +9,8 @@
 .statistieken__barGrafiek {
     width: 25%;
 }
+
+.statistieken__list__item {
+    font-size: 1.4rem;
+    color: var(--text-white);
+}
