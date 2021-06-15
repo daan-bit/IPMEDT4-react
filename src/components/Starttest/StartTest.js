@@ -18,7 +18,7 @@ class StartTest extends React.Component{
                 alert('GEEN ONDERZOEK');
               }
             else {
-                alert('JAA FOUND IT');
+                window.location = "/vragen/" + res.data.id;
             }
         })
     }

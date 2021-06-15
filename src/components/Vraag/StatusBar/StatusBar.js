@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "./StatusBar.css"; 
 import axios from "axios";
+import Vraag from "../vraag";
 
 class StatusBar extends React.Component{
     constructor(props) {
 		super(props);
 	}
+
+    
 
     render(){
         return(
@@ -16,7 +19,7 @@ class StatusBar extends React.Component{
                 </div>
 
                 
-                <button onClick={this.props.next} className="statusbar__btn">Volgende vraag</button>  
+                <button onClick={this.props.volgendeVraag} className="statusbar__btn">Volgende vraag</button>  
                 
             </section>
         );

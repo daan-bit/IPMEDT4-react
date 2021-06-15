@@ -7,9 +7,51 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 
 
 class Vraag extends React.Component{
+    state = {
+        onderzoek_id: 1,//this.props.match.params.id,
+        vraag: "",
+        type_vraag: "",
+        cat_naam: "",
+        vraag_index: "",
+    }
+    onderzoek = {};
     constructor(props) {
-		super(props);
-	}
+        super(props);
+        console.log(this.state.onderzoek_id);
+        this.makeApiCall();
+        
+    } 
+
+    makeApiCall = event => {
+        const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
+        axios.get(BASE_URL).then(res =>{
+            this.onderzoek = res.data;
+            // console.log(this.onderzoek.data);
+            this.stateUpdate(2);
+        })
+    }
+
+    volgendeVraag = (vraag_id) => {
+        this.setState({
+            vraag_index: this.onderzoek[vraag_id].vraag_id = + 1,    
+        })
+    }
+    
+    vorigeVraag = (vraag_id) => {
+        this.setState({
+            vraag_index: this.onderzoek[vraag_id].vraag_id = - 1,
+        })
+    }
+
+    stateUpdate = (vraag_id) => {
+        this.setState({
+            vraag: this.onderzoek[vraag_id].vraag,
+            type_vraag: this.onderzoek[vraag_id].type_vraag,
+            cat_naam: this.onderzoek[vraag_id].cat_naam,
+            vraag_index: vraag_id,
+        })
+    }
+
 
     render(){
         
@@ -18,13 +60,13 @@ class Vraag extends React.Component{
                 <article className="category">
                     {/* <a className="category__link" href="/overzicht/:id">Terug naar overzicht</a> */}
                     <button className="category__btn"><i className="category__icon"><MdKeyboardArrowLeft/></i><p className="category__text">Terug naar overzicht</p></button>
-                    <h1 className="category__title">Category</h1>
+                    <h1 className="category__title">{this.state.cat_naam}</h1>
                     
                 </article>
 
                 <article className="vraag">
                     <h3 className="vraag__title vraag__title--color">Vraag {this.props.question}</h3>
-                    <p className="vraag__text" >Heb je het naar je zin op werk?</p>
+                    <p className="vraag__text" >{this.state.vraag}</p>
                     
                         <GeslotenVraag/>
                         <OpenVraag/>

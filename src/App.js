@@ -30,8 +30,13 @@ class App extends React.Component{
         };
       }
     next() {
-        this.setState({ currentQuestion: this.state.currentQuestion+1 });
+        this.setState({ 
+            currentQuestion: this.state.currentQuestion+1 
+        });
         }
+
+        
+
         
     render(){
         return(
@@ -59,11 +64,13 @@ class App extends React.Component{
                         <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
                     <Route>
+                        <GuestRoute path="/vragen/:id" component={Vraag} />
+                    </Route>
+                    <Route>
                         <div className="App">
                             <Vraag question={this.state.currentQuestion+1}  />
                             <StatusBar progress={100/this.state.questions.length * (this.state.currentQuestion+1)} next={this.next.bind(this)} aantal={this.state.questions.length} huidige={this.state.currentQuestion+1}/>
                         </div>
-                        
                     </Route>
             </Router>
         );
