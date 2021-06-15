@@ -5,13 +5,21 @@ class Lijstmetvragen extends React.Component{
     state = {
         vragen: [],
     }
+    onderzoek = [{
+      vraag1: "1",
+      vraag2: "",
+      vraag3: "3",
+      vraag4: "4",
+      vraag5: "4",
+      vraag6: "2",
+    }]
     
     makeApiCall = event => {
         let onderzoek_id = 1;
 
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
       const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoeken/";
-        axios.get(BASE_URL + onderzoek_id + "/vragen").then(res =>{
+        axios.get(BASE_URL + 1 + "/vragen").then(res =>{
           const temp = res.data;
           console.log(temp);
           this.setState({vragen:res.data})
@@ -33,30 +41,9 @@ class Lijstmetvragen extends React.Component{
                 <br /> 
                 <form className="lijstmetvragen__form" method="get" action=""> 
                   <section className="lijstmetvragen__container flex jc-sb fw-w">
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
-                    <button type="submit" >1</button>
-                    <button type="submit" >2</button>
-                    <button type="submit" >3</button>
-                    <button type="submit" >4</button>
+                    {this.state.vragen.map(vraag => 
+                        <button type="submit" >{vraag.index}</button>
+                    )}
                   </section>
                   <br />  
                   <section className="lijstmetvragen__btns">
@@ -66,16 +53,7 @@ class Lijstmetvragen extends React.Component{
                     </div>
                   </section>
                 </form>
-            </article>
-        //     <div>
-        //       hello world
-        //       {this.state.vragen.map(vraag => 
-        //     <li>
-        //       {vraag.id}
-        //     </li>
-        //   )}
-        // </div>
-        
+            </article>      
         )
         
     }
