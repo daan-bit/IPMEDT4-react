@@ -55,7 +55,7 @@ class InfoOnderzoek extends Component{
         return(
                 <article className="statistieken">
                     <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
-                    {(antwoorden.length > 19 && this.state.type_vraag == 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
+                    {(antwoorden.length > 19 && this.state.type_vraag === 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
                     <React.Fragment>
                         <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
                         
@@ -74,7 +74,7 @@ class InfoOnderzoek extends Component{
                     </React.Fragment>
                     }
 
-                {(antwoorden.length > 19 && this.state.type_vraag == 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
+                {(antwoorden.length > 19 && this.state.type_vraag === 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
                     <React.Fragment>
                         <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
                         <p className="statistieken__answer">De antwoorden:</p>

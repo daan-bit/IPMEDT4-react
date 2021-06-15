@@ -75,7 +75,15 @@ class vragenAanmaken extends Component{
       };
 
     verwijderVraag = (id) =>{
-        console.log(id);
+        axios.put('http://127.0.0.1:8000/api/update/vragen',{
+            id: id,
+            onderzoek_id:this.props.match.params.id,
+        }).then(function (response) {           
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        this.getVragen();
     }
    
 
@@ -127,6 +135,8 @@ class vragenAanmaken extends Component{
                     
                         <li className="vragen__vraagContainer" key={i}>
                             <h2 className="vragen__vraagTitel">{i + 1}. {item.vraag}</h2>
+                            <p className="vragen__text">Soort: {item.type_vraag}</p>
+                            <p className="vragen__text">Categorie: {item.cat_naam}</p>
                             <section className="vragen__verwijderButtonContainer">
                                 <button className="vragen__verwijderButton red" onClick={() => this.verwijderVraag(item.id)}>Verwijder vraag</button>
                             </section>
