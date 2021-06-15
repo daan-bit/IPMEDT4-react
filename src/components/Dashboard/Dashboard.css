@@ -9,7 +9,7 @@
 
 @media (min-width: 59rem){
     .dashboard{
-        grid-template-rows: 1fr;
+        grid-template-rows: auto auto;
         grid-template-columns: repeat(3, minmax(0,1fr));
     }
   }

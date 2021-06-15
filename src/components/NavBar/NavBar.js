@@ -12,11 +12,12 @@ const NavBar = (props) => {
         cookie.remove("token");
         props.logout();
       };
+
     return (
         <nav className="navBar">
-            <ul className="navBar__list">
-                <li className="navBar__listItem active"><a className="navBar__link" href={props.link}>{props.linkName}</a></li>
-                <li className="navBar__listItem"><Link className="navBar__link" to="/logout" onClick={handleLogout}>Uitloggen</Link></li>
+            <ul className="navBar__list">      
+                <a className="navBar__link" href={props.link}><li className={props.cssClass}>{props.linkName}</li></a>
+                <Link className="navBar__link" to="/logout" onClick={handleLogout}><li className="navBar__listItem">Uitloggen</li></Link>
                 </ul>
         </nav>
 

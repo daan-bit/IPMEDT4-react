@@ -7,7 +7,7 @@ import "./Sidebar.css";
 import {connect} from "react-redux";
 
 import Modal from '../Modal/Modal';
-import { changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
+import { changeModalNaam, changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
 
 
 class Sidebar extends Component {
@@ -63,8 +63,9 @@ class Sidebar extends Component {
     }
 
     // Verwijderen van onderzoeken
-    verwijderOnderzoek = (id) => {
+    verwijderOnderzoek = (id, naam) => {
         this.props.changeVerwijder(id);
+        this.props.changeModalNaam(naam);
         this.props.changeShow(true);
         this.setState({ verwijderOud: id });
     }
@@ -91,12 +92,11 @@ class Sidebar extends Component {
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>                        
+                        <button type="submit" className="sidebar__button green">Onderzoek maken</button>                        
                     </section>
                 </form>
 
                 {/* Verwijderen van een onderzoek */}  
-
                 <Modal/>             
                             
                 {/* lijst van onderzoeken */}
@@ -104,10 +104,12 @@ class Sidebar extends Component {
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
-                            <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
-                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
-                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
-                            <button className="sidebar__verwijderButton primary" onClick={() => this.verwijderOnderzoek(item.id)}>Verwijderen</button>
+                            <h1 className="sidebar__onderzoekTitel">{i + 1}. {item.naam}</h1>
+                            <Link className="sidebar__onderzoekLink" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
+                            <Link className="sidebar__onderzoekLink" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
+                            <section className="sidebar__verwijderButtonContainer">
+                                <button className="sidebar__verwijderButton red" onClick={() => this.verwijderOnderzoek(item.id, item.naam)}>Verwijderen</button>
+                            </section>
                         </li>
                     ))}
                 </ul>   
@@ -118,12 +120,12 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state =>{
-    return { verwijder: state.verwijder, show: state.show, update: state.update};
+    return { verwijder: state.verwijder, show: state.show, update: state.update, modalNaam: state.modalNaam};
 }
 
 export default connect(
     mapStateToProps, 
-    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate}
+    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate, changeModalNaam: changeModalNaam}
 ) (Sidebar);
 
 

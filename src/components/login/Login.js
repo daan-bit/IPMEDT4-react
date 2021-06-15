@@ -59,17 +59,10 @@ class Login extends Component {
                         <input type="password"  className="login-form__input"id="password" name="password" placeholder="Wachtwoord" onChange={this.handleInput}></input>
                     </section>
 
-                    <section className="login-form__textContainer">
-                        <a href="" className="login-form__text login-form__text--vergeten">Wachtwoord vergeten?</a>
-                    </section>
-
                     <section className="login-form__section login-form__section--inloggen">
                         <button type="submit" className="login-form__button primary">Login</button>
                     </section>
 
-                    <section className="login-form__textContainer login-form__textContainer--registreren">
-                        <p className="login-form__text login-form__text--registreren">Nog geen account?</p><a href="#" className="login-form__maken"> Registreer</a>
-                    </section>
                 </form>
             </article>
         );

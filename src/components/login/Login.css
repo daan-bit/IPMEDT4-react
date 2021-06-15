@@ -54,30 +54,14 @@
     font-size: 120%;
 }
 
-/* registreren en vergeten */
+.login-form__button{
+    width: 100%;
+}
+
 .login-form__textContainer{
     width: 100%;
     text-align: right;
     margin-top: 2rem;
-}
-
-.login-form__textContainer--registreren{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.login-form__text--vergeten{
-    color: #9B9FA6;
-}
-
-.login-form__text--vergeten:hover{
-    color: #bfc2c6;
-}
-
-.login-form__text--registreren{
-    color: white;
 }
 
 .login-form__maken{
