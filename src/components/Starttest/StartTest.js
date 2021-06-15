@@ -1,8 +1,10 @@
 import React from "react";
 import "./StartTest.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 class StartTest extends React.Component{
+    
     state = {testCode: ""};
 
     onSearch = (event) => {
@@ -12,13 +14,19 @@ class StartTest extends React.Component{
     makeApiCall = event => {
         event.preventDefault();
         console.log(this.state.testCode);
-        const BASE_URL = "http://127.0.0.1:8000/api/onderzoeken/";
+
+        // onderzoek opvragen via Api met de ingevulde code
+        const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoek/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
-            if (res.data === "") {
+
+            console.log(res);
+            if (res.data == "") {
+                // Hier moet de foutmelding komen dt er geen onderzoek is gevonden
                 alert('GEEN ONDERZOEK');
               }
             else {
-                alert('JAA FOUND IT');
+                // Hier moet de pagina naar de dashboard pagina gaan die het onderzoek bevat.
+                window.location.href = "/overzicht/"+ res.data.id;
             }
         })
     }
@@ -28,6 +36,7 @@ class StartTest extends React.Component{
     render(){
         
         return(
+            // Dit is een input voor de code van een onderzoek
             <section className="searchbar_section">
                 <article className="code">
                     <h1 className="code__title">Code</h1>
