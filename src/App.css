@@ -133,9 +133,5 @@ button {
 }
 
 .body {
-<<<<<<< HEAD
-    display: grid;
-=======
->>>>>>> daniel_dev
     min-height: 100vh;
 }
