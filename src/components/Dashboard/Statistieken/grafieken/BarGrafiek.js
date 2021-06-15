@@ -1,10 +1,10 @@
 import React from 'react'
-import { Doughnut } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 
-const CirkelGrafiek = (props) => {
+const BarGrafiek = (props) => {
     return (
-        <section className="statistieken__CirkelGrafiek">
-            <Doughnut className="statistieken__CirkelGrafiek__canvas" data={{
+        <section className="statistieken__barGrafiek">
+            <Bar className="statistieken__barGrafiek__canvas" data={{
                 labels: ['Zeer oneens', 'Oneens', 'Eens', 'Zeer eens'],
                 datasets: [
                     {
@@ -26,4 +26,4 @@ const CirkelGrafiek = (props) => {
     )
 }
 
-export default CirkelGrafiek
+export default BarGrafiek

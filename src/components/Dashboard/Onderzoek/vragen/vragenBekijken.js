@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import "./vragenBekijken.css";
 import OnderzoekInfoComponent from "./OnderzoekInfoComponent";
 import VraagComponent from "./vraag--show/VraagComponent";
+import {Link} from 'react-router-dom';
 class vragenBekijken extends Component {
   constructor(props) {
     super(props);
@@ -43,13 +44,17 @@ class vragenBekijken extends Component {
               vraag={vraag.vraag}
               cat_naam={vraag.cat_naam}
               type_vraag={vraag.type_vraag}
+              link={vraag.id}
             />
           );
         })
       ) : (
+        <Fragment>
           <h2 className="onderzoek-vraag__error">
-            Geen vragen toegevoegd voor dit onderzoek.
+            Geen vragen toegevoegd voor dit onderzoek. Wil u vraag/vragen toevoegen?
           </h2>
+          <Link to={`/admin/onderzoek/${this.props.match.params.id}/vragen/aanmaken`}>Vraag toevoegen</Link>
+        </Fragment>
       );
     //functionele component onderzoekinfocomponent, dit is nodig om info te verkrijgen over onderzoek door meegegeven id via url
     return (

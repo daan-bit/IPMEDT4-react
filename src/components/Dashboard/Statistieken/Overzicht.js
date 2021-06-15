@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Overzicht.css';
 import CirkelGrafiek from './grafieken/CirkelGrafiek';
+import BarGrafiek from './grafieken/BarGrafiek';
+
 
 class InfoOnderzoek extends Component{
 
@@ -41,17 +43,32 @@ class InfoOnderzoek extends Component{
 
 
     render(){
-        const antwoorden = this.state.antwoorden;
+        const antwoorden = this.state.antwoorden; //array begint op 0, we willen op 1 beginnen
         return(
-            <article className="statistieken">
-                <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
-                <CirkelGrafiek 
-                    zeer_oneens={this.state.zeer_oneens.length} 
-                    oneens={this.state.oneens.length} 
-                    eens={this.state.eens.length} 
-                    zeer_eens={this.state.zeer_eens.length}
-                />
-            </article>
+                <article className="statistieken">
+                    <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
+                    {antwoorden.length > 19 && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Tabel begint vanaf 0, niet 1
+                    <React.Fragment>
+                        <p className="statistieken__CirkelGrafiek__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
+                        <CirkelGrafiek 
+                            zeer_oneens={this.state.zeer_oneens.length} 
+                            oneens={this.state.oneens.length} 
+                            eens={this.state.eens.length} 
+                            zeer_eens={this.state.zeer_eens.length}
+                        />
+                        <BarGrafiek 
+                            zeer_oneens={this.state.zeer_oneens.length} 
+                            oneens={this.state.oneens.length} 
+                            eens={this.state.eens.length} 
+                            zeer_eens={this.state.zeer_eens.length}
+                        />
+                    </React.Fragment>
+                    }
+                    {antwoorden.length < 19 && 
+                        <p>Deze vraag is helaas nog niet minimaal 20 keer beantwoord. Deze vraag is {antwoorden.length} keer beantwoord. Probeer eens later!</p>
+                    }
+                    
+                </article>
         )
     
     }

@@ -1,13 +1,11 @@
 .statistieken {
     background-color: var(--bg-darkblue);
-    display: grid;
-    grid-template-rows: auto auto auto;
 }
 
 .statistieken__CirkelGrafiek {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0,1fr));
-    grid-template-rows: repeat(12, minmax(0,1fr));
+    width: 25%;
 }
 
-.statistieken__CirkelGrafiek__canvas {}
+.statistieken__barGrafiek {
+    width: 25%;
+}
