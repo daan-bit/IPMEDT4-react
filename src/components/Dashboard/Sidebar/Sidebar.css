@@ -1,49 +1,152 @@
 .sidebar{
-  height: auto;
-  width: 100%;
-  grid-row: 1 / span 1;
-}
-
-.sidebar__nav{
+  grid-row: 2 / span 1;
   width: 100%;
   height: auto;
 }
 
-.nav__a{
-  display: block;
+.sidebar__lijst{
   width: 100%;
-  height: 5rem;
+}
+
+.sidebar__onderzoekContainer{
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 1rem;
+  font-size: 120%;
+  border: 1px solid black;
+}
+
+.sidebar__onderzoek{
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__form{
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.sidebar__inputSection{
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: lightblue;
-  border: 1px solid black;
-  text-decoration: none;
-  font-size: 200%;
-  color: black;
+  align-items: left;
+  flex-direction: column;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar__label{
+  font-size: 120%;
+}
+
+.sidebar__input{
+  width: 95%;
+  height: 4rem;
+  font-size: 150%;
+  padding-left: 1rem;
+}
+
+.sidebar__input--code{
+  width: 70%;
 }
 
 .sidebar__buttonContainer{
   width: 100%;
-  height: auto;
   display: flex;
-  justify-content: right;
   align-items: center;
-  padding: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-.buttonContainer__button{
-  padding: 1rem 2rem;
-  background-color: mediumblue;
-  border: none;
-  color: white;
+.sidebar__button{
+  width: 95%;
+  margin: 1rem;
 }
 
-@media (min-width: 37.5rem){
+/* chrome etc */
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media(min-width: 31.25rem){
+  .sidebar__input{
+    width: 65%;
+  }
+  
+  .sidebar__input--code{
+    width: 50%;
+  }
+
+  .sidebar__buttonContainer{
+    justify-content: right;
+  }
+
+  .sidebar__button{
+    width: 50%;
+  }
+}
+
+@media(min-width: 43.75rem){
+  .sidebar__input{
+    width: 50%;
+  }
+  
+  .sidebar__input--code{
+    width: 35%;
+  }
+
+  .sidebar__button{
+    width: 35%;
+  }
+}
+
+@media (min-width: 59rem){
   .sidebar{
     grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
-    height: 100%;
-    background-color: lightblue;
+  }
+
+  .sidebar__input{
+    width: 95%;
+  }
+  
+  .sidebar__input--code{
+    width: 70%;
+  }
+
+  .sidebar__buttonContainer{
+    justify-content: center;
+  }
+
+  .sidebar__button{
+    width: 95%;
+  }
+}
+
+@media (min-width: 87.5rem){
+  .sidebar__input{
+    width: 70%;
+  }
+  
+  .sidebar__input--code{
+    width: 40%;
+  }
+
+  .sidebar__buttonContainer{
+    justify-content: right;
+  }
+
+  .sidebar__button{
+    width: 40%;
   }
 }

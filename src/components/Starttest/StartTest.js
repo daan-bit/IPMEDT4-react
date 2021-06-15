@@ -18,6 +18,7 @@ class StartTest extends React.Component{
         // onderzoek opvragen via Api met de ingevulde code
         const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoek/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
+
             console.log(res);
             if (res.data == "") {
                 // Hier moet de foutmelding komen dt er geen onderzoek is gevonden
@@ -37,8 +38,13 @@ class StartTest extends React.Component{
         return(
             // Dit is een input voor de code van een onderzoek
             <section className="searchbar_section">
-                <form onSubmit={this.makeApiCall}>
-                    <input onChange={this.onSearch} className="searchbar_section__input" type="text" vlaue={this.state.testCode}/>
+                <article className="code">
+                    <h1 className="code__title">Code</h1>
+                    <p className="code__text">Vul hier je code in die je hebt ontvangen via de mail.</p>
+                </article>
+
+                <form className="code__form" onSubmit={this.makeApiCall}>
+                    <input onChange={this.onSearch} className="code__input" type="text" placeholder="CODE" vlaue={this.state.testCode}/>
                     <button type="submit">Start het onderzoek</button>
                 </form>
             </section>

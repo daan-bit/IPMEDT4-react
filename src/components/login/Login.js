@@ -18,7 +18,8 @@ class Login extends Component {
         .then(res => { 
         cookie.set('token', res.data.access_token); //cookie zetten
         this.props.setLogin(res.data.user); //redux toepassen
-        this.props.history.push('/dashboard'); //stuur gebruiker naar dashboard
+        this.props.history.push('/admin/dashboard'); //stuur gebruiker naar dashboard
+        window.location.reload(); // Alex - dit is nodig, anders krijgen we bij sommige API calls 401 unauthorized, omdat sommige API Calls beveiligd zijn
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
@@ -47,24 +48,27 @@ class Login extends Component {
         return(
             <article className="login-form">
                 <section className="login-form__explain">
-                <h2 className="login-form__title">Tevredenheidsonderzoek beheer</h2>
-                <p className="login-form__paragraph">Log in met uw gegevens hieronder</p>
+                    <h2 className="login-form__title">Inloggen</h2>
                 </section>
+
                 <form className="login-form__form" onSubmit={this.handleForm}>
-                    <section className="login-form__section">
-                        <label htmlFor="email">Uw e-mail</label><br />
-                        <input type="text" className="login-form__input" id="email" name="email" placeholder="Uw Email" onChange={this.handleInput}></input>
-                    </section>
-
-
-                    <section className="login-form__section">
-                        <label htmlFor="password">Uw wachtwoord</label><br />
-                        <input type="password"  className="login-form__input"id="password" name="password" placeholder="************" onChange={this.handleInput}></input>
-                    </section>
-
-                    <section className="login-form__section">
-                    <input type="submit" className="login-form__button primary" value="Inloggen" />
                     <p className="login-form__paragraph__error">{error.errors}</p>
+                    
+                    <section className="login-form__section">
+                        <input type="text" className="login-form__input" id="email" name="email" placeholder="Gebruikersnaam" onChange={this.handleInput}></input>
+                        <input type="password"  className="login-form__input"id="password" name="password" placeholder="Wachtwoord" onChange={this.handleInput}></input>
+                    </section>
+
+                    <section className="login-form__textContainer">
+                        <a href="" className="login-form__text login-form__text--vergeten">Wachtwoord vergeten?</a>
+                    </section>
+
+                    <section className="login-form__section login-form__section--inloggen">
+                        <button type="submit" className="login-form__button primary">Login</button>
+                    </section>
+
+                    <section className="login-form__textContainer login-form__textContainer--registreren">
+                        <p className="login-form__text login-form__text--registreren">Nog geen account?</p><a href="#" className="login-form__maken"> Registreer</a>
                     </section>
                 </form>
             </article>

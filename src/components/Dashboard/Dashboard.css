@@ -1,0 +1,15 @@
+.dashboard{
+    min-height:100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0,1fr));
+    grid-template-rows: auto auto auto;
+}
+
+
+@media (min-width: 59rem){
+    .dashboard{
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+  }
