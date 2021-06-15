@@ -19,7 +19,6 @@ class Vraag extends React.Component{
         super(props);
         console.log(this.state.onderzoek_id);
         this.makeApiCall();
-        
     } 
 
     makeApiCall = event => {
@@ -28,18 +27,6 @@ class Vraag extends React.Component{
             this.onderzoek = res.data;
             // console.log(this.onderzoek.data);
             this.stateUpdate(2);
-        })
-    }
-
-    volgendeVraag = (vraag_id) => {
-        this.setState({
-            vraag_index: this.onderzoek[vraag_id].vraag_id = + 1,    
-        })
-    }
-    
-    vorigeVraag = (vraag_id) => {
-        this.setState({
-            vraag_index: this.onderzoek[vraag_id].vraag_id = - 1,
         })
     }
 
@@ -52,6 +39,14 @@ class Vraag extends React.Component{
         })
     }
 
+    volgendeVraag = (vraag_id) => {
+        this.stateUpdate(vraag_id + 1);
+    }
+
+    
+    vorigeVraag = (vraag_id) => {
+        this.stateUpdate(vraag_id -1);
+    }
 
     render(){
         
@@ -59,7 +54,7 @@ class Vraag extends React.Component{
             <section className="vragen">
                 <article className="category">
                     {/* <a className="category__link" href="/overzicht/:id">Terug naar overzicht</a> */}
-                    <button className="category__btn"><i className="category__icon"><MdKeyboardArrowLeft/></i><p className="category__text">Terug naar overzicht</p></button>
+                    <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
                     <h1 className="category__title">{this.state.cat_naam}</h1>
                     
                 </article>
@@ -68,6 +63,7 @@ class Vraag extends React.Component{
                     <h3 className="vraag__title vraag__title--color">Vraag {this.props.question}</h3>
                     <p className="vraag__text" >{this.state.vraag}</p>
                     
+                    <button onClick={this.volgendeVraag} className="statusbar__btn">Volgende vraag</button>  
                         <GeslotenVraag/>
                         <OpenVraag/>
                     

@@ -19,7 +19,7 @@ class StatusBar extends React.Component{
                 </div>
 
                 
-                <button onClick={this.props.volgendeVraag} className="statusbar__btn">Volgende vraag</button>  
+                {/* <button onClick={this.volgendeVraag} className="statusbar__btn">Volgende vraag</button>   */}
                 
             </section>
         );
