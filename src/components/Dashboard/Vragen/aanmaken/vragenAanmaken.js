@@ -75,7 +75,15 @@ class vragenAanmaken extends Component{
       };
 
     verwijderVraag = (id) =>{
-        console.log(id);
+        axios.post('http://127.0.0.1:8000/api/update/vragen',{
+            id: id,
+            onderzoek_id:this.props.match.params.id,
+        }).then(function (response) {           
+            console.log(response.data);
+        }).catch(function (error) {
+            console.log(error);
+        });
+        this.getVragen();
     }
    
 
