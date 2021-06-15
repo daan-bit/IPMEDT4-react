@@ -22,6 +22,11 @@ html{
     --btn-primary: #10a1e9;
     --btn-primary-hover: #0c80ba;
     --btn-primary-active: #1e6f5c;
+    --btn-green: #1E6F5C;
+    --btn-green-hover: #29977d;
+    --btn-red: #A53E33;
+    --btn-red-hover: #c65245;
+
 }
 
 .main{
@@ -94,7 +99,23 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.red{
+    background-color: var(--btn-red);
+}
+
+.red:hover{
+    background-color: var(--btn-red-hover);
+}
+
+.green{
+    background-color: var(--btn-green);
+}
+
+.green:hover{
+    background-color: var(--btn-green-hover);
+}
+
+.primary:hover {
     background-color: var(--btn-primary-hover);
 }
 
@@ -102,6 +123,15 @@ button:hover {
     background-color: #1e6f5c;
 }
 
+.ghost{
+    background-color: transparent;
+    border: 2px solid var(--btn-primary-hover);
+}
+
+.ghost:hover{
+    background-color: var(--btn-primary-hover);
+}
+
 .body {
-    display: grid;
+    min-height: 100vh;
 }

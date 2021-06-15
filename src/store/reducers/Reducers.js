@@ -1,4 +1,4 @@
-import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE} from "../Actions";
+import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE, CHANGE_MODALNAAM} from "../Actions";
 
 export const verwijder = (state = "", action) => {
     switch(action.type){
@@ -21,6 +21,15 @@ export const show = (state = "", action) => {
 export const update = (state = "", action) => {
     switch(action.type){
         case CHANGE_UPDATE:
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
+export const modalNaam = (state = "", action) => {
+    switch(action.type){
+        case CHANGE_MODALNAAM:
             return action.payload;
         default:
             return state;

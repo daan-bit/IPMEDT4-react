@@ -4,29 +4,7 @@
   height: auto;
 }
 
-.sidebar__lijst{
-  width: 100%;
-}
-
-.sidebar__onderzoekContainer{
-  width: 100%;
-  height: 4rem;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding-left: 1rem;
-  font-size: 120%;
-  border: 1px solid black;
-}
-
-.sidebar__onderzoek{
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
+/* Onderzoek aanmaken */
 .sidebar__form{
   width: 100%;
   padding-top: 1rem;
@@ -42,7 +20,7 @@
 }
 
 .sidebar__label{
-  font-size: 120%;
+  font-size: 160%;
 }
 
 .sidebar__input{
@@ -56,6 +34,7 @@
   width: 70%;
 }
 
+/* Onderzoek aanmaken button */
 .sidebar__buttonContainer{
   width: 100%;
   display: flex;
@@ -67,6 +46,42 @@
 .sidebar__button{
   width: 95%;
   margin: 1rem;
+}
+
+
+/* lijst van onderzoeken */
+.sidebar__lijst{
+  width: 100%;
+}
+
+.sidebar__onderzoekContainer{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.sidebar__onderzoekTitel{
+  margin: 0;
+  font-size: 2rem;
+}
+
+.sidebar__onderzoekLink{
+  font-size: 160%;
+}
+
+.sidebar__verwijderButtonContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__verwijderButton{
+  width: 95%;
 }
 
 /* chrome etc */
@@ -95,6 +110,18 @@ input[type=number] {
   .sidebar__button{
     width: 50%;
   }
+
+  .sidebar__buttonContainer{
+    justify-content: left;
+  }
+
+  .sidebar__verwijderButton{
+    width: 50%;
+  }
+
+  .sidebar__verwijderButtonContainer{
+    justify-content: left;
+  }
 }
 
 @media(min-width: 43.75rem){
@@ -109,11 +136,23 @@ input[type=number] {
   .sidebar__button{
     width: 35%;
   }
+
+  .sidebar__verwijderButton{
+    width: 35%;
+  }
+
+
 }
 
+
+/* Vanaf hier andere layout */
 @media (min-width: 59rem){
   .sidebar{
     grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+    height: 100vh;
+    overflow-x:hidden;
+    overflow-y: scroll;
   }
 
   .sidebar__input{
@@ -131,6 +170,14 @@ input[type=number] {
   .sidebar__button{
     width: 95%;
   }
+
+  .sidebar__verwijderButtonContainer{
+    justify-content: center;
+  }
+
+  .sidebar__verwijderButton{
+    width:95%;
+  }
 }
 
 @media (min-width: 87.5rem){
@@ -143,10 +190,20 @@ input[type=number] {
   }
 
   .sidebar__buttonContainer{
-    justify-content: right;
+    justify-content: left;
   }
 
   .sidebar__button{
     width: 40%;
   }
+
+  .sidebar__verwijderButtonContainer{
+    justify-content: left;
+  }
+
+  .sidebar__verwijderButton{
+    width: 40%;
+  }
+
+
 }

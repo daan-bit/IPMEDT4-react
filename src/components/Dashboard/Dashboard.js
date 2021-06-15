@@ -15,7 +15,7 @@ class Dashboard extends Component{
         return(
             <article className="dashboard">
 
-            <NavBar link="/admin/dashboard" linkName="Dashboard" />
+            <NavBar link="/admin/dashboard" linkName="Dashboard" cssClass="navBar__listItem active"/>
             <Provider store={store}>
                 <Overzicht />
                 <Sidebar />
