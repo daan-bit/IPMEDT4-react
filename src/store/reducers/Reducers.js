@@ -1,4 +1,4 @@
-import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE, CHANGE_MODALNAAM} from "../Actions";
+import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE, CHANGE_MODALNAAM, CHANGE_VRAGENOVERZICHT} from "../Actions";
 
 export const verwijder = (state = "", action) => {
     switch(action.type){
@@ -47,3 +47,12 @@ export const AuthReducer = (state = {}, actions) => {
             return state;
     }
 };
+
+export const onderzoekVragenId = (state = [], action) => {
+    switch(action.type){
+        case CHANGE_VRAGENOVERZICHT:
+            return action.payload;
+        default: 
+            return state;
+    }
+}

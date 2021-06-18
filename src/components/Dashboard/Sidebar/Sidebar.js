@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios';
 
 import "./Sidebar.css";
@@ -7,7 +7,9 @@ import "./Sidebar.css";
 import {connect} from "react-redux";
 
 import Modal from '../Modal/Modal';
-import { changeModalNaam, changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
+import { changeModalNaam, changeShow, changeUpdate, changeVerwijder, changeVragenOverzicht } from '../../../store/Actions';
+
+
 
 
 class Sidebar extends Component {
@@ -70,6 +72,18 @@ class Sidebar extends Component {
         this.setState({ verwijderOud: id });
     }
 
+    //Meegeven aan overzicht
+    overzichtVragen = (id) => {
+        const BASE_URL = `http://localhost:8000/api/onderzoek/${id}/vragen` ;
+
+        axios.get(BASE_URL)
+        .then(res => {
+            this.props.changeVragenOverzicht(res.data);
+            console.log(this.props.onderzoekVragenId);
+        });
+        
+    }
+
     
     render(){
         if (this.props.update === true) {
@@ -92,7 +106,7 @@ class Sidebar extends Component {
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button green">Onderzoek maken</button>                        
+                        <button type="submit" className="sidebar__button">Onderzoek maken</button>                        
                     </section>
                 </form>
 
@@ -104,11 +118,11 @@ class Sidebar extends Component {
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
-                            <h1 className="sidebar__onderzoekTitel">{i + 1}. {item.naam}</h1>
-                            <Link className="sidebar__onderzoekLink" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
-                            <Link className="sidebar__onderzoekLink" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
+                            <h1 className="sidebar__onderzoekTitel"><a className="sidebar__vragen" onClick={() => this.overzichtVragen(item.id)}>{i + 1}. {item.naam}</a></h1>
+                            
                             <section className="sidebar__verwijderButtonContainer">
-                                <button className="sidebar__verwijderButton red" onClick={() => this.verwijderOnderzoek(item.id, item.naam)}>Verwijderen</button>
+                                <Link className="sidebar__editButton" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}><button className="sidebar__bewerkButton green">Bewerken</button></Link>
+                                <button className="sidebar__editButton red" onClick={() => this.verwijderOnderzoek(item.id, item.naam)}>Verwijderen</button>
                             </section>
                         </li>
                     ))}
@@ -120,12 +134,12 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state =>{
-    return { verwijder: state.verwijder, show: state.show, update: state.update, modalNaam: state.modalNaam};
+    return { verwijder: state.verwijder, show: state.show, update: state.update, modalNaam: state.modalNaam, onderzoekVragenId: state.onderzoekVragenId};
 }
 
 export default connect(
     mapStateToProps, 
-    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate, changeModalNaam: changeModalNaam}
+    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate, changeModalNaam: changeModalNaam, changeVragenOverzicht: changeVragenOverzicht}
 ) (Sidebar);
 
 
