@@ -106,7 +106,7 @@ class Sidebar extends Component {
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button">Onderzoek maken</button>                        
+                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>                        
                     </section>
                 </form>
 
@@ -118,8 +118,8 @@ class Sidebar extends Component {
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
-                            <h1 className="sidebar__onderzoekTitel"><a className="sidebar__vragen" onClick={() => this.overzichtVragen(item.id)}>{i + 1}. {item.naam}</a></h1>
-                            
+                            <a className="sidebar__vragen" onClick={() => this.overzichtVragen(item.id)}><h2 className="sidebar__onderzoekTitel">{i + 1}. {item.naam}</h2></a>
+                            <p className="sidebar__code">Code: {item.code}</p>
                             <section className="sidebar__verwijderButtonContainer">
                                 <Link className="sidebar__editButton" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}><button className="sidebar__bewerkButton green">Bewerken</button></Link>
                                 <button className="sidebar__editButton red" onClick={() => this.verwijderOnderzoek(item.id, item.naam)}>Verwijderen</button>

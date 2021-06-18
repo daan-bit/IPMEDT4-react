@@ -58,7 +58,6 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  gap: 1.5rem;
   width: 100%;
   padding: 1rem;
   border: 1px solid black;
@@ -66,7 +65,17 @@
 
 .sidebar__onderzoekTitel{
   margin: 0;
+  color: black;
   font-size: 2rem;
+}
+
+.sidebar__onderzoekTitel:hover{
+  cursor: pointer;
+}
+
+
+.sidebar__code{
+  color: black;
 }
 
 .sidebar__onderzoekLink{
@@ -78,6 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 2.5rem;
 }
 
 .sidebar__editButton{
@@ -186,6 +196,10 @@ input[type=number] {
 
   .sidebar__button{
     width: 40%;
+  }
+
+  .overzicht__blank{
+    padding: 10rem;
   }
 
 }

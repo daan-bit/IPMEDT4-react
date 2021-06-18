@@ -5,6 +5,8 @@ import './Overzicht.css';
 import CirkelGrafiek from './grafieken/CirkelGrafiek';
 import BarGrafiek from './grafieken/BarGrafiek';
 
+import NavBar from '../../NavBar/NavBar';
+
 
 class InfoOnderzoek extends Component{
 
@@ -54,41 +56,50 @@ class InfoOnderzoek extends Component{
         const antwoorden = this.state.antwoorden; //array begint op 0, we willen op 1 beginnen
         return(
                 <article className="statistieken">
-                    <h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
-                    {(antwoorden.length > 19 && this.state.type_vraag === 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
-                    <React.Fragment>
-                        <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
-                        
-                        <CirkelGrafiek 
-                            zeer_oneens={this.state.zeer_oneens.length} 
-                            oneens={this.state.oneens.length} 
-                            eens={this.state.eens.length} 
-                            zeer_eens={this.state.zeer_eens.length}
-                        />
-                        <BarGrafiek 
-                            zeer_oneens={this.state.zeer_oneens.length} 
-                            oneens={this.state.oneens.length} 
-                            eens={this.state.eens.length} 
-                            zeer_eens={this.state.zeer_eens.length}
-                        />
-                    </React.Fragment>
-                    }
+                    <NavBar link="/admin/dashboard" linkName="Ga terug" cssClass="navBar__listItem"/>
 
-                {(antwoorden.length > 19 && this.state.type_vraag === 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
-                    <React.Fragment>
-                        <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
-                        <p className="statistieken__answer">De antwoorden:</p>
-                        <ul className="statistieken__list">
-                            {antwoorden.map((antwoord, index) => (
-                                <li className="statistieken__list__item" key={index}>{index + 1}.{antwoord}</li>
-                            ))}
-                        </ul>
-                    </React.Fragment>
-                }
-                    {antwoorden.length < 19 && 
-                        <p>Deze vraag is helaas nog niet minimaal 20 keer beantwoord. Deze vraag is {antwoorden.length} keer beantwoord. Probeer eens later!</p>
-                    }
+                    <section className="statistieken__titelWrapper">
+                        	<h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
+                    </section>
                     
+                    <section className="statistieken__contentWrapper">
+                        <section className="statistieken__content">
+                            {(antwoorden.length > 19 && this.state.type_vraag === 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
+                            <React.Fragment>
+                                <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
+                                
+                                <CirkelGrafiek 
+                                    zeer_oneens={this.state.zeer_oneens.length} 
+                                    oneens={this.state.oneens.length} 
+                                    eens={this.state.eens.length} 
+                                    zeer_eens={this.state.zeer_eens.length}
+                                />
+                                <BarGrafiek 
+                                    zeer_oneens={this.state.zeer_oneens.length} 
+                                    oneens={this.state.oneens.length} 
+                                    eens={this.state.eens.length} 
+                                    zeer_eens={this.state.zeer_eens.length}
+                                />
+                            </React.Fragment>
+                            }
+
+                        {(antwoorden.length > 19 && this.state.type_vraag === 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
+                            <React.Fragment>
+                                <section className="statistieken__antwoordenWrapper">
+                                    <h2 className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</h2>
+                                    <ul className="statistieken__list">
+                                        {antwoorden.map((antwoord, index) => (
+                                            <li className="statistieken__list__item" key={index}><h3 className="statistieken__antwoord">{index + 1}.{antwoord}</h3></li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            </React.Fragment>
+                        }
+                            {antwoorden.length < 19 && 
+                                <p>Deze vraag is helaas nog niet minimaal 20 keer beantwoord. Deze vraag is {antwoorden.length} keer beantwoord. Probeer eens later!</p>
+                            }
+                        </section>
+                    </section>
                 </article>
         )
     
