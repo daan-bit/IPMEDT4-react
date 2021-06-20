@@ -16,7 +16,7 @@ const NavBar = (props) => {
     return (
         <nav className="navBar">
             <ul className="navBar__list">      
-                <a className="navBar__link" href={props.link}><li className={props.cssClass}>{props.linkName}</li></a>
+                <Link className="navBar__link" to={props.link}><li className={props.cssClass}>{props.linkName}</li></Link>
                 <Link className="navBar__link" to="/logout" onClick={handleLogout}><li className="navBar__listItem">Uitloggen</li></Link>
                 </ul>
         </nav>

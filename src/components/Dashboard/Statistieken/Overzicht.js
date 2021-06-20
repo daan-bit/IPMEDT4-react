@@ -12,7 +12,7 @@ class InfoOnderzoek extends Component{
 
     constructor(props) {
         super(props)
-        this.state = {vraag_id: this.props.match.params.id, vragen: [], antwoorden: [], zeer_oneens: [], oneens: [], eens: [], zeer_eens: [], totaal: '', errors: [], type_vraag: ''} 
+        this.state = {type_grafiek: 'cirkel', vraag_id: this.props.match.params.id, vragen: [], antwoorden: [], zeer_oneens: [], geen_mening: [], oneens: [], eens: [], zeer_eens: [], totaal: '', errors: [], type_vraag: ''} 
     }
 
     apiCall = () => {
@@ -35,6 +35,10 @@ class InfoOnderzoek extends Component{
 
             let resultaat3 = antwoorden.filter(antwoorden => antwoorden.includes("5"));
             this.setState({zeer_eens: resultaat3});
+
+            let resultaat4 = antwoorden.filter(antwoorden => antwoorden.includes("3"));
+            this.setState({geen_mening: resultaat4});
+
         }).catch(e => this.setState({errors: e.response.data}),
         );
     }
@@ -51,8 +55,17 @@ class InfoOnderzoek extends Component{
         this.getCategory();
     }
 
+    handleInput = (e) => {
+        e.preventDefault();
+        const name = e.target.name
+        const value = e.target.value
+        this.setState({[name]:value})        
+    }
+
 
     render(){
+
+        
         const antwoorden = this.state.antwoorden; //array begint op 0, we willen op 1 beginnen
         return(
                 <article className="statistieken">
@@ -67,20 +80,30 @@ class InfoOnderzoek extends Component{
                             {(antwoorden.length > 19 && this.state.type_vraag === 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
                             <React.Fragment>
                                 <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
-                                
+                                <select name="type_grafiek" className="vragen__input vragen__input--select" onChange={this.handleInput}>
+                                    <option key='1' value='cirkel'>Cirkel grafiek</option>
+                                    <option key='1' value='staaf'>Staaf grafiek</option>
+                                </select>
+                            {this.state.type_grafiek == 'cirkel' &&    
                                 <CirkelGrafiek 
                                     zeer_oneens={this.state.zeer_oneens.length} 
                                     oneens={this.state.oneens.length} 
                                     eens={this.state.eens.length} 
                                     zeer_eens={this.state.zeer_eens.length}
+                                    geen_mening={this.state.geen_mening.length}
                                 />
+                            }
+                            {this.state.type_grafiek == 'staaf' &&    
                                 <BarGrafiek 
                                     zeer_oneens={this.state.zeer_oneens.length} 
                                     oneens={this.state.oneens.length} 
                                     eens={this.state.eens.length} 
                                     zeer_eens={this.state.zeer_eens.length}
+                                    geen_mening={this.state.geen_mening.length}
                                 />
+                        }
                             </React.Fragment>
+
                             }
 
                         {(antwoorden.length > 19 && this.state.type_vraag === 'open') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een open vraag? Tabel begint vanaf 0, niet 1
