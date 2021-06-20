@@ -1,0 +1,28 @@
+.bargrafiek{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;    
+}
+
+.bargrafiek__content{
+    width: 90%;
+}
+
+.bargrafiek__canvas{
+    width: 100%;
+    height: auto;
+}
+
+@media(min-width: 47.25rem){
+    .bargrafiek__content{
+        width: 75%;
+    }
+}
+
+@media(min-width: 62.5rem){
+    .bargrafiek__content{
+        width: 50%;
+    }
+}

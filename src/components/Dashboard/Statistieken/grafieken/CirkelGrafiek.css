@@ -1,0 +1,29 @@
+.cirkelgrafiek{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cirkelgrafiek__content{
+    width: 90%;
+}
+
+.cirkelgrafiek__canvas{
+    width: 100%;
+    height: auto;
+}
+
+@media(min-width: 47.25rem){
+    .cirkelgrafiek__content{
+        width: 75%;
+    }
+}
+
+@media(min-width: 62.5rem){
+    .cirkelgrafiek__content{
+        width: 50%;
+    }
+}
+

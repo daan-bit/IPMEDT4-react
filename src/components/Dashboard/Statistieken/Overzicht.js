@@ -72,7 +72,7 @@ class InfoOnderzoek extends Component{
                     <NavBar link="/admin/dashboard" linkName="Ga terug" cssClass="navBar__listItem"/>
 
                     <section className="statistieken__titelWrapper">
-                        	<h2 className="statistieken__title">Op deze pagina kunt u de statistieken bekijken voor deze vraag</h2>
+                        	<h2 className="statistieken__title">Statistieken</h2>
                     </section>
                     
                     <section className="statistieken__contentWrapper">
@@ -80,9 +80,9 @@ class InfoOnderzoek extends Component{
                             {(antwoorden.length > 19 && this.state.type_vraag === 'meerkeuze') && //meer dan 20 antwoorden gegeven per vraag zoals in de opdrachtseisen beschreven staat? Is het een meerkeuze vraag? Tabel begint vanaf 0, niet 1
                             <React.Fragment>
                                 <p className="statistieken__paragraph">Deze vraag is {antwoorden.length} keer beantwoord.</p>
-                                <select name="type_grafiek" className="vragen__input vragen__input--select" onChange={this.handleInput}>
+                                <select name="type_grafiek" className="statistieken__select" onChange={this.handleInput}>
                                     <option key='1' value='cirkel'>Cirkel grafiek</option>
-                                    <option key='1' value='staaf'>Staaf grafiek</option>
+                                    <option key='2' value='staaf'>Staaf grafiek</option>
                                 </select>
                             {this.state.type_grafiek == 'cirkel' &&    
                                 <CirkelGrafiek 

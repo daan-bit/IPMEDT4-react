@@ -2,7 +2,7 @@
     background-color: var(--bg-darkblue);
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
@@ -64,17 +64,33 @@
     font-size: 2rem;
 }
 
-.statistieken__CirkelGrafiek {
-    width: 50%;
-}
-
-.statistieken__barGrafiek {
-    width: 50%;
+.statistieken__select{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    margin-top: 2rem;
+    padding:1rem;
+    background-color: #1E2736;
+    color: white;
+    outline: none;
+    border: none;
 }
 
 .statistieken__list__item {
     font-size: 1.4rem;
     color: var(--text-white);
+}
+
+@media(min-width: 47.25rem){
+    .statistieken__select{
+        width: 75%;
+    }
+}
+
+@media(min-width: 62.5rem){
+    .statistieken__select{
+        width: 50%;
+    }
 }
 
 @media(min-width: 75rem){
@@ -85,3 +101,6 @@
         width: 60%;
     }
 }
+
+
+
