@@ -9,7 +9,7 @@ import ReactDOM from "react-dom";
 //3. app
 import App from "./App";
 
-import store from './store/index' // store en provider importen
+import { store } from './store/Store' // store en provider importen
 import {Provider} from 'react-redux';
 import axios from 'axios'
 import cookie from 'js-cookie';

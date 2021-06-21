@@ -19,6 +19,7 @@ class Login extends Component {
         cookie.set('token', res.data.access_token); //cookie zetten
         this.props.setLogin(res.data.user); //redux toepassen
         this.props.history.push('/admin/dashboard'); //stuur gebruiker naar dashboard
+        window.location.reload(); // Alex - dit is nodig, anders krijgen we bij sommige API calls 401 unauthorized, omdat sommige API Calls beveiligd zijn
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
