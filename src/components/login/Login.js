@@ -59,7 +59,7 @@ class Login extends Component {
                     </section>
 
                     <section className="login-form__textContainer">
-                        <a href="" className="login-form__text login-form__text--vergeten">Wachtwoord vergeten?</a>
+                        <a href="/#" className="login-form__text login-form__text--vergeten">Wachtwoord vergeten?</a>
                     </section>
 
                     <section className="login-form__section login-form__section--inloggen">
@@ -67,7 +67,7 @@ class Login extends Component {
                     </section>
 
                     <section className="login-form__textContainer login-form__textContainer--registreren">
-                        <p className="login-form__text login-form__text--registreren">Nog geen account?</p><a href="#" className="login-form__maken"> Registreer</a>
+                        <p className="login-form__text login-form__text--registreren">Nog geen account?</p><a href="/#" className="login-form__maken"> Registreer</a>
                     </section>
                 </form>
             </article>

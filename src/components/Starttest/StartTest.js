@@ -14,7 +14,7 @@ class StartTest extends React.Component{
         console.log(this.state.testCode);
         const BASE_URL = "http://127.0.0.1:8000/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
-            if (res.data == "") {
+            if (res.data === "") {
                 alert('GEEN ONDERZOEK');
               }
             else {

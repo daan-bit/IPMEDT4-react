@@ -1,14 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "./StatusBar.css"; 
-import axios from "axios";
 import "../vraag";
 
 class StatusBar extends React.Component{
     onClick = event => {
-            event.preventDefault();
-            this.props.onClick()
-        }
-        
+        event.preventDefault()
+        this.props.onClick()
+    }
+    
 
     render(){
         return(

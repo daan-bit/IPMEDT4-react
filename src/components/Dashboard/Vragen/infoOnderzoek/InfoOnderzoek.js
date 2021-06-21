@@ -25,7 +25,6 @@ class InfoOnderzoek extends Component{
 
 
     render(){
-        const error = this.state.errors;
         return(
             <article className="onderzoek__info">
                 <h2 className="onderzoek__info__title">Naam van onderzoek: {this.state.naam}</h2>

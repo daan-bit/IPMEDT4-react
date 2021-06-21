@@ -1,5 +1,6 @@
 import React from "react";
 import "./OverzichtGebruiker.css";
+import { connect } from 'react-redux';
 
 class OverzichtGebruiker extends React.Component{
     constructor(props) {
@@ -9,9 +10,9 @@ class OverzichtGebruiker extends React.Component{
         }; //loading zetten we op true eerst
       }
 
-
       render(){
         console.log(this.state.onderzoek_id)
+        console.log(this.props)
         return(
             <h1>hello dashboard</h1>
             
@@ -19,4 +20,11 @@ class OverzichtGebruiker extends React.Component{
     }
 }
 
-export default OverzichtGebruiker;
+function mapStateToProps(state){
+  return {
+      ans: state.ans
+  };
+}
+
+
+export default connect(mapStateToProps)(OverzichtGebruiker);

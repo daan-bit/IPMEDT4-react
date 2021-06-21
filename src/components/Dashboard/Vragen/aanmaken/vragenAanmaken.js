@@ -56,7 +56,6 @@ class vragenAanmaken extends Component{
         const DEFAULT_URL = 'http://localhost:8000/api/'
         axios.get(DEFAULT_URL + 'categorien/all')
         .then(res => { 
-        let i = 0;
         const opties = res.data.map(d => ({
             "label": d.naam.toLowerCase(),
             "value": d.naam,

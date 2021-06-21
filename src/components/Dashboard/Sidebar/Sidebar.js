@@ -37,6 +37,8 @@ class Sidebar extends Component {
             }).catch(function (error) {
                 console.log(error);
             });
+
+            this.makeApiCall()
     }
 
     makeApiCall = () =>{
@@ -66,7 +68,7 @@ class Sidebar extends Component {
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button primary" onClick={()=>{{this.submit()}; this.makeApiCall();}}>Onderzoek maken</button>
+                        <button type="submit" className="sidebar__button primary" onClick={ () => this.submit() }>Onderzoek maken</button>
                     </section>
                 </section>
 
@@ -74,7 +76,7 @@ class Sidebar extends Component {
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
-                            <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
+                            <a className="sidebar__onderzoek" href="/#">{item.id}.  {item.naam}</a>
                         </li>
                     ))}
                 </ul>   

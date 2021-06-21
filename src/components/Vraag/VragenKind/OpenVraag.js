@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "./OpenVraag.css";
-import axios from "axios";
 
 class GeslotenVraag extends React.Component{
 

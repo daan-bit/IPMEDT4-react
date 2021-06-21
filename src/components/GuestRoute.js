@@ -9,11 +9,9 @@ const GuestRoute = ({ component: Component, ...rest }) => {
     <Route 
       {...rest}    
         render={props =>
-        !rest.loggedIn ? ( //redux loggedIn gezet op false
+    
           <Component {...props} />
-        ) :  (
-          <Redirect to={{pathname: "/admin/dashboard", state: { from: props.location } } } />
-        ) 
+        
       }
     />
   );
@@ -25,3 +23,4 @@ const mapStateToProps = state => {
   };
 }
 export default connect(mapStateToProps)(GuestRoute);
+
