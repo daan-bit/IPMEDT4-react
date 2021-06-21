@@ -8,7 +8,18 @@
     width: 100vw;
     display: flex;
 }
-
+.lijstmetvragen__container  button.active {
+    border-color: green;
+}
+.lijstmetvragen__container  button.circle span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px white;
+    margin: -5px;
+    line-height: 21px;
+}
 .lijstmetvragen {
     width: 100%;
     max-width: 750px;
