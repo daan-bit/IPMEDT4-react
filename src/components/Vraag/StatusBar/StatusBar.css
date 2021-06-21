@@ -1,0 +1,70 @@
+.statusbar {
+    background-color: var(--bg-darkblue);
+    width: 100%;
+    height: 10rem;
+    position:fixed;
+    bottom:0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.statusbar__bar {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3rem 6rem 0 0;
+    height: 1.2rem;
+}
+
+.statusbar__btn--margin {
+    margin-right: 2rem;
+}
+
+.statusbar__text {
+    color: var(--text-white);
+    position: absolute;
+    top: 3.5rem;
+}
+
+progress {
+    border-radius: 3rem;
+    border: none;
+    width: 100%;
+  }
+
+progress::-webkit-progress-bar {
+    background-color: rgba(74, 118, 138, 0.2);
+    border-radius: 3rem;
+    border: none; 
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--btn-primary);
+    border-radius: 3rem;
+    border: none;
+}
+
+/*tabletview*/
+@media only screen and (min-width: 45rem) {
+    .statusbar__bar {
+        width: 54rem;
+    }
+}
+
+/*desktopview*/
+@media only screen and (min-width: 64rem) {
+    .statusbar__bar {
+        margin: 0;
+        
+    }
+    .u-flex__statusbar {
+        position: relative;
+    }
+    .statusbar__text {
+        right: -5rem;
+        top: unset;
+    }
+}
+
+
+

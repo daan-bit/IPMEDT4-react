@@ -1,0 +1,63 @@
+.vragenInput {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.vragenInput__btn {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+    color: var(--text-black);
+    font-weight: 600;
+    right: 0;
+}
+
+.vragenInput__btn:active,
+.vragenInput__btn:focus,
+.vragenInput__btn:hover {
+    background-color: var(--text-blue);
+    color: var(--text-white);
+    right: 0.5rem;
+    transition: 0.3s ease-in-out;
+    box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
+}
+
+.vragenInput__btnlabel {
+    position: absolute;
+    background-color: var(--body-bg);
+    width: 2rem;
+    height: 2rem;
+    left: 0;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    color: var(--text-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vragenInput__btn--color {
+    background-color: var(--text-white);
+}
+
+/*desktopview*/
+@media only screen and (min-width: 64rem) {
+    .vraag {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;        
+    }
+    .vragenInput {
+        width: 35rem;
+        margin: 5rem 0;
+    }
+}

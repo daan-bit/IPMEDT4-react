@@ -21,12 +21,13 @@ html{
     --text-white: #eee;
     --btn-primary: #10a1e9;
     --btn-primary-hover: #0c80ba;
-    --btn-primary-active: #1e6f5c;
+    /* --btn-primary-active: #1e6f5c; */
     --btn-green: #1E6F5C;
     --btn-green-hover: #29977d;
     --btn-red: #A53E33;
     --btn-red-hover: #c65245;
 
+    --btn-primary-active: #09608B;
 }
 
 .main{
@@ -66,7 +67,7 @@ h2 {
 h3 {
     color: var(--text-white);
     font-family: 'Poppins-SemiBold', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 2rem;
 }
 
@@ -97,6 +98,7 @@ button {
     border: none;
     color: #fff;
     cursor: pointer;
+<<<<<<< HEAD
 }
 
 .red{
@@ -126,6 +128,8 @@ button {
 .ghost{
     background-color: transparent;
     border: 2px solid var(--btn-primary-hover);
+=======
+>>>>>>> vragen_pagina2
 }
 
 .ghost:hover{

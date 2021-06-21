@@ -18,8 +18,7 @@ import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijk
 import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
 
 
-class App extends React.Component{
-    
+class App extends React.Component {
     render(){
         return(
             <Router>
@@ -44,18 +43,18 @@ class App extends React.Component{
                     <Route>
                         <AuthRoute path="/test" component={Test} />
                     </Route>
-
                     <Route>
                         <GuestRoute path="/start-test" component={StartTest} />
                     </Route>
                     <Route>
                         <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
-                   
+                    <Route>
+                        <GuestRoute path="/vragen/:id" component={Vraag} />
+                    </Route>
             </Router>
         );
-    }
-    
+    }   
 }
 
 export default App;
