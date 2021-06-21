@@ -98,7 +98,6 @@ button {
     border: none;
     color: #fff;
     cursor: pointer;
-<<<<<<< HEAD
 }
 
 .red{
@@ -128,8 +127,6 @@ button {
 .ghost{
     background-color: transparent;
     border: 2px solid var(--btn-primary-hover);
-=======
->>>>>>> vragen_pagina2
 }
 
 .ghost:hover{

@@ -16,6 +16,7 @@ import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruik
 import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
 import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijken"
 import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
+import Vraag from "./components/Vraag/vraag";
 
 
 class App extends React.Component {
