@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 import "./Sidebar.css";
+
+import {connect} from "react-redux";
+
+import Modal from '../Modal/Modal';
+import { changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
 
 
 class Sidebar extends Component {
 
     constructor(props){
         super(props)
+        
         this.state = {
             onderzoek: "",
             code: "",
@@ -17,9 +23,12 @@ class Sidebar extends Component {
     }
 
     componentDidMount() {
-        this.makeApiCall();
+        this.ophalenOnderzoeken();
+        this.props.changeShow(false);
+        this.props.changeUpdate(false);
     }
 
+    // Onderzoek aanmaken
     changeOnderzoek = (event) =>{
         this.setState({onderzoek: event.target.value});
     }
@@ -28,7 +37,8 @@ class Sidebar extends Component {
         this.setState({code: event.target.value});
     }
 
-    submit(){
+    submit = (e) =>{
+        e.preventDefault();
         axios.post('http://127.0.0.1:8000/api/store', {
                 naam: this.state.onderzoek, 
                 code: this.state.code,                     
@@ -37,24 +47,39 @@ class Sidebar extends Component {
             }).catch(function (error) {
                 console.log(error);
             });
+        this.ophalenOnderzoeken();
     }
 
-    makeApiCall = () =>{
+
+    // Lijst van onderzoeken
+    ophalenOnderzoeken = () =>{
         const BASE_URL = "http://localhost:8000/api/onderzoeken";
 
         axios.get(BASE_URL)
         .then(res => {
             this.setState({onderzoeken: res.data})
         });
-    };
+        this.props.changeUpdate(false);
+    }
 
+    // Verwijderen van onderzoeken
+    verwijderOnderzoek = (id) => {
+        this.props.changeVerwijder(id);
+        this.props.changeShow(true);
+        this.setState({ verwijderOud: id });
+    }
+
+    
     render(){
-        const onderzoeken = (this.state.onderzoeken);
+        if (this.props.update === true) {
+            this.ophalenOnderzoeken();
+          }
+        const onderzoeken = (this.state.onderzoeken); 
         return(
-            <article className="sidebar">               
+            <article className="sidebar">             
 
-                {/* Nog form van maken, doet het nog niet --> zegt request aborted */}
-                <section className="sidebar__form"> 
+                {/* Maken van een Onderzoek */}
+                <form className="sidebar__form" onSubmit={this.submit}>
                     <section className="sidebar__inputSection">
                         <label className="sidebar__label" htmlFor="onderzoek">Naam onderzoek</label>
                         <input className="sidebar__input" type="text" id="onderzoek" required onChange={this.changeOnderzoek}/>
@@ -62,19 +87,27 @@ class Sidebar extends Component {
                    
                     <section className="sidebar__inputSection">
                         <label className="sidebar__label" htmlFor="code">Code</label>
-                        <input className="sidebar__input sidebar__input--code" required type="text" id="code" onChange={this.changeCode}/>
+                        <input className="sidebar__input sidebar__input--code" required type="number" id="code" onChange={this.changeCode}/>
                     </section>
 
                     <section className="sidebar__buttonContainer">
-                        <button type="submit" className="sidebar__button primary" onClick={()=>{{this.submit()}; this.makeApiCall();}}>Onderzoek maken</button>
+                        <button type="submit" className="sidebar__button primary">Onderzoek maken</button>                        
                     </section>
-                </section>
+                </form>
 
+                {/* Verwijderen van een onderzoek */}  
+
+                <Modal/>             
+                            
+                {/* lijst van onderzoeken */}
                 <ul className="sidebar__lijst">
                     {onderzoeken.map((item, i) => (
                     
                         <li className="sidebar__onderzoekContainer" key={i}>
                             <a className="sidebar__onderzoek" href="#">{item.id}.  {item.naam}</a>
+                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen/aanmaken`}>Voeg vragen toe</Link>
+                            <Link className="sidebar__onderzoek" to={`/admin/onderzoek/${item.id}/vragen`}>Bekijk vragen</Link>
+                            <button className="sidebar__verwijderButton primary" onClick={() => this.verwijderOnderzoek(item.id)}>Verwijderen</button>
                         </li>
                     ))}
                 </ul>   
@@ -84,6 +117,13 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+const mapStateToProps = state =>{
+    return { verwijder: state.verwijder, show: state.show, update: state.update};
+}
+
+export default connect(
+    mapStateToProps, 
+    {changeVerwijder: changeVerwijder, changeShow: changeShow, changeUpdate: changeUpdate}
+) (Sidebar);
 
 
