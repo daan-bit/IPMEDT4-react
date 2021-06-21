@@ -6,13 +6,44 @@ class Lijstmetvragen extends React.Component{
         vragen: [],
     }
     onderzoek = [{
+      vraag0: "1",
+      flag0: "1",
       vraag1: "1",
+      flag1: "0",
       vraag2: "",
+      flag2: "10",
       vraag3: "3",
+      flag3: "0",
       vraag4: "4",
+      flag4: "0",
       vraag5: "4",
+      flag5: "0",
       vraag6: "2",
-    }]
+      flag6: "0",
+      vraag7: "",
+      flag7: "0",
+      vraag8: "",
+      flag8: "0",
+      vraag9: "3",
+      flag9: "1",
+      vraag10: "4",
+      flag10: "1",
+      vraag11: "4",
+      flag11: "0",
+      vraag12: "2",
+      flag12: "0",
+      vraag13: "2",
+      flag13: "1",
+      vraag14: "",
+      flag14: "0",
+      vraag15: "",
+      flag15: "0",
+      vraag16: "3",
+      flag16: "1",
+      vraag17: "4",
+      flag17: "0",
+      }
+    ]
     
     makeApiCall = event => {
         let onderzoek_id = 1;
@@ -34,6 +65,12 @@ class Lijstmetvragen extends React.Component{
       }
      
    render(){
+        let items = ``
+        this.state.vragen.forEach( (val, index) => {
+          let classActive = (this.onderzoek[0]["vraag"+index] != '') ? 'active' : ''
+          let classCircle = (this.onderzoek[0]["flag"+index] == '1') ? 'circle' : ''
+          items += `<button class="${classActive} ${classCircle}" type="submit " ><span>${index+1}</span></button>`
+        })
         return(
           <article className="lijstmetvragen">
                 <h1 className="lijstmetvragen__title">Overzicht</h1>
@@ -41,9 +78,7 @@ class Lijstmetvragen extends React.Component{
                 <br /> 
                 <form className="lijstmetvragen__form" method="get" action=""> 
                   <section className="lijstmetvragen__container flex jc-sb fw-w">
-                    {this.state.vragen.map(vraag => 
-                        <button type="submit" >{vraag.index}</button>
-                    )}
+                    <div dangerouslySetInnerHTML={{__html: items}} />
                   </section>
                   <br />  
                   <section className="lijstmetvragen__btns">
