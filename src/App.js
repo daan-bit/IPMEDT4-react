@@ -20,7 +20,7 @@ import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
 
 class App extends React.Component{
     
-    render(){
+    render() {
         return(
             <Router>
                   <Route>
