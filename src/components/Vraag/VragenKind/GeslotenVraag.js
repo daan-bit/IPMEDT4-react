@@ -1,19 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import "./GeslotenVraag.css";
-import axios from "axios";
 
 class GeslotenVraag extends React.Component{
 
+    btn = [
+        { id: 1, title: "Oneens", letter: "A" },
+        { id: 2, title: "Beetje oneens", letter: "B" },
+        { id: 3, title: "Weet ik niet", letter: "C" },
+        { id: 4, title: "Beetje eens", letter: "D" },
+        { id: 5, title: "Eens", letter: "E" }
+    ]
 
     render(){
-        
+        const { ans, current_id } = this.props
+        const active = ans[current_id-1] 
+
         return(
             <article className="vragenInput">
-                <button className="vragenInput__btn vragenInput__btn--color">Oneens<div className="vragenInput__btnlabel">A</div></button>
-                <button className="vragenInput__btn vragenInput__btn--color">Beetje oneens<div className="vragenInput__btnlabel">B</div></button>
-                <button className="vragenInput__btn vragenInput__btn--color">Weet ik niet<div className="vragenInput__btnlabel">C</div></button>
-                <button className="vragenInput__btn vragenInput__btn--color">Beetje eens<div className="vragenInput__btnlabel">D</div></button>
-                <button className="vragenInput__btn vragenInput__btn--color">Eens<div className="vragenInput__btnlabel">E</div></button>
+                {this.btn.map(i => 
+                    <button onClick={ this.props.updateAnswer } key={i.id} data-type={i.id} data-active={ (active === "vraag"+i.id) ? 1 : 0} className="vragenInput__btn vragenInput__btn--color">
+                        {i.title} 
+                        <div className="vragenInput__btnlabel">{i.letter}</div>
+                    </button>
+                )}
             </article>  
         );
     }
