@@ -44,6 +44,8 @@ class Vraag extends React.Component{
     } 
 
     next() {
+
+
         this.setState({ 
             currentQuestion: this.state.currentQuestion+1,
         })
@@ -53,15 +55,16 @@ class Vraag extends React.Component{
         const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
         axios.get(BASE_URL).then(res =>{
             this.onderzoek = res.data;
-            // console.log(this.onderzoek.data);
-            this.stateUpdate(0);
-            // console.log(this.onderzoek);
+            console.log(this.onderzoek.data);
+            //this.stateUpdate(0);
+            console.log(this.onderzoek);
         })
+
     }
 
     stateUpdate = vraag_id => {
         const { vraag_index, currentQuestion, currentAns } = this.state
-        const active = this.props.ans[vraag_id  - 1] ?? 'vraag'
+        const active = this.props.ans[ vraag_id - 1] ?? 'vraag'
         
         if(this.onderzoek.length < vraag_id) 
             return console.log('The End!')
@@ -152,14 +155,14 @@ class Vraag extends React.Component{
     }
 }
 
-    function mapStateToProps(state){
-        return {
-            ans: state.ans
-        };
-    }
+function mapStateToProps(state){
+    return {
+        ans: state.ans
+    };
+}
 
-    function matchDispatchToProps(dispatch){
-        return bindActionCreators({ addAnswer }, dispatch)
-    }
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({ addAnswer }, dispatch)
+}
 
 export default connect(mapStateToProps, matchDispatchToProps)(Vraag);
