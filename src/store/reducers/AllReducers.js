@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import AuthReducer from "./AuthReducer";
+import AnswerReducer from "./AnswerReducer";
 
-const AllReducers = combineReducers(({auth: AuthReducer})) //we noemen deze reducer auth ipv authreducer, makkelijker voor later
-
-
-export default AllReducers;
+export default combineReducers({
+    auth: AuthReducer, 
+    ans: AnswerReducer
+}) //we noemen deze reducer auth ipv authreducer, makkelijker voor later

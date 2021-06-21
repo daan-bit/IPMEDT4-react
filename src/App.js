@@ -18,20 +18,6 @@ import Vraag from "./components/Vraag/vraag";
 
 
 class App extends React.Component {
-    // constructor(props) {
-    //     super(props);
-
-        // this.state = {
-        //     questions: ["1", "2", "3", "4"], /* hier het AANTAL vragen in zetten */
-        //     currentQuestion: 0,
-        // };
-    //   }
-    // next() {
-    //     this.setState({ 
-    //         currentQuestion: this.state.currentQuestion+1 
-    //     });
-    //     }
-  
     render(){
         return(
             <Router>
@@ -59,17 +45,9 @@ class App extends React.Component {
                     <Route>
                         <GuestRoute path="/vragen/:id" component={Vraag} />
                     </Route>
-                    
-                    {/* <Route>
-                        <div className="App">
-                            <Vraag question={this.state.currentQuestion+1}  />
-                            <StatusBar progress={100/this.state.questions.length * (this.state.currentQuestion+1)} next={this.next.bind(this)} aantal={this.state.questions.length} huidige={this.state.currentQuestion+1}/>
-                        </div>
-                    </Route> */}
             </Router>
         );
-    }
-    
+    }   
 }
 
 export default App;
