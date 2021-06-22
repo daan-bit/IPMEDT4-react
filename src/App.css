@@ -124,10 +124,6 @@ button:hover {
     background-color: var(--btn-primary-hover);
 }
 
-.primary:active{
-    background-color: #1e6f5c;
-}
-
 .ghost{
     background-color: transparent;
     border: 2px solid var(--btn-primary-hover);

@@ -8,12 +8,12 @@ const CirkelGrafiek = (props) => {
         <section className="cirkelgrafiek">
             <div className="cirkelgrafiek__content">
                 <Doughnut className="cirkelgrafiek__canvas" data={{
-                    labels: ['Zeer oneens', 'Oneens', 'Geen mening', 'Eens', 'Zeer eens'],
+                    labels: ['Oneens', 'Beetje oneens', 'Weet ik niet', 'Beetje eens', 'Eens'],
                     datasets: [
                         {
                             label: '# die deze vraag hebben ingevuld',
                             data: [props.zeer_oneens, props.oneens, props.geen_mening, props.eens, props.zeer_eens], // we laden de data in via api die doorgegeven worden als props.
-                            backgroundColor: ['blue', 'red', 'green', 'yellow', 'black'],
+                            backgroundColor: ['#B5461F', '#EB8C4B', '#3D4782', '#1F34B5', '#10A1E9'],
                         }
                     ],
                     borderColor: 'white',
