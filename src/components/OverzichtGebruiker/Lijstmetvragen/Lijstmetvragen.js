@@ -49,7 +49,7 @@ class Lijstmetvragen extends React.Component{
         let onderzoek_id = 1;
 
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
-      const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoeken/";
+      const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/";
         axios.get(BASE_URL + 1 + "/vragen").then(res =>{
           const temp = res.data;
           console.log(temp);
@@ -69,7 +69,7 @@ class Lijstmetvragen extends React.Component{
         this.state.vragen.forEach( (val, index) => {
           let classActive = (this.onderzoek[0]["vraag"+index] != '') ? 'active' : ''
           let classCircle = (this.onderzoek[0]["flag"+index] == '1') ? 'circle' : ''
-          items += `<button class="${classActive} ${classCircle}" type="submit " ><span>${index+1}</span></button>`
+          items += `<a href="/vragen/1/${index + 1}" class="${classActive} ${classCircle}" type="submit " ><span>${index+1}</span></a>`
         })
         return(
           <article className="lijstmetvragen">
