@@ -4,6 +4,7 @@ import axios from "axios";
 class Lijstmetvragen extends React.Component{
     state = {
         vragen: [],
+        onderzoek_id: 1,
     }
     onderzoek = [{
       vraag0: "1",
@@ -45,12 +46,12 @@ class Lijstmetvragen extends React.Component{
       }
     ]
     
+
     makeApiCall = event => {
-        let onderzoek_id = 1;
 
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
       const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/";
-        axios.get(BASE_URL + 1 + "/vragen").then(res =>{
+        axios.get(BASE_URL + this.state.onderzoek_id + "/vragen").then(res =>{
           const temp = res.data;
           console.log(temp);
           this.setState({vragen:res.data})
@@ -62,6 +63,9 @@ class Lijstmetvragen extends React.Component{
   
       componentDidMount(){
           this.makeApiCall();
+      }
+      startonderzoek(){
+        window.location.href = "/vragen/"+ this.state.onderzoek_id +"/1"
       }
      
    render(){
@@ -83,7 +87,7 @@ class Lijstmetvragen extends React.Component{
                   <br />  
                   <section className="lijstmetvragen__btns">
                     <div className="lijstmetvragen__btns__ruimte">
-                    <button className="btn u-float-left">Start</button>
+                    <button onClick={this.startonderzoek} className="btn u-float-left">Start</button>
                     <button className="btn u-float-right">Finish</button>
                     </div>
                   </section>
