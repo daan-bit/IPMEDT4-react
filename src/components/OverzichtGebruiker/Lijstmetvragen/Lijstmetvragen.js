@@ -6,47 +6,25 @@ class Lijstmetvragen extends React.Component{
         vragen: [],
         onderzoek_id: 1,
     }
-    onderzoek = [{
-      vraag0: "1",
-      flag0: "1",
-      vraag1: "1",
-      flag1: "0",
-      vraag2: "",
-      flag2: "10",
-      vraag3: "3",
-      flag3: "0",
-      vraag4: "4",
-      flag4: "0",
-      vraag5: "4",
-      flag5: "0",
-      vraag6: "2",
-      flag6: "0",
-      vraag7: "",
-      flag7: "0",
-      vraag8: "",
-      flag8: "0",
-      vraag9: "3",
-      flag9: "1",
-      vraag10: "4",
-      flag10: "1",
-      vraag11: "4",
-      flag11: "0",
-      vraag12: "2",
-      flag12: "0",
-      vraag13: "2",
-      flag13: "1",
-      vraag14: "",
-      flag14: "0",
-      vraag15: "",
-      flag15: "0",
-      vraag16: "3",
-      flag16: "1",
-      vraag17: "4",
-      flag17: "0",
-      }
-    ]
+    onderzoek = [{}]
     
 
+    constructor(props) {
+      super(props);
+
+      let LS = localStorage.getItem('ans')
+      if(LS) {
+        LS.split(',').forEach( (val, index) => {
+          if(val.split('vraag')[1] !== '') 
+            this.onderzoek[0]["vraag"+index] = val.split('vraag')[1]
+          
+        })
+      }
+      console.log(this.onderzoek);
+  
+
+      
+  } 
     makeApiCall = event => {
 
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
@@ -55,7 +33,7 @@ class Lijstmetvragen extends React.Component{
           const temp = res.data;
           console.log(temp);
           this.setState({vragen:res.data})
-          console.log(this.state);
+      
         });
 
        
@@ -64,16 +42,19 @@ class Lijstmetvragen extends React.Component{
       componentDidMount(){
           this.makeApiCall();
       }
-      startonderzoek(){
-        window.location.href = "/vragen/"+ this.state.onderzoek_id +"/1"
+
+      startonderzoek = e => {
+        e.preventDefault()
+        localStorage.removeItem('ans')
+        window.location.href = '/vragen/1'
       }
      
    render(){
+   
         let items = ``
         this.state.vragen.forEach( (val, index) => {
-          let classActive = (this.onderzoek[0]["vraag"+index] != '') ? 'active' : ''
-          let classCircle = (this.onderzoek[0]["flag"+index] == '1') ? 'circle' : ''
-          items += `<a href="/vragen/1/${index + 1}" class="${classActive} ${classCircle}" type="submit " ><span>${index+1}</span></a>`
+          let classActive = (this.onderzoek[0]["vraag"+index]) ? 'active' : ''
+          items += `<a href="/vragen/1/${index + 1}" class="${classActive}" type="submit " ><span>${index+1}</span></a>`
         })
         return(
           <article className="lijstmetvragen">
@@ -86,7 +67,7 @@ class Lijstmetvragen extends React.Component{
                   </section>
                   <br />  
                   <section className="lijstmetvragen__btns">
-                    <div className="lijstmetvragen__btns__ruimte">
+                    <div  className="lijstmetvragen__btns__ruimte">
                     <button onClick={this.startonderzoek} className="btn u-float-left">Start</button>
                     <button className="btn u-float-right">Finish</button>
                     </div>

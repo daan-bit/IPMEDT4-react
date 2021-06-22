@@ -9,7 +9,7 @@ import AuthRoute from './components/AuthRoute';
 
 import './App.css';
 
-import {Route, BrowserRouter as Router} from "react-router-dom";
+import {Route, BrowserRouter as Router  } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
@@ -18,25 +18,26 @@ import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijk
 import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
 import vraag from "./components/Vraag/vraag";
 
-
+import { store } from './store/Store';
+import { Provider } from 'react-redux'; 
 
 class App extends React.Component{
-    
     render() {
         return(
-            <Router>
+            <Provider store={ store }>
+                <Router>
                   <Route path="/admin/dashboard" exact component={Dashboard} >
-                        <AuthRoute />                    
-                   </Route>
-                   <Route>
-                       <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
-                   </Route>
-                   <Route>
-                       <AuthRoute path="/admin/onderzoek/:id/vragen" exact component={vragenBekijken} />
-                   </Route>
-                   <Route>
-                        <AuthRoute path="/dashboard/:id" exact component={Test} />
-                   </Route>
+                    <AuthRoute />                    
+                    </Route>
+                    <Route>
+                        <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
+                    </Route>
+                    <Route>
+                        <AuthRoute path="/admin/onderzoek/:id/vragen" exact component={vragenBekijken} />
+                    </Route>
+                    <Route>
+                            <AuthRoute path="/dashboard/:id" exact component={Test} />
+                    </Route>
                     <Route>
                         <GuestRoute path="/admin" exact component={Login} />
                     </Route>
@@ -50,15 +51,12 @@ class App extends React.Component{
                     <Route>
                         <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
-
-                    {/* <Route>
-                        <GuestRoute path="/vragen/:id" component={vraag} />
-                    </Route> */}
                     <Route>
                         <GuestRoute path="/vragen/:id/:quest_id?" component={vraag} />
                     </Route>
                    
-            </Router>
+                </Router>
+            </Provider>
         );
     }
     
