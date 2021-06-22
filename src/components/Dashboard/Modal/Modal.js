@@ -1,7 +1,7 @@
 import './Modal.css';
 import {connect} from "react-redux";
 import { Component } from 'react';
-import { changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
+import { changeModalNaam, changeShow, changeUpdate, changeVerwijder } from '../../../store/Actions';
 
 import axios from 'axios';
 
@@ -30,16 +30,18 @@ class Modal extends Component{
   return (
     <div className={showHideClassName}>
       <article className="modal">
-        <section className="modal__textSection">
-          <p>Weet je zeker dat je {this.props.verwijder} wilt verwijderen</p>
-        </section>     
+          <section className="modal__content">
+          <section className="modal__textSection">
+            <h2 className="modal__text">Weet je zeker dat je het onderzoek: {this.props.modalNaam} wilt verwijderen</h2>
+          </section>     
 
-      <form className="modal__form" onSubmit={this.submit}>
-        <section className="modal__buttonContainer">
-          <button type="submit" className="modal__verwijderen primary">Verwijderen</button>   
-          <button type="button" name="annuleren" className="modal__annuleren primary" onClick={() => this.closeModal()}>Annuleren</button>                    
+          <form className="modal__form" onSubmit={this.submit}>
+            <section className="modal__buttonContainer">
+              <button type="submit" className="modal__button red">Verwijderen</button>   
+              <button type="button" name="annuleren" className="modal__button ghost" onClick={() => this.closeModal()}>Annuleren</button>                    
+            </section>
+          </form>             
         </section>
-      </form>             
       </article>
     </div>
     );
@@ -49,9 +51,9 @@ class Modal extends Component{
 
 
   const mapStateToProps = state => {
-    return {verwijder: state.verwijder, show: state.show, update: state.update};
+    return {verwijder: state.verwijder, show: state.show, update: state.update, modalNaam: state.modalNaam};
 };
 
 export default connect(mapStateToProps,
-  {changeShow: changeShow, changeVerwijder: changeVerwijder, changeUpdate: changeUpdate})(Modal);
+  {changeShow: changeShow, changeVerwijder: changeVerwijder, changeUpdate: changeUpdate, changeModalNaam: changeModalNaam})(Modal);
 

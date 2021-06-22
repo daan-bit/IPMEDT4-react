@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from "redux";
-import {verwijder, show, AuthReducer, update} from "../store/reducers/Reducers";
+import {verwijder, show, AuthReducer, update, modalNaam, onderzoekVragenId, AnswerReducer} from "../store/reducers/Reducers";
 
 const initialStates = {
     auth: {
@@ -15,6 +15,9 @@ export const store = createStore(
         show,
         update,
         auth:AuthReducer,
+        ans: AnswerReducer,
+        modalNaam,
+        onderzoekVragenId,
         initialStates,
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

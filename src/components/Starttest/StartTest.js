@@ -20,7 +20,7 @@ class StartTest extends React.Component{
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
 
             console.log(res);
-            if (res.data == "") {
+            if (res.data === "") {
                 // Hier moet de foutmelding komen dt er geen onderzoek is gevonden
                 alert('GEEN ONDERZOEK');
               }

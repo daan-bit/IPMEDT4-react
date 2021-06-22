@@ -1,0 +1,106 @@
+.statistieken {
+    background-color: var(--bg-darkblue);
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.statistieken__titelWrapper{
+    width: 90%;
+    padding: 2rem 2rem 2rem 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.statistieken__title{
+    font-size: 2.5rem;
+}
+
+.statistieken__contentWrapper{
+    width: 90%;
+    background-color: #273747;
+}
+
+.statistieken__content{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    padding: 2rem;
+    flex-direction: column;    
+}
+
+.statistieken__paragraph{
+    padding: 0 2rem;
+    font-size: 2.5rem;
+}
+
+.statistieken__antwoordenWrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.statistieken__list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.statistieken__list__item{
+    list-style-type: none;
+    border: 1px solid white;
+    width: 100%;
+    padding: 2rem;
+}
+
+.statistieken__antwoord{
+    font-size: 2rem;
+}
+
+.statistieken__select{
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    margin-top: 2rem;
+    padding:1rem;
+    background-color: #1E2736;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.statistieken__list__item {
+    font-size: 1.4rem;
+    color: var(--text-white);
+}
+
+@media(min-width: 47.25rem){
+    .statistieken__select{
+        width: 75%;
+    }
+}
+
+@media(min-width: 62.5rem){
+    .statistieken__select{
+        width: 50%;
+    }
+}
+
+@media(min-width: 75rem){
+    .statistieken__titelWrapper{
+        width: 60%;
+    }
+    .statistieken__contentWrapper{
+        width: 60%;
+    }
+}
+
+
+

@@ -1,26 +1,103 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__content{
+  background-color: #1E2736;
+  width: 95%;
+  height: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.modal__textsection{
+  width: 100%;
+}
+
+.modal__text{
+  text-align: center;
+  font-size: 200%;
+}
+
+
+/* buttons */
+.modal__form{
+  width: 100%;
+  padding: 2rem;
+}
+
+.modal__buttonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.modal__button{
+  width: 50%;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+@media(min-width: 43.75rem) {
+  .modal__content{
+    padding: 3rem;
+    width: 90%;
+    height: 90%;
   }
-  
-  .modal {
-    position:fixed;
-    background: white;
-    width: 80%;
-    height: auto;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+
+  .modal__text{
+    font-size: 250%;
   }
-  
-  .display-block {
-    display: block;
+
+  .modal__buttonContainer{
+    flex-direction: row;
   }
-  
-  .display-none {
-    display: none;
+
+  .modal__button{
+    width: 45%;
   }
+}
+
+@media(min-width: 56.25rem){
+  .modal__button{
+    width: 35%;
+  }
+}
+
+@media(min-width: 62.5rem){
+  .modal__button{
+    width: 25%;
+  }
+
+  .modal__text{
+    font-size: 350%;
+  }
+}
+
+@media(min-width: 68.75rem){
+  .modal__content{
+    padding: 10rem;
+  }
+}

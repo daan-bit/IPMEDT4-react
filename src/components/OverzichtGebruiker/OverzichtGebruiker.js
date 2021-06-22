@@ -2,6 +2,7 @@ import React from "react";
 import "./OverzichtGebruiker.css";
 import axios from "axios";
 import Lijstmetvragen from "./Lijstmetvragen/Lijstmetvragen";
+import { connect } from 'react-redux';
 
 class OverzichtGebruiker extends React.Component{  
   constructor(props) {
@@ -28,4 +29,11 @@ class OverzichtGebruiker extends React.Component{
     }
 }
 
-export default OverzichtGebruiker;
+function mapStateToProps(state){
+  return {
+      ans: state.ans
+  };
+}
+
+
+export default connect(mapStateToProps)(OverzichtGebruiker);
