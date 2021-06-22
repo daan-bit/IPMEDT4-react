@@ -19,12 +19,14 @@ import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
 import Vraag from "./components/Vraag/vraag";
 
 
-class App extends React.Component {
-    render(){
+
+class App extends React.Component{
+    
+    render() {
         return(
             <Router>
-                  <Route>
-                        <AuthRoute path="/admin/dashboard" exact component={Dashboard} />                    
+                  <Route path="/admin/dashboard" exact component={Dashboard} >
+                        <AuthRoute />                    
                    </Route>
                    <Route>
                        <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
@@ -35,15 +37,13 @@ class App extends React.Component {
                    <Route>
                         <AuthRoute path="/dashboard/:id" exact component={Test} />
                    </Route>
-                   <Route>
-                        <AuthRoute path="/admin/vraag/:id/statistiek" exact component={Overzicht} />
-                   </Route>
                     <Route>
                         <GuestRoute path="/admin" exact component={Login} />
                     </Route>
                     <Route>
                         <AuthRoute path="/test" component={Test} />
                     </Route>
+
                     <Route>
                         <GuestRoute path="/start-test" component={StartTest} />
                     </Route>
@@ -53,9 +53,11 @@ class App extends React.Component {
                     <Route>
                         <GuestRoute path="/vragen/:id" component={Vraag} />
                     </Route>
+                   
             </Router>
         );
-    }   
+    }
+    
 }
 
 export default App;
