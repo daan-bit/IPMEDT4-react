@@ -1,7 +1,7 @@
 import React from "react";
 import "./OpenVraag.css";
 
-class GeslotenVraag extends React.Component{
+class OpenVraag extends React.Component{
 
 
     render(){
@@ -15,4 +15,4 @@ class GeslotenVraag extends React.Component{
     }
 }
 
-export default GeslotenVraag;
+export default OpenVraag;
