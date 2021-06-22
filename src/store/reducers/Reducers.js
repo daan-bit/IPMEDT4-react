@@ -1,4 +1,4 @@
-import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE, CHANGE_MODALNAAM, CHANGE_VRAGENOVERZICHT} from "../Actions";
+import { CHANGE_VERWIJDER, CHANGE_SHOW, CHANGE_UPDATE, CHANGE_MODALNAAM, CHANGE_VRAGENOVERZICHT, ADD_ANSWER} from "../Actions";
 
 export const verwijder = (state = "", action) => {
     switch(action.type){
@@ -54,5 +54,14 @@ export const onderzoekVragenId = (state = [], action) => {
             return action.payload;
         default: 
             return state;
+    }
+}
+
+export const AnswerReducer = (store = [], action) => {
+    switch(action.type) {
+      case ADD_ANSWER:
+        return action.payload 
+      
+      default: return store;
     }
 }
