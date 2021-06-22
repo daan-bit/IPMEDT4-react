@@ -73,7 +73,7 @@ class Lijstmetvragen extends React.Component{
         })
         return(
           <article className="lijstmetvragen">
-                <h1 className="lijstmetvragen__title">Overzicht</h1>
+                <h2 className="lijstmetvragen__title">Overzicht</h2>
                 <p className="lijstmetvragen__subtitle">Heir bevind jouw overzicht op aantal gemaakte vragen</p>
                 <br /> 
                 <form className="lijstmetvragen__form" method="get" action=""> 

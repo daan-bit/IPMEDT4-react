@@ -13,7 +13,7 @@ class GeslotenVraag extends React.Component{
 
     render(){
         const { ans, current_id } = this.props
-        const active = ans[current_id-1] 
+        const active = ans ? ans[current_id-1] : 0
 
         return(
             <article className="vragenInput">

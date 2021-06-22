@@ -1,4 +1,4 @@
-function AnswerReducer(store = [], action) {
+const AnswerReducer = (store = [], action) => {
   
     switch(action.type) {
       case 'ADD_ANSWER':

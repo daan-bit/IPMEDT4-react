@@ -61,15 +61,13 @@ class Vraag extends React.Component{
         })
 
     }
-
     stateUpdate = vraag_id => {
+        console.log(this.props)
         const { vraag_index, currentQuestion, currentAns } = this.state
-        const active = this.props.ans[ vraag_id - 1] ?? 'vraag'
+        const active = this.props.ans[vraag_id  - 1] ?? 'vraag'
         
         if(this.onderzoek.length < vraag_id) 
             return console.log('The End!')
-
-        
 
         this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
         this.props.addAnswer( this.props.ans )
@@ -119,6 +117,8 @@ class Vraag extends React.Component{
     }
 
     updateAnswer = then => {
+        this.props.addAnswer([ 'this.props.ans'] )
+        console.log(this.props)
         this.setState({ currentAns: then.target.dataset.type })
     }
     
