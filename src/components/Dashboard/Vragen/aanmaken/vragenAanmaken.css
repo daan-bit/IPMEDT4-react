@@ -92,6 +92,10 @@
     margin-top: 1rem;
 }
 
+.vragen__text {
+    color: white;
+}
+
 
 @media(min-width: 37.5rem){
     .vragen__titelSection{

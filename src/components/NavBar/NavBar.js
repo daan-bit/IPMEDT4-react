@@ -11,6 +11,7 @@ const NavBar = (props) => {
         e.preventDefault();
         cookie.remove("token");
         props.logout();
+
       };
 
     return (
