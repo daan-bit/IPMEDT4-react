@@ -16,7 +16,7 @@ class StartTest extends React.Component{
         console.log(this.state.testCode);
 
         // onderzoek opvragen via Api met de ingevulde code
-        const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoek/";
+        const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
 
             console.log(res);
@@ -26,7 +26,7 @@ class StartTest extends React.Component{
               }
             else {
                 // Hier moet de pagina naar de dashboard pagina gaan die het onderzoek bevat.
-                window.location.href = "/overzicht/"+ res.data.id;
+                window.location.href = "/vragen/"+ res.data.id;
             }
         })
     }
