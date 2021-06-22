@@ -31,6 +31,9 @@
     padding: 2rem;
     flex-direction: column;    
 }
+.statistieken__content > p {
+    color: white;
+}
 
 .statistieken__paragraph{
     padding: 0 2rem;

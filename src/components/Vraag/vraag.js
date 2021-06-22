@@ -21,15 +21,6 @@ class Vraag extends React.Component{
         currentAns: ""
     }
 
-    onderzoek = [
-        { vraag: "1", flag: "1", cat_naam: 'awd'},
-        { vraag: "2", flag: "0", cat_naam: 'awd1'},
-        { vraag: "3", flag: "1", cat_naam: 'awd2'},
-        { vraag: "4", flag: "1", cat_naam: 'awd3'},
-        { vraag: "5", flag: "1", cat_naam: 'awd4'},
-        { vraag: "6", flag: "1", cat_naam: 'awd5'}
-    ]
-    
 
 
     constructor(props) {
