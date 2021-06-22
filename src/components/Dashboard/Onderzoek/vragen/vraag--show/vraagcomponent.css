@@ -8,17 +8,7 @@
     padding: 3rem;
 }
 
-p {
-    font-size: 1.4rem;
-    color: #FFF;
-}
-
-h3 {
-    font-size: 4rem;
-    color: #FFF;
-}
-
-@media(min-width: 350px) {
+@media(min-width: 35rem) {
     .onderzoek-vraag {
         background-color: #273747;
         padding: 1rem;
@@ -27,13 +17,12 @@ h3 {
         
     }
 
-
     .onderzoek-vraag__container__title {
         font-size: 2rem;
     }
 }
 
-@media (min-width: 625px) {
+@media (min-width: 62.5rem) {
     .onderzoek-vraag {
         margin: 5rem;
         width: 75%;
@@ -44,8 +33,4 @@ h3 {
     .onderzoek-vraag__container__title {
         font-size: 2.5rem;
     }
-}
-  
-@media (min-width: 1225px) {
-
 }
