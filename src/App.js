@@ -13,9 +13,10 @@ import {Route, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
-import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken";
-import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijken";
-import vraag from "./components/Vraag/vraag";
+import vragenAanmaken from "./components/Dashboard/Vragen/aanmaken/vragenAanmaken"
+import vragenBekijken from "./components/Dashboard/Onderzoek/vragen/vragenBekijken"
+import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
+import Vraag from "./components/Vraag/vraag";
 
 
 
@@ -49,6 +50,7 @@ class App extends React.Component{
                     <Route>
                         <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
+
                     {/* <Route>
                         <GuestRoute path="/vragen/:id" component={vraag} />
                     </Route> */}

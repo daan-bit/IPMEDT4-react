@@ -128,7 +128,7 @@ class Vraag extends React.Component{
     render(){
         console.log('state start render',this.state)
         return(
-            <section className="vragen">
+            <section className="u--grid">
                 <article className="category">
                     <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
                     <h1 className="category__title">{ this.state.cat_naam }</h1> 
@@ -142,7 +142,6 @@ class Vraag extends React.Component{
                                 <OpenVraag updateAnswer={this.updateAnswer} /> : 
                                 <GeslotenVraag ans={this.props.ans} current_id={this.state.vraag_index} updateAnswer={this.updateAnswer}  /> 
                         }
-                        {/* <button onClick={this.typeVraag} className="statusbar__btn">Volgende vraag</button> */}
                 </article>
 
                 <StatusBar 
