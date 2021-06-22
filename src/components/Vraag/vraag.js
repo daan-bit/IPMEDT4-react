@@ -8,6 +8,7 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import addAnswer from "../../store/actions/addAnswer";
+import { Link } from "react-router-dom";
 
 class Vraag extends React.Component{
     state = {
@@ -129,7 +130,9 @@ class Vraag extends React.Component{
         return(
             <section className="u--grid">
                 <article className="category">
-                    <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
+                <Link to={'/overzicht/:id'}>
+                <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
+                </Link>
                     <h1 className="category__title">{ this.state.cat_naam }</h1> 
                 </article>
 
