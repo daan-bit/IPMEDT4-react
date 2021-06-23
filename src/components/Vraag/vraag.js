@@ -34,16 +34,16 @@ class Vraag extends React.Component{
 
     constructor(props) {
         super(props);
-
         this.makeApiCall();
         this.vorigeVraag()
-               
         if(this.props.match.params.quest_id) {
+
             this.state.vraag_index =  Number ( this.props.match.params.quest_id ) 
             this.state.currentQuestion = Number ( this.props.match.params.quest_id ) - 1
-        }
-        
 
+        }
+
+ 
         
     } 
 
@@ -57,9 +57,20 @@ class Vraag extends React.Component{
         const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
         axios.get(BASE_URL).then(res =>{
             this.onderzoek = res.data;
-            
+            console.log('data', res.data)
             //this.stateUpdate(0);
-            
+            localStorage.setItem('quests', this.onderzoek.map(i => i.id))
+            let LS = localStorage.getItem('ans')
+            if(LS) {
+                const vraag_id = this.props.match.params.quest_id - 1
+                console.log(vraag_id,this.onderzoek )
+                this.props.addAnswer( LS.split(',') ) 
+                this.setState({
+                    vraag: this.onderzoek[vraag_id].vraag,
+                    type_vraag: this.onderzoek[vraag_id].type_vraag,
+                    cat_naam: this.onderzoek[vraag_id].cat_naam,
+                })
+            }
         })
 
     }
@@ -77,8 +88,8 @@ class Vraag extends React.Component{
 
         this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
         this.props.addAnswer( this.props.ans )
+        localStorage.setItem('ans', this.props.ans)
 
-        
         this.setState({
             vraag: this.onderzoek[vraag_id].vraag,
             type_vraag: this.onderzoek[vraag_id].type_vraag,
@@ -96,6 +107,7 @@ class Vraag extends React.Component{
         if(currentAns)  {
             this.props.ans[vraag_id-1] = 'vraag' + currentAns
             this.props.addAnswer( this.props.ans )
+            localStorage.setItem('ans', this.props.ans);
         }
     
         this.setState({
@@ -124,13 +136,24 @@ class Vraag extends React.Component{
         this.setState({ currentAns: then.target.dataset.type })
     }
     
+    backOverzicht = e => {
+        e.preventDefault()
+        const { vraag_index, currentQuestion, currentAns } = this.state
+        const active = this.props.ans[this.state.vraag_index  - 1] ?? 'vraag'
+       
+        this.props.ans[ this.state.vraag_index - 1 ] = currentAns ? 'vraag' + currentAns : active
+        this.props.addAnswer( this.props.ans )
+        localStorage.setItem('ans', this.props.ans)
+        
+        window.location.href = "/overzicht/"+ this.state.onderzoek_id
+    }
  
     render(){
-        console.log('state start render',this.state)
+        console.log('state',this.state)
         return(
             <section className="u--grid">
                 <article className="category">
-                    <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
+                    <a onClick={ this.backOverzicht } href="" className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></a>  
                     <h1 className="category__title">{ this.state.cat_naam }</h1> 
                 </article>
 
@@ -158,13 +181,8 @@ class Vraag extends React.Component{
 }
 
 function mapStateToProps(state){
-    return {
-        ans: state.ans
-    };
+    return { ans: state.ans }
 }
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({ addAnswer }, dispatch)
-}
+export default connect(mapStateToProps, { addAnswer } )(Vraag);
 
-export default connect(mapStateToProps, matchDispatchToProps)(Vraag);

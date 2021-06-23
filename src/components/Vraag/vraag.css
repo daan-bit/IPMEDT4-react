@@ -14,10 +14,14 @@
     height: 4rem;
     width: 4rem;
     cursor: pointer;
+    display: inline-block;
 }
 
 .category__btn:hover {
     background-color: var(--text-grey);
+}
+.category__btn:hover i {
+    color: white;
 }
 
 .category__icon {
@@ -30,6 +34,8 @@
 
 .category__text {
     width: 21rem;
+    padding-left: 45px;
+    padding-top: 10px;
 }
 
 .vraag {

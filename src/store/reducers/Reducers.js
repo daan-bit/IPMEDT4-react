@@ -61,7 +61,8 @@ export const AnswerReducer = (store = [], action) => {
     switch(action.type) {
       case ADD_ANSWER:
         return action.payload 
-      
-      default: return store;
+        
+      default: 
+        return store;
     }
 }
