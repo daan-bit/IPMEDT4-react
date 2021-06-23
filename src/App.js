@@ -9,7 +9,7 @@ import AuthRoute from './components/AuthRoute';
 
 import './App.css';
 
-import {Route, BrowserRouter as Router} from "react-router-dom";
+import {Route, Redirect, BrowserRouter as Router} from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StartTest from "./components/Starttest/StartTest";
 import OverzichtGebruiker from "./components/OverzichtGebruiker/OverzichtGebruiker";
@@ -23,6 +23,9 @@ class App extends React.Component{
     render() {
         return(
             <Router>
+                <Route exact path="/" render={() => (
+                <Redirect to="/start-test"/>
+            )}/>
                   <Route>
                     <AuthRoute path="/admin/dashboard" exact component={Dashboard} />
                    </Route>
