@@ -57,8 +57,9 @@ class Vraag extends React.Component{
         const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
         axios.get(BASE_URL).then(res =>{
             this.onderzoek = res.data;
-            
+            console.log('data', res.data)
             //this.stateUpdate(0);
+            localStorage.setItem('quests', this.onderzoek.map(i => i.id))
             let LS = localStorage.getItem('ans')
             if(LS) {
                 const vraag_id = this.props.match.params.quest_id - 1

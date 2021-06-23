@@ -26,18 +26,23 @@ class Lijstmetvragen extends React.Component{
       
   } 
     makeApiCall = event => {
-
       // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
-      const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/";
-        axios.get(BASE_URL + this.state.onderzoek_id + "/vragen").then(res =>{
-          const temp = res.data;
-          console.log(temp);
-          this.setState({vragen:res.data})
-      
-        });
+      const BASE_URL = "http://ipmedt4/api/onderzoek/";
+      axios.get(BASE_URL + this.state.onderzoek_id + "/vragen").then(res =>{
+        const temp = res.data;
+        console.log('hier',temp);
+        this.setState({vragen:res.data})
+    
+      });
+    }
 
-       
-      }
+    saveApiCall = data => {
+      // onderzoek vragen gaan we hier opvragen met Api het id van het onderzoek (dit id krijgen we in de url binnen)
+      const BASE_URL = "http://127.0.0.1/api/antwoorden/";
+      axios.post(BASE_URL, { list:data }).then(res => {
+        console.log(res)
+      })
+    }
   
       componentDidMount(){
           this.makeApiCall();
@@ -48,6 +53,27 @@ class Lijstmetvragen extends React.Component{
         localStorage.removeItem('ans')
         window.location.href = '/vragen/1'
       }
+
+        
+      save = e => {
+        e.preventDefault()
+        let data = []
+        let ANS = localStorage.getItem('ans')
+        let QUE = localStorage.getItem('quests')
+        
+        if(!ANS) return alert('Answers Empty!')
+        ANS = ANS.split(',')
+
+        QUE.split(',').forEach( (val, index) => {
+          data.push({
+            antwoord: ANS[index].split('vraag')[1],
+            vraag_id: val
+          })
+        })
+
+        this.saveApiCall(data)
+      }
+
      
    render(){
    
@@ -69,7 +95,7 @@ class Lijstmetvragen extends React.Component{
                   <section className="lijstmetvragen__btns">
                     <div  className="lijstmetvragen__btns__ruimte">
                     <button onClick={this.startonderzoek} className="btn u-float-left">Start</button>
-                    <button className="btn u-float-right">Finish</button>
+                    <button onClick={this.save} className="btn u-float-right">Finish</button>
                     </div>
                   </section>
                 </form>
