@@ -16,7 +16,7 @@ class Vraag extends React.Component{
         type_vraag: "",
         cat_naam: "",
         vraag_index:   1,
-        questions: localStorage.getItem('quests'),
+        questions: 1,
         currentQuestion: 0,
         currentAns: ""
     }
@@ -64,8 +64,9 @@ class Vraag extends React.Component{
             if(LS) {
                 const vraag_id = this.props.match.params.quest_id - 1
                 console.log(vraag_id,this.onderzoek )
-                this.props.addAnswer( LS.split(',') ) 
+                this.props.addAnswer( LS.split(',') )
                 this.setState({
+                    questions: localStorage.getItem('quests'),
                     vraag: this.onderzoek[vraag_id].vraag,
                     type_vraag: this.onderzoek[vraag_id].type_vraag,
                     cat_naam: this.onderzoek[vraag_id].cat_naam,
@@ -156,6 +157,8 @@ class Vraag extends React.Component{
         
         window.location.href = "/overzicht/"+ this.state.onderzoek_id
     }
+
+    
  
     render(){
         console.log('state',this.state)
@@ -176,7 +179,7 @@ class Vraag extends React.Component{
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / this.state.questions.length * (this.state.currentQuestion+1) } 
+                    progress={ 100 / 5 * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
                     aantal={this.state.questions.length} 
                     huidige={this.state.currentQuestion+1} 

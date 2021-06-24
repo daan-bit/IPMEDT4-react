@@ -34,7 +34,11 @@ class StartTest extends React.Component{
         const BASE_URL = "http://localhost:8000/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
             localStorage.setItem('onderzoek_id', res.data.id);
-            this.props.history.push("/vragen/" + res.data.id + "/1", { state: this.state.testCode}); 
+            this.props.history.push("/vragen/" + res.data.id + "/1/", { state: this.state.testCode});
+            //window.location.href = "/vragen/"+ res.data.id;
+
+           // window.location.reload();
+
         }).catch(e => this.setState({errors: e.response.data}));
     }
 
@@ -48,7 +52,7 @@ class StartTest extends React.Component{
                 <article className="code">
                     <h1 className="code__title">Code</h1>
                     <p className="code__text">Vul hier je code in die je hebt ontvangen via de mail.</p>
-                    <p className="login-form__paragraph__error">{error.errors}</p>
+                    <p className="code__text__error">{error.errors}</p>
                 </article>
 
                 <form className="code__form" onSubmit={this.handleForm}>

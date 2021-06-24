@@ -4,12 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  withRouter,
   Link
 } from "react-router-dom";
 
 class Lijstmetvragen extends React.Component{
     state = {
         vragen: [],
+        bericht: '',
         //Alex - elke antwoord moet een STRING ZIJN
         vragen_id: localStorage.getItem('quests'),
         antwoorden: localStorage.getItem('antworden').split(',')
@@ -77,7 +79,11 @@ class Lijstmetvragen extends React.Component{
           axios.post(BASE_URL, data)
           .then(res => { 
             console.log(res);
-            }).catch(e => this.setState({message: e.response.data}));
+            localStorage.clear(); // we cleanen de localStorage, de user gaat nu naar de homepagina
+            setTimeout(function () {
+          }, 5000);
+          this.props.history.push("/start-test/");
+        }).catch(e => this.setState({message: e.response.data}));
           }
         }
   
@@ -89,14 +95,13 @@ class Lijstmetvragen extends React.Component{
       handleForm = (e) => {
         e.preventDefault();
         this.dataVersturen();
-        //for(let i = 0; i < this.state.vragen_id; i++) {
-        //this.dataVersturen(this.state.vragen_id[i], this.state.antwoorden[i]);
-        //}
+   
     }
 
     
      
    render(){
+        const bericht = this.state.bericht;
         let items = ``
         this.state.vragen.forEach( (val, index) => {
           let classActive = (this.onderzoek[0]["vraag"+index] != '') ? 'active' : ''
@@ -107,13 +112,14 @@ class Lijstmetvragen extends React.Component{
           <article className="lijstmetvragen">
                 <h2 className="lijstmetvragen__title">Overzicht</h2>
                 <p className="lijstmetvragen__subtitle">Hier bevind jouw overzicht op aantal gemaakte vragen</p>
+                
                 <br /> 
                 <form className="lijstmetvragen__form" method="get" action=""> 
                   <section className="lijstmetvragen__container flex jc-sb fw-w">
                     <div dangerouslySetInnerHTML={{__html: items}} />
                   </section>
                   </form>
-
+                  <h2>{bericht}</h2>
                   <br />  
                   <section className="lijstmetvragen__btns">
                     <div className="lijstmetvragen__btns__ruimte">
@@ -129,4 +135,4 @@ class Lijstmetvragen extends React.Component{
     }
 }
 
-export default Lijstmetvragen;
+export default withRouter(Lijstmetvragen);
