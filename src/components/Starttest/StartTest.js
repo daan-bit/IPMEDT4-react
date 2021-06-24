@@ -1,50 +1,57 @@
 import React from "react";
 import "./StartTest.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 class StartTest extends React.Component{
-    
-    state = {testCode: ""};
-
+    constructor(props) {
+        super(props);
+        this.state = {testCode: "", errors: {}};
+    }
     onSearch = (event) => {
         this.setState({testCode: event.target.value})
         
     }
+
+    handleForm = (e) => {
+        e.preventDefault();
+        this.makeApiCall();
+       
+    }
+
+    handleInput = (e) => {
+        e.preventDefault();
+        const name = e.target.name
+        const value = e.target.value
+        this.setState({[name]:value})
+        
+    }
+
     makeApiCall = event => {
-        event.preventDefault();
         console.log(this.state.testCode);
-
         // onderzoek opvragen via Api met de ingevulde code
-        const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
+        //const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
+        const BASE_URL = "http://localhost:8000/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
-
-            console.log(res);
-            if (res.data === "") {
-                // Hier moet de foutmelding komen dt er geen onderzoek is gevonden
-                alert('GEEN ONDERZOEK');
-              }
-            else {
-                // Hier moet de pagina naar de dashboard pagina gaan die het onderzoek bevat.
-                window.location.href = "/vragen/"+ res.data.id;
-            }
-        })
+            this.props.history.push("/vragen/" + res.data.id + "/1", { state: this.state.testCode}); 
+        }).catch(e => this.setState({errors: e.response.data}));
     }
 
 
 
     render(){
-        
+        const error = this.state.errors;
         return(
             // Dit is een input voor de code van een onderzoek
             <section className="searchbar_section">
                 <article className="code">
                     <h1 className="code__title">Code</h1>
                     <p className="code__text">Vul hier je code in die je hebt ontvangen via de mail.</p>
+                    <p className="login-form__paragraph__error">{error.errors}</p>
                 </article>
 
-                <form className="code__form" onSubmit={this.makeApiCall}>
-                    <input onChange={this.onSearch} className="code__input" type="text" placeholder="CODE" vlaue={this.state.testCode}/>
+                <form className="code__form" onSubmit={this.handleForm}>
+                    <input onChange={this.handleInput} className="code__input" name="testCode" type="text" placeholder="CODE" required />
                     <button type="submit">Start het onderzoek</button>
                 </form>
             </section>
@@ -52,4 +59,4 @@ class StartTest extends React.Component{
     }
 }
 
-export default StartTest;
+export default withRouter(StartTest);

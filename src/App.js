@@ -27,7 +27,6 @@ class App extends React.Component{
             <Provider store={ store }>
                 <Router>
                   <Route path="/admin/dashboard" exact component={Dashboard} >
-                    <AuthRoute />                    
                     </Route>
                     <Route>
                         <AuthRoute path="/admin/onderzoek/:id/vragen/aanmaken" exact component={vragenAanmaken} />
