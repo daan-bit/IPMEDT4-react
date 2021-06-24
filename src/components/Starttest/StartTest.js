@@ -33,6 +33,7 @@ class StartTest extends React.Component{
         //const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
         const BASE_URL = "http://localhost:8000/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
+            localStorage.setItem('onderzoek_id', res.data.id);
             this.props.history.push("/vragen/" + res.data.id + "/1", { state: this.state.testCode}); 
         }).catch(e => this.setState({errors: e.response.data}));
     }

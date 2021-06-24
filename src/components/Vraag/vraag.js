@@ -11,12 +11,12 @@ import addAnswer from "../../store/actions/addAnswer";
 
 class Vraag extends React.Component{
     state = {
-        onderzoek_id: 1,//this.props.match.params.id,
+        onderzoek_id: localStorage.getItem('onderzoek_id'),//this.props.match.params.id,
         vraag: "",
         type_vraag: "",
         cat_naam: "",
         vraag_index:   1,
-        questions: ["1", "2", "3", "4", "5"],
+        questions: localStorage.getItem('quests'),
         currentQuestion: 0,
         currentAns: ""
     }
@@ -74,6 +74,7 @@ class Vraag extends React.Component{
         })
 
     }
+
     stateUpdate = vraag_id => {
         
         const { vraag_index, currentQuestion, currentAns } = this.state
@@ -168,9 +169,9 @@ class Vraag extends React.Component{
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / this.state.questions.length * (this.state.currentQuestion+1) } 
+                    progress={ 100 / this.state.questions.length * 2 * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
-                    aantal={this.state.questions.length} 
+                    aantal={this.state.questions.length - 2} 
                     huidige={this.state.currentQuestion+1} 
                     volgendeVraag={this.volgendeVraag} 
                     vorigeVraag={this.vorigeVraag}
