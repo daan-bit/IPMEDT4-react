@@ -79,17 +79,25 @@ class Vraag extends React.Component{
         
         const { vraag_index, currentQuestion, currentAns } = this.state
         const active = this.props.ans[vraag_id  - 1] ?? 'vraag'
-        
+
         if(this.onderzoek.length === vraag_id) {
             window.location.href = "/overzicht/"+ this.state.onderzoek_id
         }
         if(this.onderzoek.length < vraag_id) {
-            return console.log('The End!')
+            console.log('The End!')
         }
 
-        this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
+        //Alex - DIT ZORGT ERVOOR DAT ER GEEN VRAAG VOOR EEN ANTWOORD STAAT, wil je het terug comment onderstaande uit
+        //Alex - er wordt een string van gemaakt, dit hebben we nodig voor het verzenden van antwoorden
+        this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
+        //this.props.ans[ vraag_id - 1 ] = currentAns ?   + currentAns : active
+
         this.props.addAnswer( this.props.ans )
-        localStorage.setItem('ans', this.props.ans)
+       
+        localStorage.setItem('ans',this.props.ans)
+
+        localStorage.setItem('antworden', [this.props.ans])
+         //Alex
 
         this.setState({
             vraag: this.onderzoek[vraag_id].vraag,
@@ -161,17 +169,16 @@ class Vraag extends React.Component{
                 <article className="vraag">
                     <h3 className="vraag__title vraag__title--color">Vraag { this.state.currentQuestion + 1 } </h3>
                     <p className="vraag__text" >{this.state.vraag}</p> 
-                        { 
-                            this.type_vraag === "openvraag" ? 
-                                <OpenVraag updateAnswer={this.updateAnswer} /> : 
+                        {  this.state.type_vraag === "openvraag" ? 
+                                <OpenVraag ans={this.props.ans} current_id={this.state.vraag_index}  updateAnswer={this.updateAnswer}/> : 
                                 <GeslotenVraag ans={this.props.ans} current_id={this.state.vraag_index} updateAnswer={this.updateAnswer}  /> 
                         }
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / this.state.questions.length * 2 * (this.state.currentQuestion+1) } 
+                    progress={ 100 / this.state.questions.length * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
-                    aantal={this.state.questions.length - 2} 
+                    aantal={this.state.questions.length} 
                     huidige={this.state.currentQuestion+1} 
                     volgendeVraag={this.volgendeVraag} 
                     vorigeVraag={this.vorigeVraag}
