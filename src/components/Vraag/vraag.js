@@ -93,8 +93,9 @@ class Vraag extends React.Component{
 
         //Alex - DIT ZORGT ERVOOR DAT ER GEEN VRAAG VOOR EEN ANTWOORD STAAT, wil je het terug comment onderstaande uit
         //Alex - er wordt een string van gemaakt, dit hebben we nodig voor het verzenden van antwoorden
-        this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
+        //this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
         //this.props.ans[ vraag_id - 1 ] = currentAns ?   + currentAns : active
+        this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
 
         this.props.addAnswer( this.props.ans )
        
@@ -141,7 +142,7 @@ class Vraag extends React.Component{
     vorigeVraag = () => {
         if(this.state.vraag_index - 1 <= 0) return
         //console.log(this.state.vraag_index)
-                this.stateUpdateBackward(this.state.vraag_index -2)
+        this.stateUpdateBackward(this.state.vraag_index -2)
     }
 
     updateAnswer = then => {
@@ -159,6 +160,8 @@ class Vraag extends React.Component{
         
         window.location.href = "/overzicht/"+ this.state.onderzoek_id
     }
+
+ 
 
     
  
