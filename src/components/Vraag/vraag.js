@@ -8,34 +8,37 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import addAnswer from "../../store/actions/addAnswer";
-import { Link } from "react-router-dom";
 
 class Vraag extends React.Component{
     state = {
-        onderzoek_id: 1,//this.props.match.params.id,
+        onderzoek_id: localStorage.getItem('onderzoek_id'),//this.props.match.params.id,
         vraag: "",
         type_vraag: "",
         cat_naam: "",
         vraag_index:   1,
-        questions: ["1", "2", "3", "4", "5"],
+        questions: 1,
         currentQuestion: 0,
-        currentAns: ""
+        currentAns: "",
+        onderzoek: [ ],
+        questions: []
     }
 
+    
+    
 
 
     constructor(props) {
         super(props);
-
         this.makeApiCall();
         this.vorigeVraag()
-               
         if(this.props.match.params.quest_id) {
+
             this.state.vraag_index =  Number ( this.props.match.params.quest_id ) 
             this.state.currentQuestion = Number ( this.props.match.params.quest_id ) - 1
-        }
-        
 
+        }
+
+ 
         
     } 
 
@@ -48,52 +51,87 @@ class Vraag extends React.Component{
     makeApiCall = event => {
         const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
         axios.get(BASE_URL).then(res =>{
-            this.onderzoek = res.data;
+            this.setState({ questions: res.data, onderzoek: res.data })
+            const { onderzoek } = this.state
             
-            //this.stateUpdate(0);
             
+            localStorage.setItem('quests', onderzoek.map(i => i.id))
+            let LS = localStorage.getItem('ans')
+            const vraag_id = this.props.match.params.quest_id - 1
+            if(LS) {
+                this.props.addAnswer( LS.split(';') )
+                this.setState({
+                    questions: onderzoek,
+                    vraag: onderzoek[vraag_id].vraag,
+                    type_vraag: onderzoek[vraag_id].type_vraag,
+                    cat_naam: onderzoek[vraag_id].cat_naam,
+                })
+            } else {
+                this.setState({
+                    questions: localStorage.getItem('quests'),
+                    //Alex - we zetten questions in een list en splitten met een komma
+                    questions: localStorage.getItem('quests').split(','),
+                    vraag: onderzoek[vraag_id].vraag,
+                    type_vraag: onderzoek[vraag_id].type_vraag,
+                    cat_naam: onderzoek[vraag_id].cat_naam,
+                })
+            }
+            console.log('data', this.state)
         })
 
     }
+
     stateUpdate = vraag_id => {
         
-        const { vraag_index, currentQuestion, currentAns } = this.state
-        const active = this.props.ans[vraag_id  - 1] ?? 'vraag'
-        
-        if(this.onderzoek.length === vraag_id) {
-            window.location.href = "/overzicht/"+ this.state.onderzoek_id
+        const { vraag_index, currentQuestion, currentAns,onderzoek,onderzoek_id } = this.state
+        const active = this.props.ans[vraag_id  - 1] ?? ''
+
+        if(onderzoek.length === vraag_id) {
+            window.location.href = "/overzicht/"+ onderzoek_id
         }
-        if(this.onderzoek.length < vraag_id) {
-            return console.log('The End!')
+        if(onderzoek.length < vraag_id) {
+            console.log('The End!')
         }
 
-        this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
+        //Alex - DIT ZORGT ERVOOR DAT ER GEEN VRAAG VOOR EEN ANTWOORD STAAT, wil je het terug comment onderstaande uit
+        //Alex - er wordt een string van gemaakt, dit hebben we nodig voor het verzenden van antwoorden
+
+        //this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
+
+        //this.props.ans[ vraag_id - 1 ] = currentAns ?   + currentAns : active
+        this.props.ans[ vraag_id - 1 ] = currentAns ?  currentAns : active
+
         this.props.addAnswer( this.props.ans )
-
         
+        localStorage.setItem('ans',this.props.ans.join(';'))
+
+        localStorage.setItem('antworden', [this.props.ans.join('.;')])
+         //Alex
+
         this.setState({
-            vraag: this.onderzoek[vraag_id].vraag,
-            type_vraag: this.onderzoek[vraag_id].type_vraag,
-            cat_naam: this.onderzoek[vraag_id].cat_naam,
+            vraag: onderzoek[vraag_id].vraag,
+            type_vraag: onderzoek[vraag_id].type_vraag,
+            cat_naam: onderzoek[vraag_id].cat_naam,
             currentQuestion: currentQuestion + 1,
             vraag_index: vraag_index + 1,
             currentAns: ""
         })
     }
     stateUpdateBackward = vraag_id => {
-        const { vraag_index, currentQuestion, currentAns } = this.state
-        if(this.onderzoek.length > 0 && !vraag_id) 
-            return console.log('The Start!')
-         
+
+        const { vraag_index, currentQuestion, currentAns, onderzoek } = this.state
+        //if(this.onderzoek.length > 0 && !vraag_id) 
+
         if(currentAns)  {
-            this.props.ans[vraag_id-1] = 'vraag' + currentAns
+            this.props.ans[vraag_id-1] = currentAns
             this.props.addAnswer( this.props.ans )
+            localStorage.setItem('ans', this.props.ans.join(';'));
         }
     
         this.setState({
-            vraag: this.onderzoek[vraag_id].vraag,
-            type_vraag: this.onderzoek[vraag_id].type_vraag,
-            cat_naam: this.onderzoek[vraag_id].cat_naam,
+            vraag: onderzoek[vraag_id].vraag,
+            type_vraag: onderzoek[vraag_id].type_vraag,
+            cat_naam: onderzoek[vraag_id].cat_naam,
             currentQuestion: currentQuestion - 1,
             vraag_index: vraag_index - 1,
             currentAns: ""
@@ -102,38 +140,53 @@ class Vraag extends React.Component{
 
     volgendeVraag = () => {
             
-        this.stateUpdate(this.state.vraag_index)
+       this.stateUpdate(this.state.vraag_index)
     }
 
     vorigeVraag = () => {
         if(this.state.vraag_index - 1 <= 0) return
         //console.log(this.state.vraag_index)
-     
-        this.stateUpdateBackward(this.state.vraag_index -1)
+        this.stateUpdateBackward(this.state.vraag_index -2)
     }
 
     updateAnswer = then => {
         this.setState({ currentAns: then.target.dataset.type })
     }
     
+    backOverzicht = e => {
+        e.preventDefault()
+        const { vraag_index, currentQuestion, currentAns } = this.state
+        const active = this.props.ans[this.state.vraag_index  - 1] ?? ''
+       
+        this.props.ans[ this.state.vraag_index - 1 ] = currentAns ?  currentAns : active
+        this.props.addAnswer( this.props.ans )
+        localStorage.setItem('ans', this.props.ans.join(';'))
+        
+        window.location.href = "/overzicht/"+ this.state.onderzoek_id
+    }
+
+
+    updateOpenAnswer = then => {
+        
+        this.setState({ currentAns: then.target.value })
+    }
+
  
     render(){
-        console.log('state start render',this.state)
+        console.log('state',this.state)
+        console.log()
         return(
             <section className="u--grid">
                 <article className="category">
-                <Link to={'/overzicht/:id'}>
-                <button className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></button>  
-                </Link>
+                    <a onClick={ this.backOverzicht } href="" className="category__btn"><p className="category__text"><i className="category__icon"><MdKeyboardArrowLeft/></i>Terug naar overzicht</p></a>  
                     <h1 className="category__title">{ this.state.cat_naam }</h1> 
                 </article>
 
                 <article className="vraag">
                     <h3 className="vraag__title vraag__title--color">Vraag { this.state.currentQuestion + 1 } </h3>
                     <p className="vraag__text" >{this.state.vraag}</p> 
-                        { 
-                            this.type_vraag === "openvraag" ? 
-                                <OpenVraag updateAnswer={this.updateAnswer} /> : 
+                        {  this.state.type_vraag === "openvraag" ? 
+                                <OpenVraag ans={this.props.ans} current_id={this.state.vraag_index}  updateAnswer={this.updateOpenAnswer}/> : 
                                 <GeslotenVraag ans={this.props.ans} current_id={this.state.vraag_index} updateAnswer={this.updateAnswer}  /> 
                         }
                 </article>
@@ -152,13 +205,7 @@ class Vraag extends React.Component{
 }
 
 function mapStateToProps(state){
-    return {
-        ans: state.ans
-    };
+    return { ans: state.ans }
 }
 
-function matchDispatchToProps(dispatch){
-    return bindActionCreators({ addAnswer }, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Vraag);
+export default connect(mapStateToProps, { addAnswer } )(Vraag);

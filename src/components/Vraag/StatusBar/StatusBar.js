@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./StatusBar.css"; 
 import axios from "axios";
 import "../vraag";
+import { Link } from 'react-router-dom';
 
 class StatusBar extends React.Component{
     onClick = event => {
@@ -20,7 +21,7 @@ class StatusBar extends React.Component{
                 <div className="u-flex__btn">
                     <button onClick={this.props.vorigeVraag} className="statusbar__btn statusbar__btn--margin">Vorige vraag</button>
                     {/* <button onClick={this.typeVraag} className="statusbar__btn">Volgende vraag</button>  */}
-                    <button onClick={this.props.volgendeVraag} className="statusbar__btn">Volgende vraag</button>
+                  <button onClick={this.props.volgendeVraag} className="statusbar__btn">Volgende vraag</button>
                 </div>
             </section>
         );

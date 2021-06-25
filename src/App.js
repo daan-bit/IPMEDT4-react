@@ -19,7 +19,6 @@ import Overzicht from "./components/Dashboard/Statistieken/Overzicht";
 import vraag from "./components/Vraag/vraag";
 
 class App extends React.Component{
-    
     render() {
         return(
             <Router>
