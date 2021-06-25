@@ -114,8 +114,8 @@ class Vraag extends React.Component{
     }
     stateUpdateBackward = vraag_id => {
         const { vraag_index, currentQuestion, currentAns } = this.state
-        if(this.onderzoek.length > 0 && !vraag_id) 
-            return console.log('The Start!')
+        //if(this.onderzoek.length > 0 && !vraag_id) 
+            
          
         if(currentAns)  {
             this.props.ans[vraag_id-1] = 'vraag' + currentAns
@@ -135,14 +135,13 @@ class Vraag extends React.Component{
 
     volgendeVraag = () => {
             
-        this.stateUpdate(this.state.vraag_index)
+       this.stateUpdate(this.state.vraag_index)
     }
 
     vorigeVraag = () => {
         if(this.state.vraag_index - 1 <= 0) return
         //console.log(this.state.vraag_index)
-     
-        this.stateUpdateBackward(this.state.vraag_index -1)
+                this.stateUpdateBackward(this.state.vraag_index -2)
     }
 
     updateAnswer = then => {
