@@ -35,7 +35,7 @@ class vragenAanmaken extends Component{
     
     apiCallVraag = () => {
         const data = {onderzoek_id:this.state.onderzoek_id, cat_naam:this.state.cat_naam, vraag: this.state.vraag, type_vraag:this.state.type_vraag};
-        axios.post('http://127.0.0.1:8000/api/auth/vragen',  data)
+        axios.post('http://madebydaniek-testwebsite3.nl/api/auth/vragen',  data)
         .then(res => {
         this.setState({message: res.data.message});
         }).catch(e => this.setState({errors: e.response.data})
@@ -50,7 +50,7 @@ class vragenAanmaken extends Component{
     }
 
     apiCall = () => {
-        const DEFAULT_URL = 'http://localhost:8000/api/'
+        const DEFAULT_URL = 'http://madebydaniek-testwebsite3.nl/api/'
         axios.get(DEFAULT_URL + 'categorien')
         .then(res => { 
         const opties = res.data.map(d => ({
@@ -62,7 +62,7 @@ class vragenAanmaken extends Component{
     }
 
     getVragen = () => {
-        const DEFAULT_URL = "http://localhost:8000/api/";
+        const DEFAULT_URL = "http://madebydaniek-testwebsite3.nl/api/";
         const ONDERZOEK_URL = "onderzoek/" + this.props.match.params.id + "/vragen";
         axios
           .get(DEFAULT_URL + ONDERZOEK_URL)
@@ -75,7 +75,7 @@ class vragenAanmaken extends Component{
       };
 
     verwijderVraag = (id) =>{
-        axios.put('http://127.0.0.1:8000/api/vragen/update',{
+        axios.put('http://madebydaniek-testwebsite3.nl/api/vragen/update',{
             id: id,
             onderzoek_id:this.props.match.params.id,
         }).then(function (response) {           

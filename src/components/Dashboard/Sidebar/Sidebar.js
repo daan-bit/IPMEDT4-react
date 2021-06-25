@@ -41,7 +41,7 @@ class Sidebar extends Component {
 
     submit = (e) =>{
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/store', {
+        axios.post('http://madebydaniek-testwebsite3.nl/api/store', {
                 naam: this.state.onderzoek, 
                 code: this.state.code,                     
             }).then(function (response) {           
@@ -55,7 +55,7 @@ class Sidebar extends Component {
 
     // Lijst van onderzoeken
     ophalenOnderzoeken = () =>{
-        const BASE_URL = "http://localhost:8000/api/onderzoeken";
+        const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoeken";
 
         axios.get(BASE_URL)
         .then(res => {
@@ -74,7 +74,7 @@ class Sidebar extends Component {
 
     //Meegeven aan overzicht
     overzichtVragen = (id) => {
-        const BASE_URL = `http://localhost:8000/api/onderzoek/${id}/vragen` ;
+        const BASE_URL = `http://madebydaniek-testwebsite3.nl/api/onderzoek/${id}/vragen` ;
 
         axios.get(BASE_URL)
         .then(res => {

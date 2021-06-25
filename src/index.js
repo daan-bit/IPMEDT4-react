@@ -25,7 +25,7 @@ if(token) { //bevat token
             cookie.remove('token');
             token = null;
         } else {
-            if(decoded.iss !== 'http://localhost:8000/api/auth/login') { //token komt niet overheen met die van api/auth/login?
+            if(decoded.iss !== 'http://madebydaniek-testwebsite3.nl/api/auth/login') { //token komt niet overheen met die van api/auth/login?
             cookie.remove('token'); //cookie verwijderen en token op null zetten
             token = null;
             }
@@ -43,7 +43,7 @@ const render = () => {
 }
 if(token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    axios.post("http://localhost:8000/api/auth/me")
+    axios.post("http://madebydaniek-testwebsite3.nl/api/auth/me")
     .then(res => {
         store.dispatch({type:"SET_LOGIN", payload: res.data});
         render()

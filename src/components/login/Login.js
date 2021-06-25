@@ -12,7 +12,7 @@ class Login extends Component {
     }
 
     apiCall = () => {
-        const DEFAULT_URL = 'http://localhost:8000/api/'
+        const DEFAULT_URL = 'http://madebydaniek-testwebsite3.nl/api/'
         const data = {email:this.state.email, password: this.state.password};
         axios.post(DEFAULT_URL + 'auth/login', data)
         .then(res => { 

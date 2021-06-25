@@ -15,7 +15,7 @@ class vragenBekijken extends Component {
   }
 
   apiCall = () => {
-    const DEFAULT_URL = "http://localhost:8000/api/";
+    const DEFAULT_URL = "http://madebydaniek-testwebsite3.nl/api/";
     const ONDERZOEK_URL = "onderzoek/" + this.state.onderzoek_id + "/vragen";
     axios
       .get(DEFAULT_URL + ONDERZOEK_URL)

@@ -6,7 +6,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
-    console.log({...rest }) //zie voor console redux te werk gaan
   return (
     <Route
       {...rest}

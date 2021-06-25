@@ -6,7 +6,7 @@ import "./vragenBekijken.css";
 const OnderzoekInfoComponent = props => {
     const [onderzoek, setOnderzoek] = useState([])
     useEffect(() => {
-            axios.get(`http://localhost:8000/api/onderzoek/${props.id}`)
+            axios.get(`http://madebydaniek-testwebsite3.nl/api/onderzoek/${props.id}`)
                 .then(res => {
                     setOnderzoek(res.data)
                 })

@@ -34,7 +34,7 @@ class Lijstmetvragen extends React.Component{
        dataVersturen = () => {
          //Alex - we maken een for loop om door de antwoorden en vragen heen te loopen, zodat we 1 voor 1 een antwoord kunnen opslaan
         for(let i=0; i<this.state.antwoorden.length; i++) {
-          const BASE_URL = "http://localhost:8000/api/antwoord/store";
+          const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/antwoord/store";
           const data = {vraag_id: this.state.vragen_id.split(',')[i], antwoord:this.state.antwoorden[i] };
           console.log(data);
           axios.post(BASE_URL, data)

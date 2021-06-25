@@ -14,7 +14,7 @@ class Modal extends Component{
 
   submit = (e) =>{
     e.preventDefault();
-    axios.put('http://127.0.0.1:8000/api/update', {
+    axios.put('http://madebydaniek-testwebsite3.nl/api/update', {
             id: this.props.verwijder,                     
         }).then(function (response) {           
             console.log(response.data);

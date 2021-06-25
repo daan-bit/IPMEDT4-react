@@ -10,7 +10,7 @@ class InfoOnderzoek extends Component{
     }
 
     apiCall = () => {
-        const DEFAULT_URL = 'http://localhost:8000/api/'
+        const DEFAULT_URL = 'http://madebydaniek-testwebsite3.nl/api/'
         const data = {id: 1};
         let history = useHistory();
         axios.get(DEFAULT_URL + 'onderzoek/1', data)

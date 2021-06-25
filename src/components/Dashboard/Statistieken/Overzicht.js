@@ -16,7 +16,7 @@ class InfoOnderzoek extends Component{
     }
 
     apiCall = () => {
-        const DEFAULT_URL = 'http://localhost:8000/api/'
+        const DEFAULT_URL = 'http://madebydaniek-testwebsite3.nl/api/'
         axios.get(DEFAULT_URL + `vraag/${this.state.vraag_id}/antwoorden`)
         .then(res => {
             for(let i=0; i< res.data.length; i++) {
@@ -44,7 +44,7 @@ class InfoOnderzoek extends Component{
     }
     
     getCategory = () => {
-    const DEFAULT_URL = 'http://localhost:8000/api/'
+    const DEFAULT_URL = 'http://madebydaniek-testwebsite3.nl/api/'
         axios.get(DEFAULT_URL + `vraag/${this.state.vraag_id}`)
         .then(res => {
             this.setState({type_vraag: res.data.type_vraag});
