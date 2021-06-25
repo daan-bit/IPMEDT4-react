@@ -22,10 +22,12 @@ class GeslotenVraag extends React.Component{
     render(){
         const { ans, current_id } = this.props
         const active = ans ? ans[current_id-1] : 0
+
+        console.log(ans, active)
         return(
             <form className="openvraag">
                 <label htmlFor="openvraag"></label>
-                <textarea className="openvraag__text" name="openvraag" id="openvraag" placeholder="Uw antwoord.." onChange={this.handleOnChange.bind(this)}></textarea>
+                <textarea className="openvraag__text" name="openvraag" id="openvraag" placeholder="Uw antwoord.." onChange={this.props.updateAnswer}>{active ?? ''}</textarea>
             </form>  
         );
     }
