@@ -15,11 +15,11 @@ class GeslotenVraag extends React.Component{
     render(){
         const { ans, current_id } = this.props
         const active = ans ? ans[current_id-1] : 0
-
+        console.log( 'active', active)
         return(
             <article className="vragenInput">
                 {this.btn.map(i => 
-                    <button onClick={ this.props.updateAnswer } key={i.id} data-type={i.id} data-active={ (active === "vraag"+i.id) ? 1 : 0} className="vragenInput__btn vragenInput__btn--color">
+                    <button onClick={ this.props.updateAnswer } key={i.id} data-type={i.id} data-active={ (active == i.id) ? 1 : 0} className="vragenInput__btn vragenInput__btn--color">
                         {i.title} 
                         <div className="vragenInput__btnlabel">{i.letter}</div>
                     </button>

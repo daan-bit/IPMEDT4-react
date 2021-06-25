@@ -19,8 +19,8 @@ class Vraag extends React.Component{
         questions: 1,
         currentQuestion: 0,
         currentAns: "",
-        onderzoek: [ ]
-        questions_progressBar: []
+        onderzoek: [ ],
+        questions: []
     }
 
     
@@ -52,13 +52,13 @@ class Vraag extends React.Component{
         const BASE_URL = "http://madebydaniek-testwebsite3.nl/api/onderzoek/"+this.state.onderzoek_id+"/vragen";
         axios.get(BASE_URL).then(res =>{
             this.setState({ questions: res.data, onderzoek: res.data })
-            let { onderzoek } = this.state
+            const { onderzoek } = this.state
             
-            //this.stateUpdate(0);
+            
             localStorage.setItem('quests', onderzoek.map(i => i.id))
             let LS = localStorage.getItem('ans')
+            const vraag_id = this.props.match.params.quest_id - 1
             if(LS) {
-                const vraag_id = this.props.match.params.quest_id - 1
                 this.props.addAnswer( LS.split(';') )
                 this.setState({
                     questions: onderzoek,
@@ -68,13 +68,12 @@ class Vraag extends React.Component{
                 })
             } else {
                 this.setState({
-
                     questions: localStorage.getItem('quests'),
-                    //Alex - we zetten questions_progressbar in een list en splitten met een komma
-                    questions_progressBar: localStorage.getItem('quests').split(','),
-                    vraag: this.onderzoek[vraag_id].vraag,
-                    type_vraag: this.onderzoek[vraag_id].type_vraag,
-                    cat_naam: this.onderzoek[vraag_id].cat_naam,
+                    //Alex - we zetten questions in een list en splitten met een komma
+                    questions: localStorage.getItem('quests').split(','),
+                    vraag: onderzoek[vraag_id].vraag,
+                    type_vraag: onderzoek[vraag_id].type_vraag,
+                    cat_naam: onderzoek[vraag_id].cat_naam,
                 })
             }
             console.log('data', this.state)
@@ -85,7 +84,7 @@ class Vraag extends React.Component{
     stateUpdate = vraag_id => {
         
         const { vraag_index, currentQuestion, currentAns,onderzoek,onderzoek_id } = this.state
-        const active = this.props.ans[vraag_id  - 1] ?? 'vraag'
+        const active = this.props.ans[vraag_id  - 1] ?? ''
 
         if(onderzoek.length === vraag_id) {
             window.location.href = "/overzicht/"+ onderzoek_id
@@ -100,7 +99,7 @@ class Vraag extends React.Component{
         //this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
 
         //this.props.ans[ vraag_id - 1 ] = currentAns ?   + currentAns : active
-        this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
+        this.props.ans[ vraag_id - 1 ] = currentAns ?  currentAns : active
 
         this.props.addAnswer( this.props.ans )
         
@@ -120,12 +119,11 @@ class Vraag extends React.Component{
     }
     stateUpdateBackward = vraag_id => {
 
-        const { vraag_index, currentQuestion, currentAns } = this.state
+        const { vraag_index, currentQuestion, currentAns, onderzoek } = this.state
         //if(this.onderzoek.length > 0 && !vraag_id) 
 
-         
         if(currentAns)  {
-            this.props.ans[vraag_id-1] = 'vraag' + currentAns
+            this.props.ans[vraag_id-1] = currentAns
             this.props.addAnswer( this.props.ans )
             localStorage.setItem('ans', this.props.ans.join(';'));
         }
@@ -158,9 +156,9 @@ class Vraag extends React.Component{
     backOverzicht = e => {
         e.preventDefault()
         const { vraag_index, currentQuestion, currentAns } = this.state
-        const active = this.props.ans[this.state.vraag_index  - 1] ?? 'vraag'
+        const active = this.props.ans[this.state.vraag_index  - 1] ?? ''
        
-        this.props.ans[ this.state.vraag_index - 1 ] = currentAns ? 'vraag' + currentAns : active
+        this.props.ans[ this.state.vraag_index - 1 ] = currentAns ?  currentAns : active
         this.props.addAnswer( this.props.ans )
         localStorage.setItem('ans', this.props.ans.join(';'))
         
@@ -194,9 +192,9 @@ class Vraag extends React.Component{
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / this.state.questions_progressBar.length * (this.state.currentQuestion+1) } 
+                    progress={ 100 / this.state.questions.length * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
-                    aantal={this.state.questions_progressBar.length} 
+                    aantal={this.state.questions.length} 
                     huidige={this.state.currentQuestion+1} 
                     volgendeVraag={this.volgendeVraag} 
                     vorigeVraag={this.vorigeVraag}
