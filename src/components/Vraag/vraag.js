@@ -18,7 +18,8 @@ class Vraag extends React.Component{
         vraag_index:   1,
         questions: 1,
         currentQuestion: 0,
-        currentAns: ""
+        currentAns: "",
+        questions_progressBar: []
     }
 
     onderzoek = [
@@ -67,6 +68,8 @@ class Vraag extends React.Component{
                 this.props.addAnswer( LS.split(',') )
                 this.setState({
                     questions: localStorage.getItem('quests'),
+                    //Alex - we zetten questions_progressbar in een list en splitten met een komma
+                    questions_progressBar: localStorage.getItem('quests').split(','),
                     vraag: this.onderzoek[vraag_id].vraag,
                     type_vraag: this.onderzoek[vraag_id].type_vraag,
                     cat_naam: this.onderzoek[vraag_id].cat_naam,
@@ -162,6 +165,7 @@ class Vraag extends React.Component{
  
     render(){
         console.log('state',this.state)
+        console.log()
         return(
             <section className="u--grid">
                 <article className="category">
@@ -179,9 +183,9 @@ class Vraag extends React.Component{
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / 5 * (this.state.currentQuestion+1) } 
+                    progress={ 100 / this.state.questions_progressBar.length * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
-                    aantal={this.state.questions.length} 
+                    aantal={this.state.questions_progressBar.length} 
                     huidige={this.state.currentQuestion+1} 
                     volgendeVraag={this.volgendeVraag} 
                     vorigeVraag={this.vorigeVraag}
