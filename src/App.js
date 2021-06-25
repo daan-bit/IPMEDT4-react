@@ -59,16 +59,12 @@ class App extends React.Component{
                     <Route>
                         <GuestRoute path="/overzicht/:id" component={OverzichtGebruiker} />
                     </Route>
-
-                
                     <Route>
                         <GuestRoute path="/vragen/:id/:quest_id?" component={vraag} />
-                    </Route>
-                   
+                    </Route>     
             </Router>
         );
-    }
-    
+    } 
 }
 
 export default App;

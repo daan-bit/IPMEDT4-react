@@ -18,11 +18,18 @@
 
 .category__btn:hover {
     background-color: var(--text-grey);
+    transition: 0.3s ;
+}
+
+.category__btn:hover .category__icon {
+    color: lightgrey;
+    transition: 0.3s;
 }
 
 .category__icon {
     font-size: 3rem;
     position: absolute;
+    color: var(--text-grey);
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -40%);

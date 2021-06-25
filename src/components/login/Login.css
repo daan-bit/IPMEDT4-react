@@ -65,11 +65,11 @@
 }
 
 .login-form__maken{
-    color: #119ADE;    
+    color: var(--text-blue);    
 }
 
 .login-form__maken:hover{
-    color: #42b7f1;
+    color: var(--btn-primary-hover);
 }
 
 

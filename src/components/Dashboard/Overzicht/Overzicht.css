@@ -7,7 +7,7 @@
 }
 
 .overzicht__blank{
-    padding: 5rem;
+    padding: 3rem;
 }
 
 .overzicht__vragenlijst{
@@ -15,10 +15,9 @@
     height: 100%;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     flex-direction: column;
-    gap: 2rem;
-    padding: 3rem; 
+    gap: 3rem;
+    padding: 10rem; 
     overflow-y: scroll;
     overflow-x: hidden;   
 }
@@ -28,7 +27,7 @@
 }
 
 .overzicht__text{
-    color: white;
+    color: var(--text-black);
 }
 
 .overzicht__vragen{
@@ -36,13 +35,14 @@
 }
 
 .overzicht__vragenContainer{
-    border: 1px solid white;
+    border: 0.1rem solid white;
     list-style-type: none;
     width: 100%;
     display: flex;
     justify-content: left;
     align-items: center;
     padding: 2.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .overzicht__vraagTitel{
@@ -52,13 +52,14 @@
 
 .overzicht__content{
     width: 100%;
-    background-color: #5B5E5D;
+    background-color: #fff;
     padding: 2.5rem;
-    border: 1px solid white;
+    border: 0.1rem solid white;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 
@@ -67,6 +68,5 @@
         grid-column: 1 / span 2;
         grid-row: 2 / span 1;
     }
-
 }
 

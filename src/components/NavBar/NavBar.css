@@ -1,9 +1,8 @@
 .navBar{
-    border: 0.1rem solid #10A1E9;
     width: 100%;
     height: auto;
-    padding: 0;
-    background-color: #1E2736;
+    padding: 1rem 2rem;
+    background-color: #121720;
 }
 
 .navBar__list{
@@ -11,14 +10,15 @@
     height: 100%; 
 }
 
+
 .navBar__listItem{
     width: 100%;
     display: flex;
     justify-content: left;
     align-items: center;
-    height: 50%;
+    margin-top: 1rem;
     padding: 1.5rem;
-    border: 0.1rem solid #10A1E9;
+    border-radius: 0.5rem;
 }
 
 .navBar__link{
@@ -30,17 +30,18 @@
     background-color: #33485d;
 }
 
+@media(min-width: 43.75rem) {
+    .navBar__list{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
 @media(min-width: 59rem){
     .navBar{
         grid-column: 1 / span 3;
         grid-row: 1 / span 1;
         display: grid;
-    }
-
-    .navBar__list{
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0,1fr));
-        width: 100%;
     }
 
     .navBar__listItem{

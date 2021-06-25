@@ -7,7 +7,8 @@
 /* Onderzoek aanmaken */
 .sidebar__form{
   width: 100%;
-  padding-top: 1rem;
+  padding: 3rem;
+  border-bottom: 0.1rem solid #eee;
 }
 
 .sidebar__inputSection{
@@ -15,7 +16,6 @@
   justify-content: center;
   align-items: left;
   flex-direction: column;
-  padding-left: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -24,14 +24,19 @@
 }
 
 .sidebar__input{
-  width: 95%;
   height: 4rem;
   font-size: 150%;
-  padding-left: 1rem;
 }
 
-.sidebar__input--code{
-  width: 70%;
+.sidebar__onderzoekContainer:hover  {
+  background-color: var(--bg-darkblue);
+  transition: 0.3s;
+}
+
+.sidebar__onderzoekContainer:hover .sidebar__onderzoekTitel,
+.sidebar__onderzoekContainer:hover .sidebar__code {
+  color: white;
+  transition: 0.3s;
 }
 
 /* Onderzoek aanmaken button */
@@ -44,10 +49,9 @@
 }
 
 .sidebar__button{
-  width: 95%;
-  margin: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
-
 
 /* lijst van onderzoeken */
 .sidebar__lijst{
@@ -59,8 +63,8 @@
   flex-direction: column;
   height: auto;
   width: 100%;
-  padding: 1rem;
-  border: 1px solid black;
+  padding: 3rem;
+  border-bottom: 0.1rem solid #eee;
 }
 
 .sidebar__onderzoekTitel{
@@ -72,7 +76,6 @@
 .sidebar__onderzoekTitel:hover{
   cursor: pointer;
 }
-
 
 .sidebar__code{
   color: black;
@@ -110,14 +113,6 @@ input[type=number] {
 }
 
 @media(min-width: 31.25rem){
-  .sidebar__input{
-    width: 65%;
-  }
-  
-  .sidebar__input--code{
-    width: 50%;
-  }
-
   .sidebar__button{
     width: 50%;
   }
@@ -133,14 +128,6 @@ input[type=number] {
 }
 
 @media(min-width: 43.75rem){
-  .sidebar__input{
-    width: 50%;
-  }
-  
-  .sidebar__input--code{
-    width: 35%;
-  }
-
   .sidebar__button{
     width: 35%;
   }
@@ -148,48 +135,29 @@ input[type=number] {
   .sidebar__verwijderButton{
     width: 35%;
   }
-
-
 }
-
 
 /* Vanaf hier andere layout */
 @media (min-width: 59rem){
   .sidebar{
     grid-column: 3 / span 1;
     grid-row: 2 / span 1;
-    height: 100vh;
     overflow-x:hidden;
     overflow-y: scroll;
   }
 
-  .sidebar__input{
-    width: 95%;
+  .sidebar__input,
+  .sidebar__input--code,
+  .sidebar__button {
+    width: 100%;
   }
   
-  .sidebar__input--code{
-    width: 70%;
-  }
-
   .sidebar__buttonContainer{
     justify-content: center;
   }
-
-  .sidebar__button{
-    width: 95%;
-  }
-
 }
 
 @media (min-width: 87.5rem){
-  .sidebar__input{
-    width: 70%;
-  }
-  
-  .sidebar__input--code{
-    width: 40%;
-  }
-
   .sidebar__buttonContainer{
     justify-content: left;
   }
@@ -201,5 +169,4 @@ input[type=number] {
   .overzicht__blank{
     padding: 10rem;
   }
-
 }

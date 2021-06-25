@@ -8,7 +8,7 @@
     position: relative;
     margin-bottom: 2rem;
     width: 100%;
-    min-width: 240px;
+    min-width: 24rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,20 +24,19 @@
     color: var(--text-white);
     right: 0.5rem;
     transition: 0.3s ease-in-out;
-    box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
+    box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
+    -webkit-box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
+    -moz-box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
 }
 .vragenInput__btn--color[data-active="1"]{
     background-color: var(--text-blue);
     color: var(--text-white);
     right: 0.5rem;
     transition: 0.3s ease-in-out;
-    box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(210,210,210,0.11);
+    box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
+    -webkit-box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
+    -moz-box-shadow: 1rem 1rem 0.5rem 0 rgba(210,210,210,0.11);
 }
-
 .vragenInput__btnlabel {
     position: absolute;
     background-color: var(--body-bg);
@@ -56,7 +55,6 @@
 .vragenInput__btn--color {
     background-color: var(--text-white);
 }
-
 
 /*desktopview*/
 @media only screen and (min-width: 64rem) {

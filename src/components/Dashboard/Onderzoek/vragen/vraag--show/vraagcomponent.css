@@ -1,35 +1,54 @@
 .onderzoek-vraag {
     background-color: #273747;
-    margin: 5rem;
-
+    margin: 3rem;
 }
 
 .onderzoek-vraag__container {
-    padding: 3rem;
+    padding: 2rem;
+}
+
+.onderzoek-vraag__container__category {
+    color: var(--text-white);
+    margin-top: 2rem;
+}
+
+.onderzoek-vraag__container__type {
+    color: var(--text-white);
+    margin: 0.5rem 0 2rem 0;
+}
+
+.onderzoek-vraag {
+    border-radius: 0.5rem;
+}
+
+.sidebar__onderzoek:hover {
+    color: var(--btn-primary-hover);
 }
 
 @media(min-width: 35rem) {
-    .onderzoek-vraag {
-        background-color: #273747;
-        padding: 1rem;
-        margin: 3rem;
-        width: 75%;
-        
-    }
-
     .onderzoek-vraag__container__title {
         font-size: 2rem;
+    }
+    .onderzoek-vraag {
+        background-color: #273747;
+        margin: 0;
     }
 }
 
 @media (min-width: 62.5rem) {
-    .onderzoek-vraag {
-        margin: 5rem;
-        width: 75%;
-
-
+    .onderzoek-vragen {
+        margin: 0 auto;
+        max-width: 150rem;
+        padding: 3rem;
     }
-
+    .vragen-bekijken__container {
+        max-width: 150rem;
+        margin: 0 auto;
+        padding: 3rem;
+    }
+    .vragen-bekijken__container h2 {
+        padding: 6rem 0;
+    }
     .onderzoek-vraag__container__title {
         font-size: 2.5rem;
     }
