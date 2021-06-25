@@ -14,49 +14,10 @@ class Lijstmetvragen extends React.Component{
         bericht: '',
         //Alex - elke antwoord moet een STRING ZIJN
         vragen_id: localStorage.getItem('quests'),
-        antwoorden: localStorage.getItem('antworden').split(',')
+        antwoorden: localStorage.getItem('antworden').split(';')
     }
 
-    onderzoek = [{
-      vraag0: "1",
-      flag0: "1",
-      vraag1: "1",
-      flag1: "0",
-      vraag2: "",
-      flag2: "10",
-      vraag3: "3",
-      flag3: "0",
-      vraag4: "4",
-      flag4: "0",
-      vraag5: "4",
-      flag5: "0",
-      vraag6: "2",
-      flag6: "0",
-      vraag7: "",
-      flag7: "0",
-      vraag8: "",
-      flag8: "0",
-      vraag9: "3",
-      flag9: "1",
-      vraag10: "4",
-      flag10: "1",
-      vraag11: "4",
-      flag11: "0",
-      vraag12: "2",
-      flag12: "0",
-      vraag13: "2",
-      flag13: "1",
-      vraag14: "",
-      flag14: "0",
-      vraag15: "",
-      flag15: "0",
-      vraag16: "3",
-      flag16: "1",
-      vraag17: "4",
-      flag17: "0",
-      }
-    ]
-    
+       
     makeApiCall = event => {
         let onderzoek_id = localStorage.getItem('onderzoek_id');
 
@@ -101,12 +62,13 @@ class Lijstmetvragen extends React.Component{
     
      
    render(){
+     console.log(this.state.antwoorden)
         const bericht = this.state.bericht;
         let items = ``
+        const idO = localStorage.getItem('onderzoek_id');
         this.state.vragen.forEach( (val, index) => {
-          let classActive = (this.onderzoek[0]["vraag"+index] != '') ? 'active' : ''
-          let classCircle = (this.onderzoek[0]["flag"+index] == '1') ? 'circle' : ''
-          items += `<a href="/vragen/1/${index + 1}" class="${classActive} ${classCircle}" type="submit " ><span>${index+1}</span></a>`
+          let classActive = (this.state.antwoorden[index] === '' || !this.state.antwoorden[index]) ? '' : 'active'
+          items += `<a href="/vragen/${idO}/${index + 1}" class="${classActive} " type="submit " ><span>${index+1}</span></a>`
         })
         return(
           <article className="lijstmetvragen">
