@@ -19,7 +19,7 @@
 }
 .code__text {
     color: var(--text-white);
-    max-width: 28rem;
+    text-align: center;
 }
 
 .code__form {

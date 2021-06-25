@@ -28,10 +28,9 @@ class StartTest extends React.Component{
     }
 
     makeApiCall = event => {
-        console.log(this.state.testCode);
         // onderzoek opvragen via Api met de ingevulde code
         //const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
-        const BASE_URL = "https://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
+        const BASE_URL = "http://www.madebydaniek-testwebsite3.nl/api/onderzoeken/";
         axios.get(BASE_URL + this.state.testCode ).then(res =>{
             localStorage.setItem('onderzoek_id', res.data.id);
             this.props.history.push("/vragen/" + res.data.id + "/1/", { state: this.state.testCode});

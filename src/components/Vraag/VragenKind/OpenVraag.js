@@ -27,7 +27,7 @@ class GeslotenVraag extends React.Component{
         return(
             <form className="openvraag">
                 <label htmlFor="openvraag"></label>
-                <textarea className="openvraag__text" name="openvraag" id="openvraag" placeholder="Uw antwoord.." onChange={this.props.updateAnswer}>{active ?? ''}</textarea>
+                <textarea className="openvraag__text" name="openvraag" id="openvraag" placeholder="Uw antwoord.."   defaultValue={active ?? ''} onChange={this.props.updateAnswer}></textarea>
             </form>  
         );
     }
