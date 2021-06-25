@@ -20,6 +20,7 @@ class Vraag extends React.Component{
         currentQuestion: 0,
         currentAns: "",
         onderzoek: [ ]
+        questions_progressBar: []
     }
 
     
@@ -67,9 +68,13 @@ class Vraag extends React.Component{
                 })
             } else {
                 this.setState({
-                    vraag: onderzoek[0].vraag,
-                    type_vraag: onderzoek[0].type_vraag,
-                    cat_naam: onderzoek[0].cat_naam,
+
+                    questions: localStorage.getItem('quests'),
+                    //Alex - we zetten questions_progressbar in een list en splitten met een komma
+                    questions_progressBar: localStorage.getItem('quests').split(','),
+                    vraag: this.onderzoek[vraag_id].vraag,
+                    type_vraag: this.onderzoek[vraag_id].type_vraag,
+                    cat_naam: this.onderzoek[vraag_id].cat_naam,
                 })
             }
             console.log('data', this.state)
@@ -91,8 +96,11 @@ class Vraag extends React.Component{
 
         //Alex - DIT ZORGT ERVOOR DAT ER GEEN VRAAG VOOR EEN ANTWOORD STAAT, wil je het terug comment onderstaande uit
         //Alex - er wordt een string van gemaakt, dit hebben we nodig voor het verzenden van antwoorden
-        this.props.ans[ vraag_id - 1 ] = currentAns ? currentAns  : active 
+
+        //this.props.ans[ vraag_id - 1 ] = currentAns ?  + currentAns  : active 
+
         //this.props.ans[ vraag_id - 1 ] = currentAns ?   + currentAns : active
+        this.props.ans[ vraag_id - 1 ] = currentAns ? 'vraag' + currentAns : active
 
         this.props.addAnswer( this.props.ans )
         
@@ -111,9 +119,10 @@ class Vraag extends React.Component{
         })
     }
     stateUpdateBackward = vraag_id => {
-        const { vraag_index, currentQuestion, currentAns, onderzoek  } = this.state
-        if(onderzoek.length > 0 && !vraag_id) 
-            return console.log('The Start!')
+
+        const { vraag_index, currentQuestion, currentAns } = this.state
+        //if(this.onderzoek.length > 0 && !vraag_id) 
+
          
         if(currentAns)  {
             this.props.ans[vraag_id-1] = 'vraag' + currentAns
@@ -133,14 +142,13 @@ class Vraag extends React.Component{
 
     volgendeVraag = () => {
             
-        this.stateUpdate(this.state.vraag_index)
+       this.stateUpdate(this.state.vraag_index)
     }
 
     vorigeVraag = () => {
         if(this.state.vraag_index - 1 <= 0) return
         //console.log(this.state.vraag_index)
-     
-        this.stateUpdateBackward(this.state.vraag_index -1)
+        this.stateUpdateBackward(this.state.vraag_index -2)
     }
 
     updateAnswer = then => {
@@ -159,13 +167,16 @@ class Vraag extends React.Component{
         window.location.href = "/overzicht/"+ this.state.onderzoek_id
     }
 
+
     updateOpenAnswer = then => {
         
         this.setState({ currentAns: then.target.value })
     }
+
  
     render(){
         console.log('state',this.state)
+        console.log()
         return(
             <section className="u--grid">
                 <article className="category">
@@ -183,9 +194,9 @@ class Vraag extends React.Component{
                 </article>
 
                 <StatusBar 
-                    progress={ 100 / 5 * (this.state.currentQuestion+1) } 
+                    progress={ 100 / this.state.questions_progressBar.length * (this.state.currentQuestion+1) } 
                     next={this.next.bind(this)} 
-                    aantal={this.state.questions.length} 
+                    aantal={this.state.questions_progressBar.length} 
                     huidige={this.state.currentQuestion+1} 
                     volgendeVraag={this.volgendeVraag} 
                     vorigeVraag={this.vorigeVraag}
