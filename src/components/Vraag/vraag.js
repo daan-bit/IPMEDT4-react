@@ -105,7 +105,7 @@ class Vraag extends React.Component{
         
         localStorage.setItem('ans',this.props.ans.join(';'))
 
-        localStorage.setItem('antworden', [this.props.ans.join(';')])
+        localStorage.setItem('antworden', [this.props.ans.join('.;')])
          //Alex
 
         this.setState({

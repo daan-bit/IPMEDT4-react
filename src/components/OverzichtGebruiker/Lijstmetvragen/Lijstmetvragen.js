@@ -67,7 +67,7 @@ class Lijstmetvragen extends React.Component{
         let items = ``
         const idO = localStorage.getItem('onderzoek_id');
         this.state.vragen.forEach( (val, index) => {
-          let classActive = (this.state.antwoorden[index] === '' || !this.state.antwoorden[index]) ? '' : 'active'
+          let classActive = (this.state.antwoorden[index] === '.' || !this.state.antwoorden[index]) ? '' : 'active'
           items += `<a href="/vragen/${idO}/${index + 1}" class="${classActive} " type="submit " ><span>${index+1}</span></a>`
         })
         return(
